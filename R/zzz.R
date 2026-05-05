@@ -21,8 +21,16 @@ current_java_version <- 0
 #' @export
 minimal_java_version <- 21
 
-#' @rdname jd3_utilities
+
+#' Check the version of Java
+#'
+#' @param silent Display or not a message
+#' @param startup Startup message
+#'
 #' @export
+#'
+#' @examples
+#' check_java_version()
 check_java_version <- function(silent = TRUE, startup = TRUE) {
     if (current_java_version < minimal_java_version) {
         if (!silent) {

@@ -114,7 +114,6 @@
 \alias{get_java_version}
 \alias{current_java_version}
 \alias{minimal_java_version}
-\alias{check_java_version}
 \alias{get_date_min}
 \alias{get_date_max}
 \title{Java Utility Functions}
@@ -341,8 +340,6 @@ get_java_version()
 current_java_version
 
 minimal_java_version
-
-check_java_version(silent = TRUE, startup = TRUE)
 
 get_date_min()
 
