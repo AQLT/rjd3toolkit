@@ -1,7 +1,7 @@
 Type: Package
 Package: rjd3toolkit
 Title: Utility Functions Around 'JDemetra+ 3.0'
-Version: 3.7.1.9000
+Version: 3.7.1.9100
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
@@ -27,9 +27,9 @@ Imports:
     checkmate,
     graphics,
     methods,
-    rJava (>= 1.0-6),
-    rjd3jars (>= 0.0.3),
-    RProtoBuf (>= 0.4.20),
+    rJava (>= 1.0-18),
+    rjd3jars (>= 0.0.4),
+    RProtoBuf (>= 0.4.27),
     stats,
     utils
 Encoding: UTF-8

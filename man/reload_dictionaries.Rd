@@ -13,7 +13,7 @@ invisibly \code{NULL}
 Reload dictionaries
 }
 \examples{
-\dontshow{if (get_java_version() >= minimal_java_version) withAutoprint(\{ # examplesIf}
+\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
 reload_dictionaries()
 \dontshow{\}) # examplesIf}
 }

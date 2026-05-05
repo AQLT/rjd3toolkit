@@ -36,11 +36,12 @@ NULL
 #' @md
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf check_java_version()
 #'
 #' do_stationary(log(ABS$X0.2.09.10.M), 12)
 #'
 do_stationary <- function(data, period) {
+    rjd3jars::initialize_protos()
     if (is.ts(data) && missing(period)) {
         period <- frequency(data)
     }
@@ -78,10 +79,11 @@ do_stationary <- function(data, period) {
 #'    * \code{order}: order of the differencing
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf check_java_version()
 #' differencing_fast(log(ABS$X0.2.09.10.M), 12)
 #'
 differencing_fast <- function(data, period, mad = TRUE, centile = 90, k = 1.2) {
+    rjd3jars::initialize_protos()
     if (is.ts(data) && missing(period)) {
         period <- frequency(data)
     }
@@ -107,7 +109,7 @@ differencing_fast <- function(data, period, mad = TRUE, centile = 90, k = 1.2) {
 #' @returns The differenced series.
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf check_java_version()
 #' differences(Retail$BookStores, c(1, 1, 12), FALSE)
 #'
 differences <- function(data, lags = 1, mean = TRUE) {
@@ -178,7 +180,7 @@ differences.data.frame <- function(data, lags = 1, mean = TRUE) {
 #'
 #' @returns T-Stat of the slope of the range-mean regression.
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf check_java_version()
 #' y <- ABS$X0.2.09.10.M
 #' # Multiplicative pattern
 #' plot(y)

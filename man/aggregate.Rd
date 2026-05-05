@@ -30,12 +30,11 @@ A new time series of frequency \code{nfreq}.
 Makes a frequency change of this series.
 }
 \examples{
-\dontshow{if (get_java_version() >= minimal_java_version) withAutoprint(\{ # examplesIf}
+check_java_version()
 s <- ABS$X0.2.09.10.M
 # Annual sum
 aggregate(s, nfreq = 1, conversion = "Sum") # first and last years removed
 aggregate(s, nfreq = 1, conversion = "Sum", complete = FALSE)
 # Quarterly mean
 aggregate(s, nfreq = 4, conversion = "Average")
-\dontshow{\}) # examplesIf}
 }
