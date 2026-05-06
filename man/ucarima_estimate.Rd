@@ -21,7 +21,7 @@ deviations if stdev is TRUE.
 Estimate UCARIMA Model
 }
 \examples{
-\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 mod1 <- arima_model("trend", delta = c(1, -2, 1))
 mod2 <- arima_model("noise", variance = 16)
 hp <- ucarima_model(components = list(mod1, mod2))

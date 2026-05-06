@@ -111,16 +111,12 @@
 \alias{.r2jd_tmp_ts}
 \alias{.r2jd_make_ts}
 \alias{.r2jd_make_tscollection}
-\alias{get_java_version}
-\alias{current_java_version}
-\alias{minimal_java_version}
+\alias{.jd3_env}
 \alias{get_date_min}
 \alias{get_date_max}
 \title{Java Utility Functions}
 \format{
-An object of class \code{integer} of length 1.
-
-An object of class \code{numeric} of length 1.
+An object of class \code{environment} of length 1.
 }
 \usage{
 .r2jd_tsdata(s)
@@ -335,11 +331,7 @@ An object of class \code{numeric} of length 1.
 
 .r2jd_make_tscollection(source, id, type = "All")
 
-get_java_version()
-
-current_java_version
-
-minimal_java_version
+.jd3_env
 
 get_date_min()
 

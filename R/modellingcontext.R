@@ -13,7 +13,7 @@ JD3_TSCOLLECTION <- "JD3_TSCOLLECTION"
 #'
 #' @returns
 #' Returns a java object of class JD3_TSMONIKER.
-#' @examplesIf check_java_version()
+#' @examplesIf rjd3jars::check_java_version()
 #' source <- "Txt"
 #' # id is split due to length restrictions
 #' id1 <- "demetra://tsprovider/Txt/20111201/SERIES?datePattern=dd%2FMM%2Fyyyy&delimiter=SEMICOLON&"
@@ -159,7 +159,6 @@ dynamic_ts <- function(moniker, data) {
 #' @export
 #' @rdname jd3_utilities
 .r2jd_ts <- function(s) {
-    rjd3jars::initialize_protos()
     if (is.null(s)) {
         return(.jnull("jdplus/toolkit/base/api/timeseries/Ts"))
     }
@@ -176,7 +175,6 @@ dynamic_ts <- function(moniker, data) {
 #' @export
 #' @rdname jd3_utilities
 .jd2r_ts <- function(js) {
-    rjd3jars::initialize_protos()
     if (is.jnull(js)) {
         return(NULL)
     }
@@ -188,7 +186,6 @@ dynamic_ts <- function(moniker, data) {
 #' @export
 #' @rdname jd3_utilities
 .r2jd_tscollection <- function(s) {
-    rjd3jars::initialize_protos()
     if (is.null(s)) {
         return(.jnull("jdplus/toolkit/base/api/timeseries/TsCollection"))
     }
@@ -205,7 +202,6 @@ dynamic_ts <- function(moniker, data) {
 #' @export
 #' @rdname jd3_utilities
 .jd2r_tscollection <- function(js) {
-    rjd3jars::initialize_protos()
     if (is.jnull(js)) {
         return(NULL)
     }
@@ -298,7 +294,6 @@ dynamic_ts <- function(moniker, data) {
 #' @export
 #' @rdname jd3_utilities
 .jd2p_variables <- function(jd) {
-    rjd3jars::initialize_protos()
     bytes <- .jcall("jdplus/toolkit/base/r/util/Modelling", "[B", "toBuffer", jd)
     p <- RProtoBuf::read(jd3.TsDataSuppliers, bytes)
     return(p)
@@ -335,7 +330,7 @@ dynamic_ts <- function(moniker, data) {
 #' @returns list of calendars and variables
 #' @export
 #'
-#' @examplesIf check_java_version()
+#' @examplesIf rjd3jars::check_java_version()
 #'
 #' # Creating one or several external regressors (TS objects), which will
 #' # be gathered in one or several groups
@@ -558,7 +553,6 @@ modelling_context <- function(calendars = NULL, variables = NULL) {
 #' @export
 #' @rdname jd3_utilities
 .jd2p_calendars <- function(jd) {
-    rjd3jars::initialize_protos()
     bytes <- .jcall("jdplus/toolkit/base/r/util/Modelling", "[B", "toBuffer", jd)
     p <- RProtoBuf::read(jd3.Calendars, bytes)
     return(p)

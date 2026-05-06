@@ -30,7 +30,7 @@ The functions random_XXX return random number (numeric vectors) of length \code{
 Density, (cumulative) distribution function and random generation for inverse-gamma distribution.
 }
 \examples{
-\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 density_inverse_gamma(shape = 1, scale = 2, x = 1:10)
 cdf_inverse_gamma(shape = 1, scale = 2, x = 1:10)
 random_inverse_gamma(shape = 1, scale = 2, n = 10)

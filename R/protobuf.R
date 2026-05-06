@@ -1,5 +1,4 @@
 #' @include utils.R
-#' @importFrom rjd3jars initialize_protos
 #' @import RProtoBuf
 #' @importFrom stats frequency ts start
 NULL

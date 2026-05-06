@@ -34,7 +34,7 @@ the inverse autocorrelations.
 Autocorrelation Functions
 }
 \examples{
-\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 x <- ABS$X0.2.09.10.M
 autocorrelations(x)
 autocorrelations_partial(x)

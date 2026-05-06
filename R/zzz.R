@@ -1,72 +1,62 @@
 #' @include utils.R
-#' @importFrom RProtoBuf read readProtoFiles2
 #' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jinit
 #' @importFrom stats frequency is.ts pf ts ts.union
-#' @importFrom rjd3jars initialize_protos
+#' @importFrom rjd3jars reload_dictionaries check_java_version
 NULL
 
 #' @rdname jd3_utilities
 #' @export
-get_java_version <- function() {
-    jversion <- .jcall("java.lang.System", "S", "getProperty", "java.version")
-    jversion <- as.integer(regmatches(jversion, regexpr(pattern = "^(\\d+)", text = jversion)))
-    return(jversion)
-}
-
-#' @rdname jd3_utilities
-#' @export
-current_java_version <- 0
-
-#' @rdname jd3_utilities
-#' @export
-minimal_java_version <- 21
-
-
-#' Check the version of Java
-#'
-#' @param silent Display or not a message
-#' @param startup Startup message
-#'
-#' @export
-#'
-#' @examples
-#' check_java_version()
-check_java_version <- function(silent = TRUE, startup = TRUE) {
-    if (current_java_version < minimal_java_version) {
-        if (!silent) {
-            if (startup)
-                packageStartupMessage(
-                    sprintf(
-                        "Your java version is %s. %s or higher is needed.",
-                        current_java_version,
-                        minimal_java_version
-                    ))
-            else
-                message(
-                    sprintf(
-                        "Your java version is %s. %s or higher is needed.",
-                        current_java_version,
-                        minimal_java_version
-                    ))
-        }
-        return (FALSE)
-    } else
-        return (TRUE)
-}
+.jd3_env<-new.env()
 
 .onLoad <- function(libname, pkgname) {
     result <- .jpackage(pkgname, lib.loc = libname)
     if (!result) stop("Loading java packages failed")
-    current_java_version <<- get_java_version()
 
     if (is.null(getOption("summary_info"))) {
         options(summary_info = TRUE)
     }
 
-    check_java_version(FALSE)
+    if(rjd3jars::check_java_version(FALSE)){
+        rjd3jars::reload_dictionaries()
+    }
 
-    rjd3jars::initialize_protos()
+    proto_dir <- system.file("proto", package = pkgname)
+    readProtoFiles2(protoPath = proto_dir)
+
+    assign("toolkit", list(), .jd3_env)
 }
+
+#' Set an option for toolkit
+#'
+#' @param name Name of the option
+#' @param obj Option
+#'
+#' @export
+#'
+#' @examples
+#' toolkit_option("test", "DUMMY")
+toolkit_option<-function(name, obj){
+    options<-.jd3_env$toolkit
+    options[[name]]<-obj
+    assign("toolkit", options, rjd3toolkit::.jd3_env)
+    invisible()
+}
+
+#' Set an option for toolkit
+#'
+#' @param name Name of the option
+#'
+#' @returns The requested option or NULL if it doesn't exist
+#' @export
+#'
+#' @examples
+#' toolkit_option("test", "DUMMY")
+#' get_toolkit_option("test")
+get_toolkit_option<-function(name){
+    options<-.jd3_env$toolkit
+    return (options[[name]])
+}
+
 
 #' @rdname jd3_utilities
 get_date_min <- function() {

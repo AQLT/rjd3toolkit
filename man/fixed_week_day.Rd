@@ -27,7 +27,7 @@ Allows to define a holiday falling on a fixed week day each year, like Labour Da
 USA which is always celebrated on the first Monday of September.
 }
 \examples{
-\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 day <- fixed_week_day(9, 1, 1) # first Monday(1) of September.
 day
 \dontshow{\}) # examplesIf}

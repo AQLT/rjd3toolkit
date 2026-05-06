@@ -123,18 +123,6 @@ parseDate <- function(s) {
     return(d)
 }
 
-#' @title Reload dictionaries
-#'
-#' @export
-#'
-#' @returns invisibly \code{NULL}
-#'
-#' @examplesIf check_java_version()
-#' reload_dictionaries()
-reload_dictionaries <- function() {
-    .jcall("jdplus/toolkit/base/api/information/InformationExtractors", "V", "reloadExtractors")
-}
-
 #' @importFrom stats pf frequency
 NULL
 
@@ -170,7 +158,7 @@ test_anova <- function(ssm, dfm, ssr, dfr) {
 #' @returns
 #' Returns a java object of class JD3_LIKELIHOOD.
 #'
-#' @examplesIf check_java_version()
+#' @examplesIf rjd3jars::check_java_version()
 #'
 #' # Values used below are taken from the following estimation
 #' # m <- rjd3x13::x13(rjd3toolkit::ABS$X0.2.09.10.M, "rsa3")
