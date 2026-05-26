@@ -34,7 +34,6 @@ jobs:
           - {os: ubuntu-latest,  r: 'oldrel-1'}
           - {os: ubuntu-latest,  r: 'oldrel-2'}
           - {os: ubuntu-latest,  r: 'oldrel-3'}
-          - {os: ubuntu-latest,  r: '4.1.0'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -67,19 +66,6 @@ jobs:
       - name: Set up for RProtoBuf on ubuntu
         if: runner.os == 'Linux'
         run: sudo apt-get update -y && sudo apt-get install protobuf-compiler libprotobuf-dev libprotoc-dev
-
-      - name: Force C++17 for old R
-        run: |
-          mkdir -p ~/.R
-
-          cat <<EOF >> ~/.R/Makevars
-          CXX14=g++ -std=gnu++17
-          CXX14STD=-std=gnu++17
-          CXX11=g++ -std=gnu++17
-          CXX11STD=-std=gnu++17
-          EOF
-
-          cat ~/.R/Makevars
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
