@@ -80,7 +80,7 @@ new_spec <- set_estimate(
 }
 \references{
 More in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://doc.jdemetra.org/a-sa-pre-treatment#sa-pre-t-spans}
 }
 \seealso{
 \code{\link{set_basic}}, \code{\link{set_arima}}

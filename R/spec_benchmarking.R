@@ -50,7 +50,7 @@
 #'
 #' @references
 #' More information on benchmarking in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-benchmarking}
 #' @export
 set_benchmarking <- function(x, enabled = NA,
                              target = c(NA, "CalendarAdjusted", "Original"),
