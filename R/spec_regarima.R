@@ -545,7 +545,7 @@ set_estimate.default <- function(x,
 #'     x = init_spec,
 #'     span.type = "From",
 #'     d0 = "2012-01-01",
-#'     outliers.type = c("LS", "AO"),
+#'     outliers.type = c("TC", "AO"),
 #'     critical.value = 5,
 #'     tc.rate = 0.85
 #' )
