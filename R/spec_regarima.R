@@ -624,7 +624,7 @@ set_outlier.default <- function(x,
         outliers.type <- unique(outliers.type)
         if (is_tramo) {
             outlier$enabled <- TRUE
-            for (out.name in c("ao", "ls", "ts", "so")) {
+            for (out.name in c("ao", "ls", "tc", "so")) {
                 outlier[[out.name]] <- out.name %in% tolower(outliers.type)
             }
         } else {

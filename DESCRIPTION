@@ -44,6 +44,7 @@ Collate:
     'arima.R'
     'calendars.R'
     'calendarts.R'
+    'data.R'
     'decomposition.R'
     'deprecated.R'
     'dictionary.R'
