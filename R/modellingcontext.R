@@ -350,7 +350,7 @@ dynamic_ts <- function(moniker, data) {
 #' @seealso \code{\link{add_usrdefvar}}, \code{\link{intervention_variable}}
 #' @references
 #' More information on auxiliary variables in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-outlier-detection}
 #'
 modelling_context <- function(calendars = NULL, variables = NULL) {
     if (is.null(calendars) || length(calendars) == 0L) {

@@ -307,7 +307,7 @@ ramp_variable <- function(frequency, start, length, s, range) {
 #' @seealso \code{\link{modelling_context}}, \code{\link{add_usrdefvar}}
 #' @references
 #' More information on auxiliary variables in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://jdemetra-new-documentation.netlify.app/a-outlier-detection}
 
 #' @export
 intervention_variable <- function(frequency, start, length, s, starts, ends, delta = 0, seasonaldelta = 0) {

@@ -41,7 +41,7 @@ my_context <- modelling_context(variables = vars)
 }
 \references{
 More information on auxiliary variables in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://doc.jdemetra.org/a-outlier-detection}
 }
 \seealso{
 \code{\link{add_usrdefvar}}, \code{\link{intervention_variable}}
