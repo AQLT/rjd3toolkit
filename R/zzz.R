@@ -6,17 +6,18 @@ NULL
 
 #' @rdname jd3_utilities
 #' @export
-.jd3_env<-new.env()
+.jd3_env <- new.env()
 
 .onLoad <- function(libname, pkgname) {
     result <- .jpackage(pkgname, lib.loc = libname)
-    if (!result) stop("Loading java packages failed")
+    if (!result)
+        stop("Loading java packages failed")
 
     if (is.null(getOption("summary_info"))) {
         options(summary_info = TRUE)
     }
 
-    if(rjd3jars::check_java_version(FALSE)){
+    if (rjd3jars::check_java_version(FALSE)) {
         rjd3jars::reload_dictionaries()
     }
 
@@ -35,9 +36,9 @@ NULL
 #'
 #' @examples
 #' toolkit_option("test", "DUMMY")
-toolkit_option<-function(name, obj){
-    options<-.jd3_env$toolkit
-    options[[name]]<-obj
+toolkit_option <- function(name, obj) {
+    options <- .jd3_env$toolkit
+    options[[name]] <- obj
     assign("toolkit", options, rjd3toolkit::.jd3_env)
     invisible()
 }
@@ -52,8 +53,8 @@ toolkit_option<-function(name, obj){
 #' @examples
 #' toolkit_option("test", "DUMMY")
 #' get_toolkit_option("test")
-get_toolkit_option<-function(name){
-    options<-.jd3_env$toolkit
+get_toolkit_option <- function(name) {
+    options <- .jd3_env$toolkit
     return (options[[name]])
 }
 

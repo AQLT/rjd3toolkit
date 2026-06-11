@@ -11,49 +11,37 @@
 	<description>Usage: mvn -Pcopy-jars</description>
 
 	<properties>
-		<jdplus-main.version>3.7.1</jdplus-main.version>
+		<jdplus-main.version>3.7.2-SNAPSHOT</jdplus-main.version>
+        <protobuf.version>4.34.1</protobuf.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>eu.europa.ec.joinup.sat</groupId>
-			<artifactId>jdplus-sa-base-api</artifactId>
-			<version>${jdplus-main.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.europa.ec.joinup.sat</groupId>
-			<artifactId>jdplus-sa-base-core</artifactId>
-			<version>${jdplus-main.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.europa.ec.joinup.sat</groupId>
-			<artifactId>jdplus-sa-base-protobuf</artifactId>
-			<version>${jdplus-main.version}</version>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>eu.europa.ec.joinup.sat</groupId>
 			<artifactId>jdplus-sa-base-r</artifactId>
 			<version>${jdplus-main.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.europa.ec.joinup.sat</groupId>
-			<artifactId>jdplus-toolkit-base-api</artifactId>
-			<version>${jdplus-main.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.europa.ec.joinup.sat</groupId>
-			<artifactId>jdplus-toolkit-base-core</artifactId>
-			<version>${jdplus-main.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.europa.ec.joinup.sat</groupId>
-			<artifactId>jdplus-toolkit-base-protobuf</artifactId>
-			<version>${jdplus-main.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>eu.europa.ec.joinup.sat</groupId>
+					<artifactId>jdplus-sa-base-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>eu.europa.ec.joinup.sat</groupId>
 			<artifactId>jdplus-toolkit-base-r</artifactId>
 			<version>${jdplus-main.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>eu.europa.ec.joinup.sat</groupId>
+					<artifactId>jdplus-toolkit-base-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
@@ -109,7 +97,6 @@
 								<phase>package</phase>
 								<configuration>
 									<outputDirectory>${project.build.directory}</outputDirectory>
-                                    <excludeArtifactIds>protobuf-java</excludeArtifactIds>
 								</configuration>
 							</execution>
 						</executions>
@@ -150,4 +137,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
 </project>
