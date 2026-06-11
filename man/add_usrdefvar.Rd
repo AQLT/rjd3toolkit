@@ -102,7 +102,7 @@ new_spec <- add_usrdefvar(new_spec, name = "reg2.iv2", regeffect = "Trend", coef
 }
 \references{
 More information on outliers and other auxiliary variables in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://doc.jdemetra.org/a-outlier-detection}
 }
 \seealso{
 \code{\link{set_tradingdays}}, \code{\link{intervention_variable}}

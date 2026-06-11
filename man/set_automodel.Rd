@@ -138,7 +138,7 @@ new_spec <- set_automodel(x = init_spec, enabled = FALSE, acceptdefault = TRUE)
 }
 \references{
 More information on reg-arima modelling in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://doc.jdemetra.org/}
 }
 \seealso{
 \code{\link{set_arima}}, \code{\link{set_transform}}

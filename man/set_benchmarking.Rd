@@ -74,5 +74,5 @@ new_spec <- set_benchmarking(
 }
 \references{
 More information on benchmarking in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://doc.jdemetra.org/a-benchmarking}
 }

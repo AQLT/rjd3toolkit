@@ -101,7 +101,7 @@ new_spec <-set_basic(
 }
 \references{
 More information in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://doc.jdemetra.org/a-sa-pre-treatment#sa-pre-t-spans}
 }
 \seealso{
 \code{\link{set_estimate}}, \code{\link{set_arima}}

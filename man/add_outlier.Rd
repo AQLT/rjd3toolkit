@@ -66,7 +66,7 @@ new_spec2 <- remove_ramp(new_spec2, start = "2012-01-01", end = "2012-12-01")
 }
 \references{
 More information on outliers and other auxiliary variables in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://doc.jdemetra.org/a-outlier-detection}
 }
 \seealso{
 \code{\link{add_usrdefvar}}, \code{\link{intervention_variable}}

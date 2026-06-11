@@ -44,7 +44,7 @@
 #' @seealso \code{\link{add_usrdefvar}}, \code{\link{intervention_variable}}
 #' @references
 #' More information on outliers and other auxiliary variables in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-outlier-detection}
 #' @export
 add_outlier <- function(x,
                         type,
@@ -336,7 +336,7 @@ remove_ramp.default <- function(x,
 #' @seealso \code{\link{set_estimate}}, \code{\link{set_arima}}
 #' @references
 #' More information in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-sa-pre-treatment#sa-pre-t-spans}
 #' @export
 set_basic <- function(x,
                       type = c(NA, "All", "From", "To", "Between", "Last", "First", "Excluding"),
@@ -425,7 +425,7 @@ set_basic.default <- function(x,
 #' @seealso \code{\link{set_basic}}, \code{\link{set_arima}}
 #' @references
 #' More in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-sa-pre-treatment#sa-pre-t-spans}
 #'
 #' @export
 set_estimate <- function(x,
@@ -545,7 +545,7 @@ set_estimate.default <- function(x,
 #'     x = init_spec,
 #'     span.type = "From",
 #'     d0 = "2012-01-01",
-#'     outliers.type = c("LS", "AO"),
+#'     outliers.type = c("TC", "AO"),
 #'     critical.value = 5,
 #'     tc.rate = 0.85
 #' )
@@ -554,7 +554,7 @@ set_estimate.default <- function(x,
 #'
 #' @references
 #' More information on outliers and other auxiliary variables in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-outlier-detection}
 #'
 #' @export
 #'
@@ -779,7 +779,7 @@ set_outlier.default <- function(x,
 #'
 #' @references
 #' More information on reg-arima modelling in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/}
 #'
 #' @export
 #'
@@ -935,7 +935,7 @@ set_automodel.default <- function(x,
 #'
 #' @references
 #' More information on reg-arima modelling in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/}
 #' @export
 set_arima <- function(x,
                       mean = NA,
@@ -1174,7 +1174,7 @@ set_arima.default <- function(x,
 #'
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #'
 #' @examplesIf rjd3jars::check_java_version()
 #' # Pre-defined regressors
@@ -1516,7 +1516,7 @@ set_tradingdays.default <- function(x,
 #' @seealso \code{\link{easter_variable}}, \code{\link{easter_day}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #' @examplesIf rjd3jars::check_java_version()
 #'
 #' # Customize a default specification
@@ -1653,7 +1653,7 @@ set_easter.default <- function(x, enabled = NA,
 #' @seealso \code{\link{set_outlier}}, \code{\link{set_tradingdays}}
 #' @references
 #' More information in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-sa-pre-treatment#sa-pre-t-mode}
 #'
 #' @examplesIf rjd3jars::check_java_version()
 #' # Customize a default specification
@@ -1796,7 +1796,7 @@ set_transform.default <- function(x,
 #' @seealso \code{\link{set_tradingdays}}, \code{\link{intervention_variable}}
 #' @references
 #' More information on outliers and other auxiliary variables in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-outlier-detection}
 #' @export
 add_usrdefvar <- function(x,
                           group = "r",

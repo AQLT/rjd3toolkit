@@ -38,7 +38,7 @@ composite_calendar <- weighted_calendar(list(France, Belgium), weights = c(1, 2)
 }
 \references{
 More information on calendar correction in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+\url{https://doc.jdemetra.org/a-calendar-correction}
 }
 \seealso{
 \code{\link{national_calendar}}, \code{\link{chained_calendar}}

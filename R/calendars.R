@@ -88,7 +88,7 @@ SINGLEDAY <- "JD3_SINGLEDAY"
 #' @seealso \code{\link{national_calendar}}, \code{\link{special_day}},\code{\link{easter_day}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 fixed_day <- function(month, day, weight = 1, validity = NULL) {
     output <- list(
         month = month,
@@ -148,7 +148,7 @@ fixed_day <- function(month, day, weight = 1, validity = NULL) {
 #' @seealso \code{\link{national_calendar}}, \code{\link{fixed_day}},\code{\link{special_day}},\code{\link{easter_day}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #'
 fixed_week_day <- function(month, week, dayofweek, weight = 1, validity = NULL) {
     return(structure(list(month = month, week = week, dayofweek = dayofweek, weight = weight, validity = validity), class = c(FIXEDWEEKDAY, HOLIDAY)))
@@ -195,7 +195,7 @@ fixed_week_day <- function(month, week, dayofweek, weight = 1, validity = NULL) 
 #' @seealso \code{\link{national_calendar}}, \code{\link{fixed_day}},\code{\link{special_day}},\code{\link{fixed_week_day}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #'
 #' @export
 easter_day <- function(offset, julian = FALSE, weight = 1, validity = NULL) {
@@ -234,7 +234,7 @@ easter_day <- function(offset, julian = FALSE, weight = 1, validity = NULL) {
 #' @seealso \code{\link{national_calendar}}, \code{\link{fixed_day}}, \code{\link{special_day}},\code{\link{easter_day}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #'
 #' @export
 single_day <- function(date, weight = 1) {
@@ -304,7 +304,7 @@ single_day <- function(date, weight = 1) {
 #' @seealso \code{\link{national_calendar}}, \code{\link{fixed_day}}, \code{\link{easter_day}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 special_day <- function(event, offset = 0, weight = 1, validity = NULL) {
     output <- list(event = event, offset = offset, weight = weight, validity = validity)
     class(output) <- c(SPECIALDAY, HOLIDAY)
@@ -385,7 +385,7 @@ special_day <- function(event, offset = 0, weight = 1, validity = NULL) {
 #'
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #'
 #' @export
 #'
@@ -450,7 +450,7 @@ td <- function(frequency, start, length, s, groups = c(1, 2, 3, 4, 5, 6, 0), con
 #' @seealso \code{\link{calendar_td}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #' @examplesIf rjd3jars::check_java_version()
 #' BE <- national_calendar(list(
 #'     fixed_day(7, 21),
@@ -550,7 +550,7 @@ long_term_mean <- function(calendar, frequency, groups = c(1, 2, 3, 4, 5, 6, 0),
 #' @seealso \code{\link{national_calendar}}, \code{\link{easter_day}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #
 #' @examplesIf rjd3jars::check_java_version()
 #' # Dates from 2018(included) to 2023 (included)
@@ -573,7 +573,7 @@ easter_dates <- function(year0, year1, julian = FALSE) {
 #' @seealso \code{\link{calendar_td}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #' @export
 #' @examplesIf rjd3jars::check_java_version()
 #' stock_td(frequency = 12L, start = c(1990L, 1L), length = 480L, w = 1L)
@@ -671,7 +671,7 @@ stock_td <- function(frequency, start, length, s, w = 31) {
 #' @seealso \code{\link{national_calendar}}, \code{\link{weighted_calendar}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #' @examplesIf rjd3jars::check_java_version()
 #' Belgium <- national_calendar(list(special_day("NEWYEAR"), fixed_day(7, 21)))
 #' France <- national_calendar(list(special_day("NEWYEAR"), fixed_day(7, 14)))
@@ -723,7 +723,7 @@ chained_calendar <- function(calendar1, calendar2, break_date) {
 #' @seealso \code{\link{national_calendar}}, \code{\link{chained_calendar}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #'
 #' @export
 #'
@@ -822,7 +822,7 @@ weighted_calendar <- function(calendars, weights) {
 #' @seealso \code{\link{chained_calendar}}, \code{\link{weighted_calendar}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #' @export
 national_calendar <- function(days = list(), mean_correction = TRUE) {
     if (!is.list(days)) stop("Days should be a list of holidays")
@@ -873,7 +873,7 @@ national_calendar <- function(days = list(), mean_correction = TRUE) {
 #' @seealso \code{\link{national_calendar}}, \code{\link{td}}
 #' @references
 #' More information on calendar correction in JDemetra+ online documentation:
-#' \url{https://jdemetra-new-documentation.netlify.app/}
+#' \url{https://doc.jdemetra.org/a-calendar-correction}
 #'
 calendar_td <- function(calendar = national_calendar(),
                         frequency,

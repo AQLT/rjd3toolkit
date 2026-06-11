@@ -12,7 +12,7 @@
 
 	<properties>
 		<jdplus-main.version>3.7.2-SNAPSHOT</jdplus-main.version>
-        <protobuf.version>4.34.1</protobuf.version>
+        <protobuf.version>4.35.0</protobuf.version>
 	</properties>
 
 	<dependencies>

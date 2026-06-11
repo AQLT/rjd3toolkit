@@ -211,7 +211,7 @@ new_spec <- set_tradingdays(
 }
 \references{
 More information on calendar correction in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+\url{https://doc.jdemetra.org/a-calendar-correction}
 }
 \seealso{
 \code{\link{modelling_context}}, \code{\link{calendar_td}}

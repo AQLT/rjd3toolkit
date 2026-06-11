@@ -87,7 +87,7 @@ new_spec <- set_easter(
 }
 \references{
 More information on calendar correction in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/a-calendar-correction}
+\url{https://doc.jdemetra.org/a-calendar-correction}
 }
 \seealso{
 \code{\link{easter_variable}}, \code{\link{easter_day}}

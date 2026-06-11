@@ -46,7 +46,7 @@ MyCalendar <- national_calendar(list(
 }
 \references{
 More information on calendar correction in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://doc.jdemetra.org/a-calendar-correction}
 }
 \seealso{
 \code{\link{chained_calendar}}, \code{\link{weighted_calendar}}

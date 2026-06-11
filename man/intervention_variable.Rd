@@ -89,7 +89,7 @@ new_spec <- add_usrdefvar(init_spec, name = "reg1.iv1", regeffect = "Trend")
 }
 \references{
 More information on auxiliary variables in JDemetra+ online documentation:
-\url{https://jdemetra-new-documentation.netlify.app/}
+\url{https://jdemetra-new-documentation.netlify.app/a-outlier-detection}
 }
 \seealso{
 \code{\link{modelling_context}}, \code{\link{add_usrdefvar}}
