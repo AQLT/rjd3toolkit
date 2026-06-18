@@ -62,7 +62,7 @@ for the decomposition.
 }
 }
 \examples{
-\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
 
 # Creating one or several external regressors (TS objects),
 # which will be gathered in one or several groups

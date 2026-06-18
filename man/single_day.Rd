@@ -18,7 +18,7 @@ returns an object of class \code{c("JD3_SINGLEDAY","JD3_HOLIDAY")} (with name of
 Allows to set a holiday as a once-occurring event.
 }
 \examples{
-\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
 single_day("1999-03-19")
 \dontshow{\}) # examplesIf}
 }

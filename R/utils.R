@@ -65,7 +65,7 @@ test_anova <- function(ssm, dfm, ssr, dfr) {
 #' @returns
 #' Returns a java object of class JD3_LIKELIHOOD.
 #'
-#' @examplesIf rjd3jars::check_java_version()
+#' @examplesIf check_java_version()
 #'
 #' # Values used below are taken from the following estimation
 #' # m <- rjd3x13::x13(rjd3toolkit::ABS$X0.2.09.10.M, "rsa3")

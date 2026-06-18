@@ -53,7 +53,7 @@ This kind of non-aggregated regressors are used for calendar correction in
 daily data.
 }
 \examples{
-\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
 BE <- national_calendar(list(
     fixed_day(7, 21),
     special_day("NEWYEAR"),

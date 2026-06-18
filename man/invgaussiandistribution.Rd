@@ -27,7 +27,7 @@ Function random_XXX returns a numeric vector of length \code{n}).
 Density and random generation for an Inverse-Gaussian (Wald) distribution.
 }
 \examples{
-\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
 # Probability density function for an Inverse Gaussian distribution
 z <-density_inverse_gaussian(shape = 1, scale = 2, x = 0.1* 0:30)
 # Generating a random vector with each component drawn from an Inverse Gaussian distribution

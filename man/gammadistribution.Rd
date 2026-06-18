@@ -30,7 +30,7 @@ Function random_XXX returns a numeric vector of length \code{n}.
 Density, cumulative distribution function and random generation for a Gamma distribution.
 }
 \examples{
-\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
 # Probability density function for a Gamma distribution
 z <-density_gamma(shape = 7.5, scale =0.5 , x=.001 * seq(0, 300, 1))
 # Computing the probability that the random variable X following a Gamma distribution
