@@ -30,7 +30,7 @@ Function random_XXX returns a numeric vector of length \code{n}.
 Density, cumulative distribution function and random generation for chi-square distribution.
 }
 \examples{
-\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 # Probability density function for a Chi-Square distribution with 3 degrees of freedom.
 z <-density_chi2(df = 3,.01 * seq(-100, 100, 1))
 

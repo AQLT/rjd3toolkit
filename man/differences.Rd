@@ -20,7 +20,7 @@ The differenced series.
 Differencing of a series
 }
 \examples{
-\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 differences(Retail$BookStores, c(1, 1, 12), FALSE)
 \dontshow{\}) # examplesIf}
 }

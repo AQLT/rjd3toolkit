@@ -6,11 +6,6 @@ NULL
 NULL
 
 #' @rdname jd3_utilities
-#' @importFrom rjd3jars check_java_version
-#' @export
-check_java_version <- rjd3jars::check_java_version
-
-#' @rdname jd3_utilities
 #' @export
 .jd3_env <- new.env()
 
@@ -37,6 +32,11 @@ check_java_version <- rjd3jars::check_java_version
     )
     if (!result) {
         stop("Loading java packages failed")
+    }
+
+    has_java <- rjd3jars::check_java_version()
+    if (has_java) {
+        rjd3jars::reload_dictionaries()
     }
 
     # Loading Proto class

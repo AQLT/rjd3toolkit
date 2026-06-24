@@ -6,7 +6,7 @@
 #'
 #' @returns a Java object
 #'
-#' @examplesIf check_java_version()
+#' @examplesIf rjd3jars::check_java_version()
 #' # example code
 #' obs <- list(
 #'     list(start = as.Date("1980-01-01"), end = as.Date("1999-12-31"), value = 2000),

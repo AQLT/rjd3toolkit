@@ -110,7 +110,6 @@
 \alias{.r2jd_tmp_ts}
 \alias{.r2jd_make_ts}
 \alias{.r2jd_make_tscollection}
-\alias{check_java_version}
 \alias{.jd3_env}
 \alias{get_date_min}
 \alias{get_date_max}
@@ -327,8 +326,6 @@
 .r2jd_make_ts(source, id, type = "All")
 
 .r2jd_make_tscollection(source, id, type = "All")
-
-check_java_version(silent = TRUE, startup = TRUE)
 
 .jd3_env
 

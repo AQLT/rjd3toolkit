@@ -18,7 +18,7 @@ Returns a java object of class JD3_TS
 Promote a R time series to a "full JDemetra+ time series"
 }
 \examples{
-\dontshow{if (check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 s <- ABS$X0.2.09.10.M
 t <- data_to_ts(s, "test")
 \dontshow{\}) # examplesIf}
