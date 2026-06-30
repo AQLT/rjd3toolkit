@@ -30,7 +30,7 @@ Function random_XXX returns a numeric vector of length \code{n}.
 Density, cumulative distribution function and random generation for inverse-gamma distribution.
 }
 \examples{
-\dontshow{if (get_java_version() >= minimal_java_version) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
 # Probability density function for an Inverse Gamma distribution
 z <-density_inverse_gamma(shape = 1, scale = 2,x=.001 * seq(0, 300, 1))
 # Computing the probability that the random variable X following an Inverse Gamma distribution

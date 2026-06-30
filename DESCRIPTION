@@ -1,7 +1,7 @@
 Type: Package
 Package: rjd3toolkit
 Title: Utility Functions Around 'JDemetra+ 3.0'
-Version: 3.7.1.9000
+Version: 3.7.1.9100
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
@@ -29,13 +29,14 @@ Imports:
     methods,
     rJava (>= 1.0-6),
     rjd3jars (>= 0.0.3),
-    RProtoBuf (>= 0.4.20),
+    RProtoBuf (>= 0.4.25),
     stats,
     utils
+Remotes:  
+    github::rjdverse/rjd3jars
 Encoding: UTF-8
 Language: en-GB
 LazyData: TRUE
-Roxygen: list(markdown = TRUE)
 SystemRequirements: Java (>= 21)
 Collate: 
     'utils.R'
@@ -55,6 +56,7 @@ Collate:
     'jd3rslts.R'
     'modellingcontext.R'
     'procresults.R'
+    'protos.R'
     'regarima_generic.R'
     'regarima_rslts.R'
     'spec_benchmarking.R'
@@ -66,4 +68,5 @@ Collate:
     'timeseries.R'
     'variables.R'
     'zzz.R'
+Roxygen: list(markdown = TRUE)
 Config/roxygen2/version: 8.0.0

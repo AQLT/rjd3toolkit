@@ -1,50 +1,54 @@
 #' @include utils.R
 NULL
 
-#' @importFrom RProtoBuf read readProtoFiles2
-#' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jinit
+#' @importFrom rJava .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jinit
 #' @importFrom stats frequency is.ts pf ts ts.union
 NULL
 
 #' @rdname jd3_utilities
-#' @importFrom rjd3jars get_java_version
 #' @export
-get_java_version <- rjd3jars::get_java_version
-
-#' @rdname jd3_utilities
-#' @importFrom rjd3jars get_java_version
-#' @export
-current_java_version <- rjd3jars::get_java_version()
-
-#' @rdname jd3_utilities
-#' @importFrom rjd3jars minimal_java_version
-#' @export
-minimal_java_version <- rjd3jars::minimal_java_version
-
-.onAttach <- function(libname, pkgname) {
-    .current_java_version <- get_java_version()
-    if (.current_java_version < minimal_java_version) {
-        packageStartupMessage(sprintf("Your java version is %s. %s or higher is needed.",
-                                      .current_java_version, minimal_java_version))
-    }
-}
+.jd3_env <- new.env()
 
 #' @importFrom RProtoBuf readProtoFiles2
-#' @importFrom rJava .jpackage .jaddClassPath
+#' @importFrom rJava .jpackage
 .onLoad <- function(libname, pkgname) {
-    jar_dir <- file.path(libname, pkgname, "inst", "java")
-    jars <- list.files(jar_dir, pattern = "\\.jar$", full.names = TRUE, all.files = TRUE)
-    rJava::.jaddClassPath(jars)
-    result <- rJava::.jpackage(pkgname, lib.loc = libname)
-    if (!result) stop("Loading java packages failed", call. = FALSE)
+    # Loading dependencies
+    if (!requireNamespace("rjd3jars", quietly = TRUE)) {
+        stop("Loading {rjd3jars} failed", call. = FALSE)
+    }
 
+    # Loading Java class
+    jar_dir <- file.path(libname, pkgname, "inst", "java")
+    jars_inst <- list.files(
+        jar_dir,
+        pattern = "\\.jar$",
+        full.names = TRUE,
+        all.files = TRUE
+    )
+    result <- rJava::.jpackage(
+        pkgname,
+        lib.loc = libname,
+        morePaths = jars_inst
+    )
+    if (!result) {
+        stop("Loading java packages failed")
+    }
+
+    has_java <- rjd3jars::check_java_version()
+    if (has_java) {
+        rjd3jars::reload_dictionaries()
+    }
+
+    # Loading Proto class
     proto.dir <- system.file("proto", package = pkgname)
     RProtoBuf::readProtoFiles2(protoPath = proto.dir)
 
+    # Set options
     if (is.null(getOption("summary_info"))) {
         options(summary_info = TRUE)
     }
 }
+
 
 #' @rdname jd3_utilities
 get_date_min <- function() {
@@ -54,4 +58,35 @@ get_date_min <- function() {
 #' @rdname jd3_utilities
 get_date_max <- function() {
     return(dateOf(9999, 12, 31))
+}
+
+#' @title Set an option for toolkit
+#'
+#' @param name Name of the option
+#' @param obj Option
+#'
+#' @export
+#'
+#' @examples
+#' toolkit_option("test", "DUMMY")
+toolkit_option <- function(name, obj) {
+    options <- .jd3_env$toolkit
+    options[[name]] <- obj
+    assign("toolkit", options, rjd3toolkit::.jd3_env)
+    return(invisible(NULL))
+}
+
+#' @title Set an option for toolkit
+#'
+#' @param name Name of the option
+#'
+#' @returns The requested option or NULL if it doesn't exist
+#' @export
+#'
+#' @examples
+#' toolkit_option("test", "DUMMY")
+#' get_toolkit_option("test")
+get_toolkit_option <- function(name) {
+    options <- .jd3_env$toolkit
+    return (options[[name]])
 }

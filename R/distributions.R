@@ -11,7 +11,7 @@
 #' Functions density_XXX and cdf_XXX return numeric vectors of same length as \code{x}.
 #' Function random_XXX returns a numeric vector of length \code{n}
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version()
 #' # Probability density function of T with 2 degrees of freedom.
 #' z <- density_t(df = 2, .01 * seq(-100, 100, 1))
 #' # Generating a random vector with each component drawn from a T(2) distribution
@@ -60,7 +60,7 @@ cdf_t <- function(df, x) {
 #' @rdname chi2distribution
 #' @order 3
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version()
 #' # Probability density function for a Chi-Square distribution with 3 degrees of freedom.
 #' z <-density_chi2(df = 3,.01 * seq(-100, 100, 1))
 #'
@@ -107,7 +107,7 @@ cdf_chi2 <- function(df, x) {
 #' @name gammadistribution
 #' @rdname gammadistribution
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version()
 #' # Probability density function for a Gamma distribution
 #' z <-density_gamma(shape = 7.5, scale =0.5 , x=.001 * seq(0, 300, 1))
 #' # Computing the probability that the random variable X following a Gamma distribution
@@ -155,7 +155,7 @@ cdf_gamma <- function(shape, scale, x) {
 #' @rdname invgammadistribution
 #' @order 3
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version()
 #' # Probability density function for an Inverse Gamma distribution
 #' z <-density_inverse_gamma(shape = 1, scale = 2,x=.001 * seq(0, 300, 1))
 #' # Computing the probability that the random variable X following an Inverse Gamma distribution
@@ -202,7 +202,7 @@ cdf_inverse_gamma <- function(shape, scale, x) {
 #' @rdname invgaussiandistribution
 #' @order 3
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version()
 #' # Probability density function for an Inverse Gaussian distribution
 #' z <-density_inverse_gaussian(shape = 1, scale = 2, x = 0.1* 0:30)
 #' # Generating a random vector with each component drawn from an Inverse Gaussian distribution
