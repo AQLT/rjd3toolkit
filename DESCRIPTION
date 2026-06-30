@@ -28,10 +28,12 @@ Imports:
     graphics,
     methods,
     rJava (>= 1.0-6),
-    rjd3jars (>= 0.0.4),
+    rjd3jars (>= 0.0.3),
     RProtoBuf (>= 0.4.25),
     stats,
     utils
+Remotes:  
+    github::rjdverse/rjd3jars
 Encoding: UTF-8
 Language: en-GB
 LazyData: TRUE

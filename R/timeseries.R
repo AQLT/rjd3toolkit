@@ -17,7 +17,7 @@ NULL
 #' @returns A new time series of frequency \code{nfreq}.
 #' @export
 #'
-#' @examples rjd3jars::check_java_version()
+#' @examplesIf rjd3jars::check_java_version()
 #' s <- ABS$X0.2.09.10.M
 #' # Annual sum
 #' aggregate(s, nfreq = 1, conversion = "Sum") # first and last years removed
