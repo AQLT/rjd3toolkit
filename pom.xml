@@ -12,15 +12,9 @@
 
 	<properties>
 		<jdplus-main.version>3.7.2-SNAPSHOT</jdplus-main.version>
-        <protobuf.version>4.35.0</protobuf.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>${protobuf.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>eu.europa.ec.joinup.sat</groupId>
 			<artifactId>jdplus-sa-base-r</artifactId>
@@ -29,6 +23,10 @@
 				<exclusion>
 					<groupId>eu.europa.ec.joinup.sat</groupId>
 					<artifactId>jdplus-sa-base-core</artifactId>
+				</exclusion>
+				<exclusion>
+                    <groupId>com.google.protobuf</groupId>
+                    <artifactId>protobuf-java</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -40,6 +38,10 @@
 				<exclusion>
 					<groupId>eu.europa.ec.joinup.sat</groupId>
 					<artifactId>jdplus-toolkit-base-core</artifactId>
+				</exclusion>
+				<exclusion>
+                    <groupId>com.google.protobuf</groupId>
+                    <artifactId>protobuf-java</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
