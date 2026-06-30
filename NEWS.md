@@ -8,6 +8,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+* Fix bug in weighted calendar regressors ([rjdverse/rjd3workspace#131](https://github.com/rjdverse/rjd3workspace/issues/131))
+
 
 ## [3.7.1] - 2026-03-10
 

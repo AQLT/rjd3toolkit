@@ -740,13 +740,12 @@ weighted_calendar <- function(calendars, weights) {
     return(structure(list(calendars = calendars, weights = weights), class = c("JD3_WEIGHTEDCALENDAR", "JD3_CALENDARDEFINITION")))
 }
 
-
 .p2r_wcalendar <- function(p) {
-    calendars <- sapply(p, function(item) {
+    calendars <- sapply(p$items, function(item) {
         return(item$calendar)
     })
-    weights <- sapply(p, function(item) {
-        return(item$weights)
+    weights <- sapply(p$items, function(item) {
+        return(item$weight)
     })
     return(weighted_calendar(calendars, weights))
 }
