@@ -44,7 +44,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * `minimal_java_version` character string with the minimum viable Java version for rjdverse
 * `get_date_min()` to get the minimum date
 * `get_date_max()` to get the maximum date
-* New example to use the functions (#85)
+* New example to use the functions [#85](https://github.com/rjdverse/rjd3toolkit/issues/85)
 * Documentation of `bias` argument in `set_benchmarking()`
 * New datasets : `Electricity` (French national electricity consumtion), `Births` (Number of births registered in France from 1968 to 2024), `x13_spec_default`(Default X13 specification) and `tramoseats_spec_default` (Default Tramo-Seats specification)
 * New `print()` and `summary()` method for `JD3_DICTIONARY` and `JD3_FULL_DICTIONARY`
