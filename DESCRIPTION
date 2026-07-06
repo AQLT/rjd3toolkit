@@ -28,7 +28,7 @@ Imports:
     graphics,
     methods,
     rJava (>= 1.0-6),
-    rjd3jars (>= 0.0.3),
+    rjd3jars (>= 0.0.4),
     RProtoBuf (>= 0.4.25),
     stats,
     utils
