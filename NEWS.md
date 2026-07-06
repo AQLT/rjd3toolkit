@@ -5,13 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [Unreleased]
+
+### Changed
+
+- Updated JARS from jdplus-main to [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
 
 ### Fixed
 
 * Fix bug in weighted calendar regressors ([rjdverse/rjd3workspace#131](https://github.com/rjdverse/rjd3workspace/issues/131))
-
 
 ## [3.7.1] - 2026-03-10
 
@@ -23,7 +25,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 * Use `get_java_version()` instead of `current_java_version`
 * New JARS related to version [3.7.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.7.1)
-
 
 ## [3.6.0] - 2025-11-21
 
@@ -49,13 +50,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New datasets : `Electricity` (French national electricity consumtion), `Births` (Number of births registered in France from 1968 to 2024), `x13_spec_default`(Default X13 specification) and `tramoseats_spec_default` (Default Tramo-Seats specification)
 * New `print()` and `summary()` method for `JD3_DICTIONARY` and `JD3_FULL_DICTIONARY`
 
-
 ## [3.5.1] - 2025-06-18
 
 ### Changed
 
 * New JARS related to version [3.5.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.5.1)
-
 
 ## [3.5.0] - 2025-04-09
 
@@ -73,7 +72,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * warning added in the function `calendar_td` #10
 * Regressor `TD2c` for regarima specifications #53
 
-
 ## [3.3.0] - 2024-10-28
 
 ### Changed
@@ -81,7 +79,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New JARS related to version [3.3.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.3.0)
 * Improve Canova-Hansen tests for seasonality and trading days (new options, more output)
 * Document (UC)ARIMA models
-
 
 ## [3.2.4] - 2024-07-12
 
@@ -94,13 +91,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 * Correct SA decomposition with backcasts and forecasts (Java to R transfer) [#2](https://github.com/rjdverse/rjd3tramoseats/issues/2)
 
-
 ## [3.2.2] - 2024-03-15
 
 ### Changed
 
 * New JARS related to version [3.2.2](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.2)
-
 
 ## [3.2.1] - 2023-12-12
 
@@ -108,13 +103,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 * New JARS related to version [3.2.1](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.1)
 
-
 ## [3.2.0] - 2023-11-24
 
 ### Changed
 
 * New JARS related to version [3.2.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.2.0)
-
 
 ## [3.1.0] - 2023-10-11
 
@@ -122,13 +115,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 * New JARS related to version [3.1.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.1.0)
 
-
 ## [3.0.0] - 2023-06-14
 
 ### Added
 
 * New JARS related to version [3.0.2](https://github.com/jdemetra/jdplus-main/releases/tag/v3.0.2)
-
 
 [Unreleased]: https://github.com/rjdverse/rjd3toolkit/compare/v3.7.1...HEAD
 [3.7.1]: https://github.com/rjdverse/rjd3toolkit/compare/v3.6.0...v3.7.1
