@@ -11,6 +11,7 @@ NULL
 
 #' @importFrom RProtoBuf readProtoFiles2
 #' @importFrom rJava .jpackage
+#' @importFrom rjd3jars check_java_version reload_dictionaries
 .onLoad <- function(libname, pkgname) {
     # Loading dependencies
     if (!requireNamespace("rjd3jars", quietly = TRUE)) {
