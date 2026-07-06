@@ -29,13 +29,13 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-* default group value with mts objects in modelling_context #107
+* default group value with mts objects in modelling_context [#107](https://github.com/rjdverse/rjd3toolkit/issues/107)
 * Examples are executed only if Java version >= 21
 * New JARS related to version [3.6.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.6.0)
 
 ### Removed
 
-* `fct` parameter in `set_automodel()` #85
+* `fct` parameter in `set_automodel()` [#85](https://github.com/rjdverse/rjd3toolkit/issues/85)
 
 ### Added
 
@@ -62,16 +62,16 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 * New JARS related to version [3.5.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.5.0)
-* Replace `.` with `_` in function's name #88
-* The dataset `retail` is renamed `Retail` #89
-* The number of regressor was false for TD3c #92
+* Replace `.` with `_` in function's name [#88](https://github.com/rjdverse/rjd3toolkit/issues/88)
+* The dataset `retail` is renamed `Retail` [#89](https://github.com/rjdverse/rjd3toolkit/issues/89)
+* The number of regressor was false for TD3c [#92](https://github.com/rjdverse/rjd3toolkit/issues/92)
 
 ### Added
 
 * Spline functions (periodic, b-splines, cardinal splines)
 * function `.add_ud_var` (from {rjd3tramoseats} and {rjd3x13})
-* warning added in the function `calendar_td` #10
-* Regressor `TD2c` for regarima specifications #53
+* warning added in the function `calendar_td` [#10](https://github.com/rjdverse/rjd3toolkit/issues/10)
+* Regressor `TD2c` for regarima specifications [#53](https://github.com/rjdverse/rjd3toolkit/issues/53)
 
 
 ## [3.3.0] - 2024-10-28
