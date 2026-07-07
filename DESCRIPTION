@@ -32,7 +32,7 @@ Imports:
     RProtoBuf (>= 0.4.25),
     stats,
     utils
-Remotes:  
+Remotes: 
     github::rjdverse/rjd3jars
 Encoding: UTF-8
 Language: en-GB
@@ -59,6 +59,7 @@ Collate:
     'protos.R'
     'regarima_generic.R'
     'regarima_rslts.R'
+    'rjd3toolkit-package.R'
     'spec_benchmarking.R'
     'spec_regarima.R'
     'splines.R'
