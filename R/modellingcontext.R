@@ -13,7 +13,7 @@ JD3_TSCOLLECTION <- "JD3_TSCOLLECTION"
 #'
 #' @returns
 #' Returns a java object of class JD3_TSMONIKER.
-#' @examplesIf rjd3jars::check_java_version()
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' source <- "Txt"
 #' # id is split due to length restrictions
 #' id1 <- "demetra://tsprovider/Txt/20111201/SERIES?datePattern=dd%2FMM%2Fyyyy&delimiter=SEMICOLON&"
@@ -330,7 +330,7 @@ dynamic_ts <- function(moniker, data) {
 #' @returns list of calendars and variables
 #' @export
 #'
-#' @examplesIf rjd3jars::check_java_version()
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
 #' # Creating one or several external regressors (TS objects), which will
 #' # be gathered in one or several groups

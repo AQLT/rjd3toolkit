@@ -51,7 +51,7 @@ CHRISTMAS      \tab Fixed holiday, falls on December, 25th.
 }
 }
 \examples{
-\dontshow{if (rjd3jars::check_java_version()) withAutoprint(\{ # examplesIf}
+\dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
 # To add Easter Monday
 special_day("EASTERMONDAY")
 # To define a holiday for the day after Christmas, with validity and weight
