@@ -36,7 +36,7 @@
 #'
 #' @returns The modified specification with new estimation span
 #'
-#' @examplesIf rjd3jars::check_java_version()
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' init_spec <- x13_spec_default
 #' new_spec <- set_benchmarking(
 #'     x = init_spec,

@@ -9,6 +9,12 @@ NULL
 #' @export
 .jd3_env <- new.env()
 
+#' @importFrom rjd3jars check_java_version
+.onAttach <- function(libname, pkgname) {
+    # Check java version
+    rjd3jars::check_java_version(silent = FALSE, startup = TRUE)
+}
+
 #' @importFrom RProtoBuf readProtoFiles2
 #' @importFrom rJava .jpackage
 #' @importFrom rjd3jars check_java_version reload_dictionaries
@@ -35,7 +41,7 @@ NULL
         stop("Loading java packages failed")
     }
 
-    has_java <- rjd3jars::check_java_version()
+    has_java <- rjd3jars::check_java_version(silent = TRUE)
     if (has_java) {
         rjd3jars::reload_dictionaries()
     }
@@ -73,7 +79,7 @@ get_date_max <- function() {
 toolkit_option <- function(name, obj) {
     options <- .jd3_env$toolkit
     options[[name]] <- obj
-    assign("toolkit", options, rjd3toolkit::.jd3_env)
+    assign("toolkit", options, .jd3_env)
     return(invisible(NULL))
 }
 

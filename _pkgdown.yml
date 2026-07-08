@@ -209,7 +209,6 @@ reference:
     - '`dictionary`'
     - '`result`'
     - '`user_defined`'
-    - '`reload_dictionaries`'
 - title: Databases
   desc: Lists of Time Series from ABS, NBB and US Census Bureau
   contents:
@@ -238,6 +237,12 @@ reference:
     - '`data_to_ts`'
     - '`to_ts`'
     - '`to_tscollection`'
+- title: Option for rjdverse
+  desc: Evironment specific to JDemetra+
+  contents:
+    - '`get_toolkit_option`'
+    - '`toolkit_option`'
+    - '`.jd3_env`'
 - title: Wrangling Java objects
   desc: Functions to easily interact between R and Java objects
   contents:
