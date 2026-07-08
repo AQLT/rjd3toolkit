@@ -79,7 +79,7 @@ get_date_max <- function() {
 toolkit_option <- function(name, obj) {
     options <- .jd3_env$toolkit
     options[[name]] <- obj
-    assign("toolkit", options, rjd3toolkit::.jd3_env)
+    assign("toolkit", options, .jd3_env)
     return(invisible(NULL))
 }
 
