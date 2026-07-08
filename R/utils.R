@@ -35,7 +35,13 @@ NULL
 
 
 .p2r_anova <- function(p) {
-    return(list(SSM = p$SSM, dfM = p$dfm, SSR = p$SSR, dfR = p$dfr, test = test_anova(p$SSM, p$dfm, p$SSR, p$dfr)))
+    return(list(
+        SSM = p$SSM,
+        dfM = p$dfm,
+        SSR = p$SSR,
+        dfR = p$dfr,
+        test = test_anova(p$SSM, p$dfm, p$SSR, p$dfr)
+    ))
 }
 
 test_anova <- function(ssm, dfm, ssr, dfr) {
@@ -75,15 +81,37 @@ test_anova <- function(ssm, dfm, ssr, dfr) {
 #'
 #' @export
 #'
-.likelihood <- function(nobs, neffectiveobs = NA, nparams = 0, ll, adjustedll = NA, aic, aicc, bic, bicc, ssq) {
-    if (is.na(neffectiveobs)) neffectiveobs <- nobs
-    if (is.na(adjustedll)) adjustedll <- ll
+.likelihood <- function(
+    nobs,
+    neffectiveobs = NA,
+    nparams = 0,
+    ll,
+    adjustedll = NA,
+    aic,
+    aicc,
+    bic,
+    bicc,
+    ssq
+) {
+    if (is.na(neffectiveobs)) {
+        neffectiveobs <- nobs
+    }
+    if (is.na(adjustedll)) {
+        adjustedll <- ll
+    }
 
     return(structure(
         list(
-            nobs = nobs, neffectiveobs = neffectiveobs, nparams = nparams,
-            ll = ll, adjustedll = adjustedll,
-            aic = aic, aicc = aicc, bic = bic, bicc = bicc, ssq = ssq
+            nobs = nobs,
+            neffectiveobs = neffectiveobs,
+            nparams = nparams,
+            ll = ll,
+            adjustedll = adjustedll,
+            aic = aic,
+            aicc = aicc,
+            bic = bic,
+            bicc = bicc,
+            ssq = ssq
         ),
         class = "JD3_LIKELIHOOD"
     ))

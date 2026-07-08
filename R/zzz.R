@@ -95,5 +95,5 @@ toolkit_option <- function(name, obj) {
 #' get_toolkit_option("test")
 get_toolkit_option <- function(name) {
     options <- .jd3_env$toolkit
-    return (options[[name]])
+    return(options[[name]])
 }

@@ -52,21 +52,27 @@
 #' More information on benchmarking in JDemetra+ online documentation:
 #' \url{https://doc.jdemetra.org/a-benchmarking}
 #' @export
-set_benchmarking <- function(x, enabled = NA,
-                             target = c(NA, "CalendarAdjusted", "Original"),
-                             rho = NA,
-                             lambda = NA,
-                             forecast = NA,
-                             bias = c("None", "Additive", "Multiplicative")) {
+set_benchmarking <- function(
+    x,
+    enabled = NA,
+    target = c(NA, "CalendarAdjusted", "Original"),
+    rho = NA,
+    lambda = NA,
+    forecast = NA,
+    bias = c("None", "Additive", "Multiplicative")
+) {
     UseMethod("set_benchmarking", x)
 }
 #' @export
-set_benchmarking.default <- function(x, enabled = NA,
-                                     target = c(NA, "CalendarAdjusted", "Original"),
-                                     rho = NA,
-                                     lambda = NA,
-                                     forecast = NA,
-                                     bias = c("None", "Additive", "Multiplicative")) {
+set_benchmarking.default <- function(
+    x,
+    enabled = NA,
+    target = c(NA, "CalendarAdjusted", "Original"),
+    rho = NA,
+    lambda = NA,
+    forecast = NA,
+    bias = c("None", "Additive", "Multiplicative")
+) {
     target <- match.arg(
         toupper(target[1]),
         c(NA, "CALENDARADJUSTED", "ORIGINAL")

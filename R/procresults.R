@@ -40,7 +40,12 @@ dictionary <- function(object) {
         stop("No java object")
     }
 
-    if (.jinstanceof(object$internal, "jdplus/toolkit/base/api/information/Explorable")) {
+    if (
+        .jinstanceof(
+            object$internal,
+            "jdplus/toolkit/base/api/information/Explorable"
+        )
+    ) {
         .proc_dictionary2(object$internal)
     } else {
         .proc_dictionary(.jclass(object$internal))
@@ -88,7 +93,13 @@ user_defined <- function(object, userdefined = NULL) {
 #' @returns A new model with same class as \code{x}
 #'
 #' @export
-.add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE) {
+.add_ud_var <- function(
+    x,
+    jx,
+    userdefined = NULL,
+    out_class = NULL,
+    result = FALSE
+) {
     if (is.null(userdefined)) {
         x$user_defined <- user_defined(res, userdefined = userdefined)
         return(x)

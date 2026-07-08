@@ -45,7 +45,10 @@
         return(NULL)
     }
     if (.jinstanceof(s, "jdplus/toolkit/base/api/timeseries/TsData")) {
-        return(.jd2r_tsdata(.jcast(s, "jdplus/toolkit/base/api/timeseries/TsData")))
+        return(.jd2r_tsdata(.jcast(
+            s,
+            "jdplus/toolkit/base/api/timeseries/TsData"
+        )))
     } else {
         return(NULL)
     }
@@ -124,11 +127,19 @@
         return(NULL)
     }
     if (.jinstanceof(s, "jdplus/toolkit/base/api/timeseries/TsData")) {
-        return(.jd2r_tsdata(.jcast(s, "jdplus/toolkit/base/api/timeseries/TsData")))
+        return(.jd2r_tsdata(.jcast(
+            s,
+            "jdplus/toolkit/base/api/timeseries/TsData"
+        )))
     } else if (.jinstanceof(s, "java/lang/Number")) {
         return(.jcall(s, "D", "doubleValue"))
-    } else if (.jinstanceof(s, "jdplus/toolkit/base/api/math/matrices/Matrix")) {
-        return(.jd2r_matrix(.jcast(s, "jdplus/toolkit/base/api/math/matrices/Matrix")))
+    } else if (
+        .jinstanceof(s, "jdplus/toolkit/base/api/math/matrices/Matrix")
+    ) {
+        return(.jd2r_matrix(.jcast(
+            s,
+            "jdplus/toolkit/base/api/math/matrices/Matrix"
+        )))
     } else if (.jinstanceof(s, "jdplus/toolkit/base/api/data/Parameter")) {
         val <- .jcall(s, "D", "getValue")
         return(c(val))
@@ -140,11 +151,20 @@
             all[i] <- .jcall(p[[i]], "D", "getValue")
         }
         return(all)
-    } else if (.jcall(.jcall(s, "Ljava/lang/Class;", "getClass"), "Z", "isArray")) {
+    } else if (
+        .jcall(.jcall(s, "Ljava/lang/Class;", "getClass"), "Z", "isArray")
+    ) {
         return(.jevalArray(s, silent = TRUE))
-    } else if (.jinstanceof(s, "jdplus/toolkit/base/api/stats/StatisticalTest")) {
+    } else if (
+        .jinstanceof(s, "jdplus/toolkit/base/api/stats/StatisticalTest")
+    ) {
         return(.jd2r_test(s))
-    } else if (.jinstanceof(s, "jdplus/toolkit/base/api/timeseries/regression/RegressionItem")) {
+    } else if (
+        .jinstanceof(
+            s,
+            "jdplus/toolkit/base/api/timeseries/regression/RegressionItem"
+        )
+    ) {
         return(.jd2r_regression_item(s))
     } else {
         return(.jcall(s, "S", "toString"))
@@ -154,16 +174,31 @@
 #' @export
 #' @rdname jd3_utilities
 .proc_dictionary <- function(name) {
-    jmapping <- .jcall(name, "Ljdplus/toolkit/base/api/information/InformationMapping;", "getMapping")
+    jmapping <- .jcall(
+        name,
+        "Ljdplus/toolkit/base/api/information/InformationMapping;",
+        "getMapping"
+    )
     jmap <- .jnew("java/util/LinkedHashMap")
-    .jcall(jmapping, "V", "fillDictionary", .jnull("java/lang/String"), .jcast(jmap, "java/util/Map"), TRUE)
+    .jcall(
+        jmapping,
+        "V",
+        "fillDictionary",
+        .jnull("java/lang/String"),
+        .jcast(jmap, "java/util/Map"),
+        TRUE
+    )
     jkeys <- .jcall(jmap, "Ljava/util/Set;", "keySet")
     size <- .jcall(jkeys, "I", "size")
     keys <- array(dim = size)
     if (size > 0) {
         jiter <- .jcall(jkeys, "Ljava/util/Iterator;", "iterator")
         for (i in 1:size) {
-            keys[i] <- .jcall(.jcall(jiter, "Ljava/lang/Object;", "next"), "Ljava/lang/String;", "toString")
+            keys[i] <- .jcall(
+                .jcall(jiter, "Ljava/lang/Object;", "next"),
+                "Ljava/lang/String;",
+                "toString"
+            )
         }
     }
     return(keys)
@@ -179,7 +214,11 @@
     if (size > 0) {
         jiter <- .jcall(jkeys, "Ljava/util/Iterator;", "iterator")
         for (i in 1:size) {
-            keys[i] <- .jcall(.jcall(jiter, "Ljava/lang/Object;", "next"), "Ljava/lang/String;", "toString")
+            keys[i] <- .jcall(
+                .jcall(jiter, "Ljava/lang/Object;", "next"),
+                "Ljava/lang/String;",
+                "toString"
+            )
         }
     }
     return(keys)

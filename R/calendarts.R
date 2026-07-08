@@ -27,8 +27,12 @@ r2jd_calendarts <- function(calendarobs) {
         as.numeric(z$value)
     })
     jts <- .jcall(
-        "jdplus/toolkit/base/r/timeseries/TsUtility", "Ljdplus/toolkit/base/api/timeseries/CalendarTimeSeries;", "of",
-        .jarray(starts, "Ljava/lang/String;"), .jarray(ends, "Ljava/lang/String;"), .jarray(values)
+        "jdplus/toolkit/base/r/timeseries/TsUtility",
+        "Ljdplus/toolkit/base/api/timeseries/CalendarTimeSeries;",
+        "of",
+        .jarray(starts, "Ljava/lang/String;"),
+        .jarray(ends, "Ljava/lang/String;"),
+        .jarray(values)
     )
     return(jts)
 }

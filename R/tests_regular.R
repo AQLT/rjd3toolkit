@@ -53,7 +53,6 @@ print.JD3_TEST <- function(x, details = FALSE, ...) {
 }
 
 
-
 #' @title Ljung-Box Test
 #'
 #' @description
@@ -77,8 +76,15 @@ print.JD3_TEST <- function(x, details = FALSE, ...) {
 #' @export
 ljungbox <- function(data, k = 1, lag = 1, nhp = 0, sign = 0, mean = TRUE) {
     jtest <- .jcall(
-        "jdplus/toolkit/base/r/stats/Tests", "Ljdplus/toolkit/base/api/stats/StatisticalTest;", "ljungBox",
-        as.numeric(data), as.integer(k), as.integer(lag), as.integer(nhp), as.integer(sign), as.logical(mean)
+        "jdplus/toolkit/base/r/stats/Tests",
+        "Ljdplus/toolkit/base/api/stats/StatisticalTest;",
+        "ljungBox",
+        as.numeric(data),
+        as.integer(k),
+        as.integer(lag),
+        as.integer(nhp),
+        as.integer(sign),
+        as.logical(mean)
     )
     return(.jd2r_test(jtest))
 }
@@ -142,7 +148,9 @@ jarquebera <- function(data, k = 0, sample = TRUE) {
         obj = "jdplus/toolkit/base/r/stats/Tests",
         returnSig = "Ljdplus/toolkit/base/api/stats/StatisticalTest;",
         method = "jarqueBera",
-        as.numeric(data), as.integer(k), as.logical(sample)
+        as.numeric(data),
+        as.integer(k),
+        as.logical(sample)
     )
     return(.jd2r_test(jtest))
 }
@@ -178,8 +186,12 @@ NULL
 #' @export
 testofruns <- function(data, mean = TRUE, number = TRUE) {
     jtest <- .jcall(
-        "jdplus/toolkit/base/r/stats/Tests", "Ljdplus/toolkit/base/api/stats/StatisticalTest;", "testOfRuns",
-        as.numeric(data), as.logical(mean), as.logical(number)
+        "jdplus/toolkit/base/r/stats/Tests",
+        "Ljdplus/toolkit/base/api/stats/StatisticalTest;",
+        "testOfRuns",
+        as.numeric(data),
+        as.logical(mean),
+        as.logical(number)
     )
     return(.jd2r_test(jtest))
 }
@@ -188,8 +200,11 @@ testofruns <- function(data, mean = TRUE, number = TRUE) {
 #' @export
 testofupdownruns <- function(data, number = TRUE) {
     jtest <- .jcall(
-        "jdplus/toolkit/base/r/stats/Tests", "Ljdplus/toolkit/base/api/stats/StatisticalTest;", "testOfUpDownRuns",
-        as.numeric(data), as.logical(number)
+        "jdplus/toolkit/base/r/stats/Tests",
+        "Ljdplus/toolkit/base/api/stats/StatisticalTest;",
+        "testOfUpDownRuns",
+        as.numeric(data),
+        as.logical(number)
     )
     return(.jd2r_test(jtest))
 }
@@ -215,8 +230,12 @@ testofupdownruns <- function(data, number = TRUE) {
 #' @export
 autocorrelations <- function(data, mean = TRUE, n = 15) {
     res <- .jcall(
-        "jdplus/toolkit/base/r/stats/Tests", "[D", "autocorrelations",
-        as.numeric(data), as.logical(mean), as.integer(n)
+        "jdplus/toolkit/base/r/stats/Tests",
+        "[D",
+        "autocorrelations",
+        as.numeric(data),
+        as.logical(mean),
+        as.integer(n)
     )
     names(res) <- seq_len(n)
     return(res)
@@ -226,8 +245,12 @@ autocorrelations <- function(data, mean = TRUE, n = 15) {
 #' @rdname autocorrelations
 autocorrelations_partial <- function(data, mean = TRUE, n = 15) {
     res <- .jcall(
-        "jdplus/toolkit/base/r/stats/Tests", "[D", "partialAutocorrelations",
-        as.numeric(data), as.logical(mean), as.integer(n)
+        "jdplus/toolkit/base/r/stats/Tests",
+        "[D",
+        "partialAutocorrelations",
+        as.numeric(data),
+        as.logical(mean),
+        as.integer(n)
     )
     names(res) <- seq_len(n)
     return(res)
@@ -237,8 +260,12 @@ autocorrelations_partial <- function(data, mean = TRUE, n = 15) {
 #' @rdname autocorrelations
 autocorrelations_inverse <- function(data, nar = 30, n = 15) {
     res <- .jcall(
-        "jdplus/toolkit/base/r/stats/Tests", "[D", "inverseAutocorrelations",
-        as.numeric(data), as.integer(nar), as.integer(n)
+        "jdplus/toolkit/base/r/stats/Tests",
+        "[D",
+        "inverseAutocorrelations",
+        as.numeric(data),
+        as.integer(nar),
+        as.integer(n)
     )
     names(res) <- seq_len(n)
     return(res)
@@ -247,14 +274,24 @@ autocorrelations_inverse <- function(data, nar = 30, n = 15) {
 #' @export
 #' @describeIn normality_tests Skewness test
 skewness <- function(data) {
-    jtest <- .jcall("jdplus/toolkit/base/r/stats/Tests", "Ljdplus/toolkit/base/api/stats/StatisticalTest;", "skewness", as.numeric(data))
+    jtest <- .jcall(
+        "jdplus/toolkit/base/r/stats/Tests",
+        "Ljdplus/toolkit/base/api/stats/StatisticalTest;",
+        "skewness",
+        as.numeric(data)
+    )
     return(.jd2r_test(jtest))
 }
 
 #' @export
 #' @describeIn normality_tests Kurtosis test
 kurtosis <- function(data) {
-    jtest <- .jcall("jdplus/toolkit/base/r/stats/Tests", "Ljdplus/toolkit/base/api/stats/StatisticalTest;", "kurtosis", as.numeric(data))
+    jtest <- .jcall(
+        "jdplus/toolkit/base/r/stats/Tests",
+        "Ljdplus/toolkit/base/api/stats/StatisticalTest;",
+        "kurtosis",
+        as.numeric(data)
+    )
     return(.jd2r_test(jtest))
 }
 
@@ -271,5 +308,12 @@ kurtosis <- function(data) {
 #' y <- rnorm(1000)
 #' m <- rjd3toolkit::mad(y, centile = 70)
 mad <- function(data, centile = 50, medianCorrected = TRUE) {
-    return(.jcall("jdplus/toolkit/base/r/stats/Tests", "D", "mad", as.numeric(data), as.numeric(centile), as.logical(medianCorrected)))
+    return(.jcall(
+        "jdplus/toolkit/base/r/stats/Tests",
+        "D",
+        "mad",
+        as.numeric(data),
+        as.numeric(centile),
+        as.logical(medianCorrected)
+    ))
 }
