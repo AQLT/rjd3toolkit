@@ -14,8 +14,13 @@
 #' matplot(s, type='l')
 periodic_bsplines <- function(order = 4, period = 1, knots, pos) {
     jm <- .jcall(
-        "jdplus/toolkit/base/r/math/BSplines", "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
-        "periodic", as.integer(order), as.numeric(period), .jarray(as.numeric(knots)), .jarray(as.numeric(pos))
+        "jdplus/toolkit/base/r/math/BSplines",
+        "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
+        "periodic",
+        as.integer(order),
+        as.numeric(period),
+        .jarray(as.numeric(knots)),
+        .jarray(as.numeric(pos))
     )
     res <- .jd2r_matrix(jm)
     return(res)
@@ -36,8 +41,12 @@ periodic_bsplines <- function(order = 4, period = 1, knots, pos) {
 #' matplot(s, type='l')
 bsplines <- function(order = 4, knots, pos) {
     jm <- .jcall(
-        "jdplus/toolkit/base/r/math/BSplines", "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
-        "of", as.integer(order), .jarray(as.numeric(knots)), .jarray(as.numeric(pos))
+        "jdplus/toolkit/base/r/math/BSplines",
+        "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
+        "of",
+        as.integer(order),
+        .jarray(as.numeric(knots)),
+        .jarray(as.numeric(pos))
     )
     res <- .jd2r_matrix(jm)
     return(res)
@@ -57,8 +66,12 @@ bsplines <- function(order = 4, knots, pos) {
 #' plot(s, type='l')
 natural_cspline <- function(x, y, pos) {
     return(.jcall(
-        "jdplus/toolkit/base/r/math/CubicSplines", "[D",
-        "natural", .jarray(as.numeric(x)), .jarray(as.numeric(y)), .jarray(as.numeric(pos))
+        "jdplus/toolkit/base/r/math/CubicSplines",
+        "[D",
+        "natural",
+        .jarray(as.numeric(x)),
+        .jarray(as.numeric(y)),
+        .jarray(as.numeric(pos))
     ))
 }
 
@@ -76,8 +89,12 @@ natural_cspline <- function(x, y, pos) {
 #' plot(s, type='l')
 monotonic_cspline <- function(x, y, pos) {
     return(.jcall(
-        "jdplus/toolkit/base/r/math/CubicSplines", "[D",
-        "monotonic", .jarray(as.numeric(x)), .jarray(as.numeric(y)), .jarray(as.numeric(pos))
+        "jdplus/toolkit/base/r/math/CubicSplines",
+        "[D",
+        "monotonic",
+        .jarray(as.numeric(x)),
+        .jarray(as.numeric(y)),
+        .jarray(as.numeric(pos))
     ))
 }
 
@@ -95,8 +112,12 @@ monotonic_cspline <- function(x, y, pos) {
 #' plot(s, type='l')
 periodic_cspline <- function(x, y, pos) {
     return(.jcall(
-        "jdplus/toolkit/base/r/math/CubicSplines", "[D",
-        "periodic", .jarray(as.numeric(x)), .jarray(as.numeric(y)), .jarray(as.numeric(pos))
+        "jdplus/toolkit/base/r/math/CubicSplines",
+        "[D",
+        "periodic",
+        .jarray(as.numeric(x)),
+        .jarray(as.numeric(y)),
+        .jarray(as.numeric(pos))
     ))
 }
 
@@ -112,8 +133,11 @@ periodic_cspline <- function(x, y, pos) {
 #' matplot(s, type='l')
 periodic_csplines <- function(x, pos) {
     jm <- .jcall(
-        "jdplus/toolkit/base/r/math/CubicSplines", "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
-        "periodicCardinalSplines", .jarray(as.numeric(x)), .jarray(as.numeric(pos))
+        "jdplus/toolkit/base/r/math/CubicSplines",
+        "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
+        "periodicCardinalSplines",
+        .jarray(as.numeric(x)),
+        .jarray(as.numeric(pos))
     )
     res <- .jd2r_matrix(jm)
     return(res)

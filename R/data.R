@@ -1,4 +1,3 @@
-
 #' @title Data Base: Retail trade series in Australia
 #'
 #' @source ABS
