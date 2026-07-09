@@ -2,7 +2,6 @@
 NULL
 #> NULL
 
-
 .jd2r_test <- function(jtest) {
     if (is.jnull(jtest)) {
         return(NULL)
@@ -34,8 +33,13 @@ NULL
     freq <- frequency(s)
     start <- start(s)
     .jcall(
-        "jdplus/toolkit/base/r/timeseries/TsUtility", "Ljdplus/toolkit/base/api/timeseries/TsData;", "of",
-        as.integer(freq), as.integer(start[1]), as.integer(start[2]), as.double(s)
+        "jdplus/toolkit/base/r/timeseries/TsUtility",
+        "Ljdplus/toolkit/base/api/timeseries/TsData;",
+        "of",
+        as.integer(freq),
+        as.integer(start[1]),
+        as.integer(start[2]),
+        as.double(s)
     )
 }
 
@@ -43,8 +47,13 @@ NULL
 #' @rdname jd3_utilities
 .r2jd_tsdomain <- function(period, startYear, startPeriod, length) {
     .jcall(
-        "jdplus/toolkit/base/r/timeseries/TsUtility", "Ljdplus/toolkit/base/api/timeseries/TsDomain;", "of",
-        as.integer(period), as.integer(startYear), as.integer(startPeriod), as.integer(length)
+        "jdplus/toolkit/base/r/timeseries/TsUtility",
+        "Ljdplus/toolkit/base/api/timeseries/TsDomain;",
+        "of",
+        as.integer(period),
+        as.integer(startYear),
+        as.integer(startPeriod),
+        as.integer(length)
     )
 }
 
@@ -62,7 +71,12 @@ NULL
     if (length(x) == 0) {
         return(NULL)
     }
-    pstart <- .jcall("jdplus/toolkit/base/r/timeseries/TsUtility", "[I", "startPeriod", s)
+    pstart <- .jcall(
+        "jdplus/toolkit/base/r/timeseries/TsUtility",
+        "[I",
+        "startPeriod",
+        s
+    )
     ts(x, start = pstart[2:3], frequency = pstart[1])
 }
 
@@ -72,17 +86,31 @@ NULL
     if (is.jnull(s)) {
         return(NULL)
     }
-    jx <- .jcall(s, "Ljdplus/toolkit/base/api/math/matrices/Matrix;", "toMatrix")
+    jx <- .jcall(
+        s,
+        "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
+        "toMatrix"
+    )
     x <- .jd2r_matrix(jx)
     if (is.jnull(x)) {
         return(NULL)
     }
-    pstart <- .jcall("jdplus/toolkit/base/r/timeseries/TsUtility", "[I", "startPeriod", s)
+    pstart <- .jcall(
+        "jdplus/toolkit/base/r/timeseries/TsUtility",
+        "[I",
+        "startPeriod",
+        s
+    )
     ts(x, start = pstart[2:3], frequency = pstart[1])
 }
 
 .extract_jts <- function(collection, index) {
-    js <- .jcall(collection, "Ljdplus/toolkit/base/api/timeseries/Ts;", "get", as.integer(index - 1))
+    js <- .jcall(
+        collection,
+        "Ljdplus/toolkit/base/api/timeseries/Ts;",
+        "get",
+        as.integer(index - 1)
+    )
     return(js)
 }
 
@@ -131,7 +159,9 @@ NULL
         obj = "jdplus/toolkit/base/api/math/matrices/Matrix",
         returnSig = "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
         method = "of",
-        .jarray(as.double(s)), as.integer(sdim[1]), as.integer(sdim[2])
+        .jarray(as.double(s)),
+        as.integer(sdim[1]),
+        as.integer(sdim[2])
     ))
 }
 
@@ -152,7 +182,12 @@ NULL
 
 .r2j_dt <- function(dt) {
     jdt <- .jnew("java/lang/String", as.character(dt))
-    return(.jcall("java/time/LocalDate", "Ljava/time/LocalDate;", "parse", .jcast(jdt, "java/lang/CharSequence")))
+    return(.jcall(
+        "java/time/LocalDate",
+        "Ljava/time/LocalDate;",
+        "parse",
+        .jcast(jdt, "java/lang/CharSequence")
+    ))
 }
 
 .r2j_ldt <- function(dt) {
@@ -170,7 +205,17 @@ NULL
         return(NULL)
     }
     param_name <- deparse(substitute(jparams))
-    Type <- sapply(param, function(x) .jcall(.jcall(x, "Ljdplus/toolkit/base/api/data/ParameterType;", "getType"), "S", "name"))
+    Type <- sapply(param, function(x) {
+        .jcall(
+            .jcall(
+                x,
+                "Ljdplus/toolkit/base/api/data/ParameterType;",
+                "getType"
+            ),
+            "S",
+            "name"
+        )
+    })
     Value <- sapply(param, FUN = .jcall, returnSig = "D", method = "getValue")
     data_param <- data.frame(Type = Type, Value = Value)
     rownames(data_param) <- sprintf(
@@ -195,8 +240,13 @@ NULL
     }
     n <- period * (end[1] - start[1]) + end[2] - start[2]
     jdom <- .jcall(
-        "jdplus/toolkit/base/r/timeseries/TsUtility", "Ljdplus/toolkit/base/api/timeseries/TsDomain;", "of",
-        as.integer(period), as.integer(start[1]), as.integer(start[2]), as.integer(n)
+        "jdplus/toolkit/base/r/timeseries/TsUtility",
+        "Ljdplus/toolkit/base/api/timeseries/TsDomain;",
+        "of",
+        as.integer(period),
+        as.integer(start[1]),
+        as.integer(start[2]),
+        as.integer(n)
     )
     return(jdom)
 }

@@ -20,17 +20,18 @@ NULL
 #' @returns A `"JD3_SARIMA"` model.
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- sarima_model(period = 12, d = 1, bd = 1, theta = 0.2, btheta = 0.2)
-#'
-sarima_model <- function(name = "sarima",
-                         period,
-                         phi = NULL,
-                         d = 0,
-                         theta = NULL,
-                         bphi = NULL,
-                         bd = 0,
-                         btheta = NULL) {
+sarima_model <- function(
+    name = "sarima",
+    period,
+    phi = NULL,
+    d = 0,
+    theta = NULL,
+    bphi = NULL,
+    bd = 0,
+    btheta = NULL
+) {
     output <- list(
         name = name,
         period = period,
@@ -53,7 +54,7 @@ sarima_model <- function(name = "sarima",
 #'
 #' @returns List with the acf and the spectrum of the model.
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- sarima_model(period = 12, d = 1, bd = 1, theta = 0.2, btheta = 0.2)
 #' sarima_properties(mod1)
 #' @export
@@ -64,13 +65,15 @@ sarima_properties <- function(model, nspectrum = 601, nacf = 36) {
         obj = "jdplus/toolkit/base/r/arima/SarimaModels",
         returnSig = "[D",
         method = "spectrum",
-        jmodel, as.integer(nspectrum)
+        jmodel,
+        as.integer(nspectrum)
     )
     acf <- .jcall(
         obj = "jdplus/toolkit/base/r/arima/SarimaModels",
         returnSig = "[D",
         method = "acf",
-        jmodel, as.integer(nacf)
+        jmodel,
+        as.integer(nacf)
     )
     return(list(acf = acf, spectrum = spectrum))
 }
@@ -89,7 +92,7 @@ sarima_properties <- function(model, nspectrum = 601, nacf = 36) {
 #'
 #' @returns a numeric vector with the simulated series.
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' # Airline model
 #' s_model <- sarima_model(period = 12, d = 1, bd = 1, theta = 0.2, btheta = 0.2)
 #' x <- sarima_random(s_model, length = 64, seed = 0)
@@ -102,7 +105,9 @@ sarima_random <- function(model, length, stde = 1, tdegree = 0, seed = -1) {
         stop("Invalid model")
     }
     return(.jcall(
-        "jdplus/toolkit/base/r/arima/SarimaModels", "[D", "random",
+        "jdplus/toolkit/base/r/arima/SarimaModels",
+        "[D",
+        "random",
         as.integer(length),
         as.integer(model$period),
         .jarray(as.numeric(model$phi)),
@@ -126,7 +131,7 @@ sarima_random <- function(model, length, stde = 1, tdegree = 0, seed = -1) {
 #' @returns An UCARIMA model
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' model <- sarima_model(period = 12, d = 1, bd = 1, theta = -0.6, btheta = -0.5)
 #' ucm <- sarima_decompose(model)
 #'
@@ -139,7 +144,9 @@ sarima_decompose <- function(model, rmod = 0, epsphi = 0) {
         obj = "jdplus/toolkit/base/r/arima/UcarimaModels",
         returnSig = "Ljdplus/toolkit/base/core/ucarima/UcarimaModel;",
         method = "decompose",
-        jmodel, as.numeric(rmod), as.numeric(epsphi)
+        jmodel,
+        as.numeric(rmod),
+        as.numeric(epsphi)
     )
     if (is.jnull(jucm)) {
         return(NULL)
@@ -158,10 +165,19 @@ sarima_decompose <- function(model, rmod = 0, epsphi = 0) {
 #' @returns a `"JD3_ARIMA"` model.
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' model <- arima_model("trend", ar = c(1, -.8), delta = c(1, -1), ma = c(1, -.5), variance = 100)
-arima_model <- function(name = "arima", ar = 1, delta = 1, ma = 1, variance = 1) {
-    return(structure(list(name = name, ar = ar, delta = delta, ma = ma, var = variance), class = "JD3_ARIMA"))
+arima_model <- function(
+    name = "arima",
+    ar = 1,
+    delta = 1,
+    ma = 1,
+    variance = 1
+) {
+    return(structure(
+        list(name = name, ar = ar, delta = delta, ma = ma, var = variance),
+        class = "JD3_ARIMA"
+    ))
 }
 
 .jd2r_doubleseq <- function(jobj, jprop) {
@@ -171,7 +187,12 @@ arima_model <- function(name = "arima", ar = 1, delta = 1, ma = 1, variance = 1)
 
 
 .jd2r_sarima <- function(jsarima) {
-    q <- .jcall("jdplus/toolkit/base/r/arima/SarimaModels", "[B", "toBuffer", jsarima)
+    q <- .jcall(
+        "jdplus/toolkit/base/r/arima/SarimaModels",
+        "[B",
+        "toBuffer",
+        jsarima
+    )
     rq <- RProtoBuf::read(modelling.SarimaModel, q)
     return(.p2r_sarima(rq))
 }
@@ -180,7 +201,9 @@ arima_model <- function(name = "arima", ar = 1, delta = 1, ma = 1, variance = 1)
 #' @rdname jd3_utilities
 .r2jd_sarima <- function(model) {
     return(.jcall(
-        "jdplus/toolkit/base/r/arima/SarimaModels", "Ljdplus/toolkit/base/core/sarima/SarimaModel;", "of",
+        "jdplus/toolkit/base/r/arima/SarimaModels",
+        "Ljdplus/toolkit/base/core/sarima/SarimaModel;",
+        "of",
         as.integer(model$period),
         .jarray(as.numeric(model$phi)),
         as.integer(model$d),
@@ -192,9 +215,13 @@ arima_model <- function(name = "arima", ar = 1, delta = 1, ma = 1, variance = 1)
 }
 
 
-
 .jd2r_arima <- function(jarima) {
-    q <- .jcall("jdplus/toolkit/base/r/arima/ArimaModels", "[B", "toBuffer", jarima)
+    q <- .jcall(
+        "jdplus/toolkit/base/r/arima/ArimaModels",
+        "[B",
+        "toBuffer",
+        jarima
+    )
     rq <- RProtoBuf::read(modelling.ArimaModel, q)
     return(.p2r_arima(rq))
 }
@@ -207,7 +234,8 @@ arima_model <- function(name = "arima", ar = 1, delta = 1, ma = 1, variance = 1)
         .jarray(as.numeric(model$ar)),
         .jarray(as.numeric(model$delta)),
         .jarray(as.numeric(model$ma)),
-        as.numeric(model$var), FALSE
+        as.numeric(model$var),
+        FALSE
     ))
 }
 
@@ -226,7 +254,7 @@ arima_model <- function(name = "arima", ar = 1, delta = 1, ma = 1, variance = 1)
 #' polynomials is then computed and factorized, to get the moving average
 #' polynomial and innovation variance of the sum.
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- arima_model(ar = c(0.1, 0.2), delta = 0, ma = 0)
 #' mod2 <- arima_model(ar = 0, delta = 0, ma = c(0.4))
 #' arima_sum(mod1, mod2)
@@ -237,7 +265,10 @@ arima_sum <- function(...) {
 }
 
 arima_lsum <- function(components) {
-    q <- .jarray(lapply(components, .r2jd_arima), "jdplus/toolkit/base/core/arima/ArimaModel")
+    q <- .jarray(
+        lapply(components, .r2jd_arima),
+        "jdplus/toolkit/base/core/arima/ArimaModel"
+    )
     jsum <- .jcall(
         obj = "jdplus/toolkit/base/r/arima/ArimaModels",
         returnSig = "Ljdplus/toolkit/base/core/arima/ArimaModel;",
@@ -260,7 +291,7 @@ arima_lsum <- function(components) {
 #' @returns a `"JD3_ARIMA"` model.
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- arima_model(delta = c(1, -2, 1))
 #' mod2 <- arima_model(variance = .01)
 #' diff <- arima_difference(mod1, mod2)
@@ -274,7 +305,8 @@ arima_difference <- function(left, right, simplify = TRUE) {
         obj = jleft,
         returnSig = "Ljdplus/toolkit/base/core/arima/ArimaModel;",
         method = "minus",
-        jright, as.logical(simplify)
+        jright,
+        as.logical(simplify)
     )
     return(.jd2r_arima(jdiff))
 }
@@ -293,7 +325,7 @@ arima_difference <- function(left, right, simplify = TRUE) {
 #'
 #' @returns A list with the auto-covariances and with the (pseudo-)spectrum
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- arima_model(ar = c(0.1, 0.2), delta = c(1, -1), ma = 0)
 #' arima_properties(mod1)
 #' @export
@@ -303,13 +335,15 @@ arima_properties <- function(model, nspectrum = 601, nac = 36) {
         obj = "jdplus/toolkit/base/r/arima/ArimaModels",
         returnSig = "[D",
         method = "spectrum",
-        jmodel, as.integer(nspectrum)
+        jmodel,
+        as.integer(nspectrum)
     )
     acf <- .jcall(
         obj = "jdplus/toolkit/base/r/arima/ArimaModels",
         returnSig = "[D",
         method = "acf",
-        jmodel, as.integer(nac)
+        jmodel,
+        as.integer(nac)
     )
     return(list(acf = acf, spectrum = spectrum))
 }
@@ -327,15 +361,17 @@ arima_properties <- function(model, nspectrum = 601, nac = 36) {
 #' @returns A list with the reduced model, the components and their complements
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- arima_model("trend", delta = c(1, -2, 1))
 #' mod2 <- arima_model("noise", variance = 1600)
 #' hp <- ucarima_model(components = list(mod1, mod2))
 #' print(hp$model)
-ucarima_model <- function(model = NULL,
-                          components,
-                          complements = NULL,
-                          checkmodel = FALSE) {
+ucarima_model <- function(
+    model = NULL,
+    components,
+    complements = NULL,
+    checkmodel = FALSE
+) {
     if (is.null(model)) {
         model <- arima_lsum(components)
     } else if (!is(model, "JD3_ARIMA") && !is(model, "JD3_SARIMA")) {
@@ -343,7 +379,11 @@ ucarima_model <- function(model = NULL,
     }
 
     # TODO: checkmodel
-    output <- list(model = model, components = components, complements = complements)
+    output <- list(
+        model = model,
+        components = components,
+        complements = complements
+    )
     class(output) <- "JD3_UCARIMA"
     return(output)
 }
@@ -358,7 +398,8 @@ ucarima_model <- function(model = NULL,
         "jdplus/toolkit/base/r/arima/UcarimaModels",
         "Ljdplus/toolkit/base/core/ucarima/UcarimaModel;",
         "of",
-        jmodel, jcmps
+        jmodel,
+        jcmps
     ))
 }
 
@@ -368,7 +409,12 @@ ucarima_model <- function(model = NULL,
     #  model<-.jcall(jucm, "Ljdplus/toolkit/base/core/arima/ArimaModel;", "sum")
     #  jcmps<-.jcall(jucm, "[Ljdplus/toolkit/base/core/arima/ArimaModel;", "getComponents")
     #  return(ucarima_model(.jd2r_arima(model), lapply(jcmps, .jd2r_arima)))
-    q <- .jcall("jdplus/toolkit/base/r/arima/UcarimaModels", "[B", "toBuffer", jucm)
+    q <- .jcall(
+        "jdplus/toolkit/base/r/arima/UcarimaModels",
+        "[B",
+        "toBuffer",
+        jucm
+    )
     rq <- RProtoBuf::read(modelling.UcarimaModel, q)
     return(.p2r_ucarima(rq))
 }
@@ -386,7 +432,7 @@ ucarima_model <- function(model = NULL,
 #' squared-gain function (with the same number of points as the spectrum)
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- arima_model("trend", delta = c(1, -2, 1))
 #' mod2 <- arima_model("noise", variance = 1600)
 #' hp <- ucarima_model(components = list(mod1, mod2))
@@ -405,29 +451,37 @@ ucarima_wk <- function(ucm, cmp, signal = TRUE, nspectrum = 601, nwk = 300) {
         obj = "jdplus/toolkit/base/r/arima/UcarimaModels",
         returnSig = "Ljdplus/toolkit/base/core/ucarima/WienerKolmogorovEstimator;",
         method = "finalEstimator",
-        jwks, as.integer(cmp - 1), signal
+        jwks,
+        as.integer(cmp - 1),
+        signal
     )
 
     spectrum <- .jcall(
         obj = "jdplus/toolkit/base/r/arima/UcarimaModels",
         returnSig = "[D",
         method = "spectrum",
-        jwk, as.integer(nspectrum)
+        jwk,
+        as.integer(nspectrum)
     )
     wk <- .jcall(
         obj = "jdplus/toolkit/base/r/arima/UcarimaModels",
         returnSig = "[D",
         method = "filter",
-        jwk, as.integer(nwk)
+        jwk,
+        as.integer(nwk)
     )
     gain <- .jcall(
         obj = "jdplus/toolkit/base/r/arima/UcarimaModels",
-        returnSig =  "[D",
+        returnSig = "[D",
         method = "gain",
-        jwk, as.integer(nspectrum)
+        jwk,
+        as.integer(nspectrum)
     )
 
-    return(structure(list(spectrum = spectrum, filter = wk, gain2 = gain * gain), class = "JD3_UCARIMA_WK"))
+    return(structure(
+        list(spectrum = spectrum, filter = wk, gain2 = gain * gain),
+        class = "JD3_UCARIMA_WK"
+    ))
 }
 
 #' @title Makes a UCARIMA model canonical
@@ -444,7 +498,7 @@ ucarima_wk <- function(ucm, cmp, signal = TRUE, nspectrum = 601, nwk = 300) {
 #' @returns A new UCARIMA model
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- arima_model("trend", delta = c(1, -2, 1))
 #' mod2 <- arima_model("noise", variance = 1600)
 #' hp <- ucarima_model(components = list(mod1, mod2))
@@ -455,7 +509,9 @@ ucarima_canonical <- function(ucm, cmp = 0, adjust = TRUE) {
         obj = "jdplus/toolkit/base/r/arima/UcarimaModels",
         returnSig = "Ljdplus/toolkit/base/core/ucarima/UcarimaModel;",
         method = "doCanonical",
-        jucm, as.integer(cmp - 1), as.logical(adjust)
+        jucm,
+        as.integer(cmp - 1),
+        as.logical(adjust)
     )
     return(.jd2r_ucarima(jnucm))
 }
@@ -470,7 +526,7 @@ ucarima_canonical <- function(ucm, cmp = 0, adjust = TRUE) {
 #' deviations if stdev is TRUE.
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' mod1 <- arima_model("trend", delta = c(1, -2, 1))
 #' mod2 <- arima_model("noise", variance = 16)
 #' hp <- ucarima_model(components = list(mod1, mod2))
@@ -485,7 +541,9 @@ ucarima_estimate <- function(x, ucm, stdev = TRUE) {
         obj = "jdplus/toolkit/base/r/arima/UcarimaModels",
         returnSig = "Ljdplus/toolkit/base/api/math/matrices/Matrix;",
         method = "estimate",
-        as.numeric(x), jucm, as.logical(stdev)
+        as.numeric(x),
+        jucm,
+        as.logical(stdev)
     )
     return(.jd2r_matrix(jcmps))
 }
@@ -517,15 +575,17 @@ ucarima_estimate <- function(x, ucm, stdev = TRUE) {
 #'
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' y <- ABS$X0.2.09.10.M
 #' sarima_estimate(y, order = c(0, 1, 1), seasonal = c(0, 1, 1))
-sarima_estimate <- function(x,
-                            order = c(0, 0, 0),
-                            seasonal = list(order = c(0, 0, 0), period = NA),
-                            mean = FALSE,
-                            xreg = NULL,
-                            eps = 1e-9) {
+sarima_estimate <- function(
+    x,
+    order = c(0, 0, 0),
+    seasonal = list(order = c(0, 0, 0), period = NA),
+    mean = FALSE,
+    xreg = NULL,
+    eps = 1e-9
+) {
     if (!is.list(seasonal) && is.numeric(seasonal) && length(seasonal) == 3) {
         seasonal <- list(
             order = seasonal,
@@ -540,8 +600,13 @@ sarima_estimate <- function(x,
         obj = "jdplus/toolkit/base/r/arima/SarimaModels",
         returnSig = "Ljdplus/toolkit/base/core/regarima/RegArimaEstimation;",
         method = "estimate",
-        as.numeric(x), as.integer(order), as.integer(seasonal$period),
-        as.integer(seasonal$order), as.logical(mean), jxreg, .jnull("[D"),
+        as.numeric(x),
+        as.integer(order),
+        as.integer(seasonal$period),
+        as.integer(seasonal$order),
+        as.logical(mean),
+        jxreg,
+        .jnull("[D"),
         as.numeric(eps)
     )
     bytes <- .jcall(
@@ -598,15 +663,17 @@ sarima_estimate <- function(x,
 #'
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' y <- ABS$X0.2.09.10.M
 #' model<- sarima_hannan_rissanen(y, order = c(0, 1, 1), seasonal = c(0, 1, 1))
-sarima_hannan_rissanen <- function(x,
-                                   order = c(0, 0, 0),
-                                   seasonal = list(order = c(0, 0, 0), period = NA),
-                                   initialization = c("Ols", "Levinson", "Burg"),
-                                   biasCorrection = TRUE,
-                                   finalCorrection = TRUE) {
+sarima_hannan_rissanen <- function(
+    x,
+    order = c(0, 0, 0),
+    seasonal = list(order = c(0, 0, 0), period = NA),
+    initialization = c("Ols", "Levinson", "Burg"),
+    biasCorrection = TRUE,
+    finalCorrection = TRUE
+) {
     if (!is.list(seasonal) && is.numeric(seasonal) && length(seasonal) == 3) {
         initialization <- match.arg(initialization)
         seasonal <- list(
@@ -621,9 +688,13 @@ sarima_hannan_rissanen <- function(x,
         "jdplus/toolkit/base/r/arima/SarimaModels",
         "Ljdplus/toolkit/base/core/sarima/SarimaModel;",
         "hannanRissanen",
-        as.numeric(x), as.integer(order), as.integer(seasonal$period),
-        as.integer(seasonal$order), as.character(initialization),
-        as.logical(biasCorrection), as.logical(finalCorrection)
+        as.numeric(x),
+        as.integer(order),
+        as.integer(seasonal$period),
+        as.integer(seasonal$order),
+        as.character(initialization),
+        as.logical(biasCorrection),
+        as.logical(finalCorrection)
     )
     return(.jd2r_sarima(jmodel))
 }

@@ -70,7 +70,10 @@ NULL
     if (!p$has("type")) {
         return(NULL)
     }
-    return(list(value = p$value, type = .enum_extract(jd3.ParameterType, p$type)))
+    return(list(
+        value = p$value,
+        type = .enum_extract(jd3.ParameterType, p$type)
+    ))
 }
 
 #' @export
@@ -195,7 +198,11 @@ NULL
     if (length(p$values) == 0) {
         return(NULL)
     }
-    s <- ts(data = p$values, frequency = p$annual_frequency, start = c(p$start_year, p$start_period))
+    s <- ts(
+        data = p$values,
+        frequency = p$annual_frequency,
+        start = c(p$start_year, p$start_period)
+    )
     s <- `attr<-`(s, "name", p$name)
     return(s)
 }
@@ -219,16 +226,28 @@ NULL
     if (is.null(p)) {
         return(NULL)
     }
-    return(list(val = p$value, score = p$score, cov = .p2r_matrix(p$covariance), description = p$description))
+    return(list(
+        val = p$value,
+        score = p$score,
+        cov = .p2r_matrix(p$covariance),
+        description = p$description
+    ))
 }
 
 #' @export
 #' @rdname jd3_utilities
 .p2r_likelihood <- function(p) {
     return(.likelihood(
-        p$nobs, p$neffectiveobs, p$nparams,
-        p$log_likelihood, p$adjusted_log_likelihood,
-        p$aic, p$aicc, p$bic, p$bicc, p$ssq
+        p$nobs,
+        p$neffectiveobs,
+        p$nparams,
+        p$log_likelihood,
+        p$adjusted_log_likelihood,
+        p$aic,
+        p$aicc,
+        p$bic,
+        p$bicc,
+        p$ssq
     ))
 }
 
@@ -260,7 +279,10 @@ NULL
     dt0 <- .p2r_date(span$d0)
     dt1 <- .p2r_date(span$d1)
 
-    return(structure(list(type = type, d0 = dt0, d1 = dt1, n0 = span$n0, n1 = span$n1), class = "JD3_SPAN"))
+    return(structure(
+        list(type = type, d0 = dt0, d1 = dt1, n0 = span$n0, n1 = span$n1),
+        class = "JD3_SPAN"
+    ))
 }
 
 #' @export
@@ -277,8 +299,14 @@ NULL
 
 .p2r_sarima <- function(p) {
     return(sarima_model(
-        p$name, p$period, p$phi, p$d, p$theta,
-        p$bphi, p$bd, p$btheta
+        p$name,
+        p$period,
+        p$phi,
+        p$d,
+        p$theta,
+        p$bphi,
+        p$bd,
+        p$btheta
     ))
 }
 
@@ -421,7 +449,10 @@ NULL
     p$name <- r$name
     p$sequences <- .r2p_sequences(r$sequences)
     p$coefficient <- .r2p_parameter(r$coef)
-    p$metadata <- modelling.InterventionVariable.MetadataEntry$new(key = "regeffect", value = r$regeffect)
+    p$metadata <- modelling.InterventionVariable.MetadataEntry$new(
+        key = "regeffect",
+        value = r$regeffect
+    )
     return(p)
 }
 
@@ -509,7 +540,10 @@ NULL
     p$id <- r$id
     p$lag <- r$lag
     p$coefficient <- .r2p_parameter(r$coef)
-    p$metadata <- modelling.TsVariable.MetadataEntry$new(key = "regeffect", value = r$regeffect)
+    p$metadata <- modelling.TsVariable.MetadataEntry$new(
+        key = "regeffect",
+        value = r$regeffect
+    )
     return(p)
 }
 
@@ -555,14 +589,22 @@ NULL
     nb <- p$nbcasts
     nf <- p$nfcasts
 
-    val <- ts(s[(nb + 1):(n - nf)], frequency = freq, start = .ts_move(start, freq, nb))
+    val <- ts(
+        s[(nb + 1):(n - nf)],
+        frequency = freq,
+        start = .ts_move(start, freq, nb)
+    )
     rslt <- list(data = val)
     if (nb > 0) {
         bcasts <- ts(s[1:nb], frequency = freq, start = start)
         rslt[["bcasts"]] <- bcasts
     }
     if (nf > 0) {
-        fcasts <- ts(s[(n - nf + 1):n], frequency = freq, start = .ts_move(start, freq, n - nf))
+        fcasts <- ts(
+            s[(n - nf + 1):n],
+            frequency = freq,
+            start = .ts_move(start, freq, n - nf)
+        )
         rslt[["fcasts"]] <- fcasts
     }
     return(rslt)

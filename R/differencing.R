@@ -36,7 +36,7 @@ NULL
 #' @md
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
 #' do_stationary(log(ABS$X0.2.09.10.M), 12)
 #'
@@ -45,10 +45,18 @@ do_stationary <- function(data, period) {
         period <- frequency(data)
     }
     jst <- .jcall(
-        "jdplus/toolkit/base/r/modelling/Differencing", "Ljdplus/toolkit/base/core/modelling/StationaryTransformation;", "doStationary",
-        as.numeric(data), as.integer(period)
+        "jdplus/toolkit/base/r/modelling/Differencing",
+        "Ljdplus/toolkit/base/core/modelling/StationaryTransformation;",
+        "doStationary",
+        as.numeric(data),
+        as.integer(period)
     )
-    q <- .jcall("jdplus/toolkit/base/r/modelling/Differencing", "[B", "toBuffer", jst)
+    q <- .jcall(
+        "jdplus/toolkit/base/r/modelling/Differencing",
+        "[B",
+        "toBuffer",
+        jst
+    )
     p <- RProtoBuf::read(modelling.StationaryTransformation, q)
     res <- .p2r_differencing(p)
     if (is.ts(data)) {
@@ -78,7 +86,7 @@ do_stationary <- function(data, period) {
 #'    * \code{order}: order of the differencing
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' differencing_fast(log(ABS$X0.2.09.10.M), 12)
 #'
 differencing_fast <- function(data, period, mad = TRUE, centile = 90, k = 1.2) {
@@ -86,10 +94,21 @@ differencing_fast <- function(data, period, mad = TRUE, centile = 90, k = 1.2) {
         period <- frequency(data)
     }
     jst <- .jcall(
-        "jdplus/toolkit/base/r/modelling/Differencing", "Ljdplus/toolkit/base/core/modelling/StationaryTransformation;", "fastDifferencing",
-        as.numeric(data), as.integer(period), as.logical(mad), centile, k
+        "jdplus/toolkit/base/r/modelling/Differencing",
+        "Ljdplus/toolkit/base/core/modelling/StationaryTransformation;",
+        "fastDifferencing",
+        as.numeric(data),
+        as.integer(period),
+        as.logical(mad),
+        centile,
+        k
     )
-    q <- .jcall("jdplus/toolkit/base/r/modelling/Differencing", "[B", "toBuffer", jst)
+    q <- .jcall(
+        "jdplus/toolkit/base/r/modelling/Differencing",
+        "[B",
+        "toBuffer",
+        jst
+    )
     p <- RProtoBuf::read(modelling.StationaryTransformation, q)
     res <- .p2r_differencing(p)
     if (is.ts(data)) {
@@ -107,7 +126,7 @@ differencing_fast <- function(data, period, mad = TRUE, centile = 90, k = 1.2) {
 #' @returns The differenced series.
 #' @export
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' differences(Retail$BookStores, c(1, 1, 12), FALSE)
 #'
 differences <- function(data, lags = 1, mean = TRUE) {
@@ -116,8 +135,12 @@ differences <- function(data, lags = 1, mean = TRUE) {
 #' @export
 differences.default <- function(data, lags = 1, mean = TRUE) {
     res <- .jcall(
-        "jdplus/toolkit/base/r/modelling/Differencing", "[D", "differences",
-        as.numeric(data), .jarray(as.integer(lags)), mean
+        "jdplus/toolkit/base/r/modelling/Differencing",
+        "[D",
+        "differences",
+        as.numeric(data),
+        .jarray(as.integer(lags)),
+        mean
     )
     if (is.ts(data)) {
         res <- ts(res, end = end(data), frequency = frequency(data))
@@ -178,7 +201,7 @@ differences.data.frame <- function(data, lags = 1, mean = TRUE) {
 #'
 #' @returns T-Stat of the slope of the range-mean regression.
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' y <- ABS$X0.2.09.10.M
 #' # Multiplicative pattern
 #' plot(y)
@@ -200,7 +223,12 @@ rangemean_tstat <- function(data, period = 0, groupsize = 0, trim = 0) {
         period <- frequency(data)
     }
     return(.jcall(
-        "jdplus/toolkit/base/r/modelling/AutoModelling", "D", "rangeMean",
-        as.numeric(data), as.integer(period), as.integer(groupsize), as.integer(trim)
+        "jdplus/toolkit/base/r/modelling/AutoModelling",
+        "D",
+        "rangeMean",
+        as.numeric(data),
+        as.integer(period),
+        as.integer(groupsize),
+        as.integer(trim)
     ))
 }

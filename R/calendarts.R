@@ -6,7 +6,7 @@
 #'
 #' @returns a Java object
 #'
-#' @examplesIf get_java_version() >= minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' # example code
 #' obs <- list(
 #'     list(start = as.Date("1980-01-01"), end = as.Date("1999-12-31"), value = 2000),
@@ -27,8 +27,12 @@ r2jd_calendarts <- function(calendarobs) {
         as.numeric(z$value)
     })
     jts <- .jcall(
-        "jdplus/toolkit/base/r/timeseries/TsUtility", "Ljdplus/toolkit/base/api/timeseries/CalendarTimeSeries;", "of",
-        .jarray(starts, "Ljava/lang/String;"), .jarray(ends, "Ljava/lang/String;"), .jarray(values)
+        "jdplus/toolkit/base/r/timeseries/TsUtility",
+        "Ljdplus/toolkit/base/api/timeseries/CalendarTimeSeries;",
+        "of",
+        .jarray(starts, "Ljava/lang/String;"),
+        .jarray(ends, "Ljava/lang/String;"),
+        .jarray(values)
     )
     return(jts)
 }

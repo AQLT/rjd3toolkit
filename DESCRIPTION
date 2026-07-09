@@ -1,12 +1,12 @@
 Type: Package
 Package: rjd3toolkit
 Title: Utility Functions Around 'JDemetra+ 3.0'
-Version: 3.7.1
+Version: 3.8.0
 Authors@R: c(
     person("Jean", "Palate", , "palatejean@gmail.com", role = "aut"),
     person("Alain", "Quartier-la-Tente", , "alain.quartier@yahoo.fr", role = "aut",
            comment = c(ORCID = "0000-0001-7890-3857")),
-    person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art")),
+    person("Tanguy", "Barthelemy", , "timeserieswithjdemetraandr@gmail.com", role = c("aut", "cre", "art")),
     person("Anna", "Smyk", , "anna.smyk@insee.fr", role = "aut")
   )
 Description: R Interface to 'JDemetra+ 3.x'
@@ -28,15 +28,15 @@ Imports:
     graphics,
     methods,
     rJava (>= 1.0-6),
-    rjd3jars (>= 0.0.3),
-    RProtoBuf (>= 0.4.20),
+    rjd3jars (>= 0.0.5),
+    RProtoBuf (>= 0.4.25),
     stats,
     utils
+Config/roxygen2/version: 8.0.0
 Encoding: UTF-8
 Language: en-GB
 LazyData: TRUE
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 SystemRequirements: Java (>= 21)
 Collate: 
     'utils.R'
@@ -45,6 +45,7 @@ Collate:
     'arima.R'
     'calendars.R'
     'calendarts.R'
+    'data.R'
     'decomposition.R'
     'deprecated.R'
     'dictionary.R'
@@ -55,8 +56,10 @@ Collate:
     'jd3rslts.R'
     'modellingcontext.R'
     'procresults.R'
+    'protos.R'
     'regarima_generic.R'
     'regarima_rslts.R'
+    'rjd3toolkit-package.R'
     'spec_benchmarking.R'
     'spec_regarima.R'
     'splines.R'
