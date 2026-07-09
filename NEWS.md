@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [3.8.0] - 2026-07-09
+
 ### Changed
 
 - Updated JARS from jdplus-main to [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
@@ -121,7 +123,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 * New JARS related to version [3.0.2](https://github.com/jdemetra/jdplus-main/releases/tag/v3.0.2)
 
-[Unreleased]: https://github.com/rjdverse/rjd3toolkit/compare/v3.7.1...HEAD
+[Unreleased]: https://github.com/rjdverse/rjd3toolkit/compare/3.8.0...HEAD
+[3.8.0]: https://github.com/rjdverse/rjd3toolkit/compare/v3.7.1...3.8.0
 [3.7.1]: https://github.com/rjdverse/rjd3toolkit/compare/v3.6.0...v3.7.1
 [3.6.0]: https://github.com/rjdverse/rjd3toolkit/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/rjdverse/rjd3toolkit/compare/v3.5.0...v3.5.1
