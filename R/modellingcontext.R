@@ -349,14 +349,49 @@ dynamic_ts <- function(moniker, data) {
     return(.p2jd_variables(p))
 }
 
+format_regressor <- function(regressor) {
+    return(regressor)
+}
+
+format_variables <- function(variable) {
+    return(lapply(variable, format_regressor))
+}
+
+modelling_context2 <- function(calendars = NULL, variables = NULL) {
+    if (is.null(calendars) || length(calendars) == 0L) {
+        calendars <- list()
+    } else if (is.list(calendars)) {
+        is_calendar <- sapply(
+            X = calendars,
+            FUN = is,
+            class2 = "JD3_CALENDARDEFINITION"
+        )
+        if (!all(is_calendar)) {
+            stop("calendars should be a list of calendars")
+        }
+    } else {
+        stop("calendars should be a list of calendars")
+    }
+
+    if (is.null(variables) || length(variables) == 0L) {
+        variables <- list()
+    } else if (is.list(variables)) {
+        variables <- lapply(variables, format_variables)
+    } else {
+        stop("variables should be a list of vars")
+    }
+
+    return(list(calendars = calendars, variables = variables))
+}
 
 #' @title Create modelling context
 #'
 #' @description
-#' Function allowing to include calendars and external regressors in a format that makes them usable
-#' in an estimation process (reg-arima or tramo modelling, stand alone or as pre-processing in seasonal adjustment).
-#' The regressors can be created with functions available in the package
-#' or come from any other source, provided they are \code{ts} class objects.
+#' Function allowing to include calendars and external regressors in a format
+#' that makes them usable in an estimation process (reg-arima or tramo
+#' modelling, stand alone or as pre-processing in seasonal adjustment).
+#' The regressors can be created with functions available in the package or
+#' come from any other source, provided they are \code{ts} class objects.
 #'
 #' @param calendars list of calendars.
 #' @param variables list of variables.
