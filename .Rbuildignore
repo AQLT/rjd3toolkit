@@ -45,6 +45,7 @@ cran-comments.md
 ^organisation.yml$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^heylogs\.properties$
 
 ^lychee\.toml$
 ^\.lycheeignore$
