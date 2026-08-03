@@ -371,6 +371,9 @@ put_elt_on_same_level <- function(x, n = NULL) {
     UseMethod("put_elt_on_same_level", x)
 }
 
+#' @exportS3Method put_elt_on_same_level list
+#' @method put_elt_on_same_level list
+#' @export
 put_elt_on_same_level.list <- function(x, n = NULL) {
     x <- set_name(x, n)
     output <- list()
@@ -380,6 +383,9 @@ put_elt_on_same_level.list <- function(x, n = NULL) {
     return(output)
 }
 
+#' @exportS3Method put_elt_on_same_level data.frame
+#' @method put_elt_on_same_level data.frame
+#' @export
 put_elt_on_same_level.data.frame <- function(x, n = NULL) {
     x <- set_name(x, n)
     output <- list()
@@ -389,18 +395,30 @@ put_elt_on_same_level.data.frame <- function(x, n = NULL) {
     return(output)
 }
 
+#' @exportS3Method put_elt_on_same_level JD3_TSCOLLECTION
+#' @method put_elt_on_same_level JD3_TSCOLLECTION
+#' @export
 put_elt_on_same_level.JD3_TSCOLLECTION <- function(x, n = NULL) {
     return(put_elt_on_same_level(x$series, n))
 }
 
+#' @exportS3Method put_elt_on_same_level JD3_DYNAMICTS
+#' @method put_elt_on_same_level JD3_DYNAMICTS
+#' @export
 put_elt_on_same_level.JD3_DYNAMICTS <- function(x, n = NULL) {
     return(setNames(list(x), n))
 }
 
+#' @exportS3Method put_elt_on_same_level JD3_TS
+#' @method put_elt_on_same_level JD3_TS
+#' @export
 put_elt_on_same_level.JD3_TS <- function(x, n = NULL) {
     return(setNames(list(x), n))
 }
 
+#' @exportS3Method put_elt_on_same_level default
+#' @method put_elt_on_same_level default
+#' @export
 put_elt_on_same_level.default <- function(x, n = NULL) {
     return(setNames(list(x), n))
 }
@@ -420,6 +438,10 @@ set_name <- function(x, n) {
 
 complete_missing_and_duplicated_name <- function(x, pattern = "x") {
     n <- names(x)
+    if (is.null(n)) {
+        names(x) <- paste0(pattern, seq_along(x))
+        return(x)
+    }
     m_or_d <- duplicated(n) | !nzchar(n)
     candidate_names <- setdiff(paste0(pattern, seq_along(n)), n)
     names(x)[m_or_d] <- candidate_names[seq_len(sum(m_or_d))]
@@ -428,10 +450,11 @@ complete_missing_and_duplicated_name <- function(x, pattern = "x") {
 
 format_regressor <- function(regressor, name = NULL) {
     if (is.mts(regressor)) {
-        output <- regressor |>
-            apply(MARGIN = 2L, FUN = list) |>
-            do.call(what = c) |>
+        output <- lapply(X = seq_len(ncol(regressor)),
+                         FUN = \(k) regressor[, k]) |>
+            setNames(nm = colnames(regressor)) |>
             set_name(name)
+
     } else if (is.ts(regressor)) {
         return(list(regressor) |> setNames(name))
     } else if (inherits(regressor, "JD3_TS")) {
@@ -522,9 +545,10 @@ modelling_context <- function(calendars = NULL, variables = NULL) {
     if (is.null(variables) || length(variables) == 0L) {
         variables <- list()
     } else if (is.list(variables)) {
-        names(variables)[!nzchar(names(variables))] <- "r"
-        variables <- regroup_elements_by_name(variables)
-        variables <- lapply(variables, format_variables)
+        variables <- variables |>
+            set_name(n = "r") |>
+            regroup_elements_by_name() |>
+            lapply(FUN = format_variables)
     } else {
         stop("variables should be a list of vars")
     }
