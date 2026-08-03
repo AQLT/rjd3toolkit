@@ -5,9 +5,7 @@ NULL
     if (is.null(p)) {
         return(NULL)
     } else {
-        del <- sapply(p$differences, function(z) {
-            (return(c(z$lag, z$order)))
-        })
+        del <- sapply(p$differences, function(z) c(z$lag, z$order))
         del <- `rownames<-`(del, c("lag", "order"))
         return(list(
             ddata = p$stationary_series,

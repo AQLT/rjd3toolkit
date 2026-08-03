@@ -349,24 +349,20 @@ dynamic_ts <- function(moniker, data) {
     return(.p2jd_variables(p))
 }
 
-extract_elt_one_name <- function(x, n) {
-    which(names(x) == n) |>
+extract_elements_by_name <- function(x, n) {
+    output <- which(names(x) == n) |>
         lapply(FUN = \(k) x[[k]]) |>
         lapply(FUN = list) |>
         do.call(what = c)
+    return(output)
 }
 
-regroup_list_elt <- function(x) {
+regroup_elements_by_name <- function(x) {
     var_names <- unique(names(x))
-    var_names |> lapply(extract_elt_one_name, x = x) |>
+    output <- var_names |>
+        lapply(extract_elements_by_name, x = x) |>
         setNames(var_names)
-}
-
-as_list <- function(x) {
-    if (!is.list(x)) {
-        return(list(x))
-    }
-    return(x)
+    return(output)
 }
 
 put_elt_on_same_level <- function(x, n = NULL) {
@@ -438,9 +434,9 @@ format_regressor <- function(regressor, name = NULL) {
         return(list(regressor) |> setNames(name))
     } else if (inherits(regressor, "JD3_TS")) {
         return(ifelse(
-            is.null(ts_object$name) || is.na(ts_object$name) || !nzchar(ts_object$name),
+            is.null(regressor$name) || is.na(regressor$name) || !nzchar(regressor$name),
             list(regressor) |> setNames(name),
-            list(regressor) |> setNames(ts_object$name)
+            list(regressor) |> setNames(regressor$name)
         ))
     } else if (inherits(regressor, "JD3_DYNAMICTS")) {
         return(list(regressor) |> setNames(name))
@@ -525,7 +521,7 @@ modelling_context <- function(calendars = NULL, variables = NULL) {
         variables <- list()
     } else if (is.list(variables)) {
         names(variables)[!nzchar(names(variables))] <- "r"
-        variables <- regroup_list_elt(variables)
+        variables <- regroup_elements_by_name(variables)
         variables <- lapply(variables, format_variables)
     } else {
         stop("variables should be a list of vars")
