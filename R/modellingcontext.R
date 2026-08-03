@@ -349,39 +349,123 @@ dynamic_ts <- function(moniker, data) {
     return(.p2jd_variables(p))
 }
 
-format_regressor <- function(regressor) {
-    return(regressor)
+extract_elt_one_name <- function(x, n) {
+    which(names(x) == n) |>
+        lapply(FUN = \(k) x[[k]]) |>
+        lapply(FUN = list) |>
+        do.call(what = c)
+}
+
+regroup_list_elt <- function(x) {
+    var_names <- unique(names(x))
+    var_names |> lapply(extract_elt_one_name, x = x) |>
+        setNames(var_names)
+}
+
+as_list <- function(x) {
+    if (!is.list(x)) {
+        return(list(x))
+    }
+    return(x)
+}
+
+put_elt_on_same_level <- function(x, n = NULL) {
+    UseMethod("put_elt_on_same_level", x)
+}
+
+put_elt_on_same_level.list <- function(x, n = NULL) {
+    x <- set_name(x, n)
+    output <- list()
+    for (k in seq_along(x)) {
+        output <- c(output, put_elt_on_same_level(x[[k]], names(x)[k]))
+    }
+    return(output)
+}
+
+put_elt_on_same_level.data.frame <- function(x, n = NULL) {
+    x <- set_name(x, n)
+    output <- list()
+    for (k in seq_along(x)) {
+        output <- c(output, put_elt_on_same_level(x[[k]], names(x)[k]))
+    }
+    return(output)
+}
+
+put_elt_on_same_level.JD3_TSCOLLECTION <- function(x, n = NULL) {
+    return(put_elt_on_same_level(x$series, n))
+}
+
+put_elt_on_same_level.JD3_DYNAMICTS <- function(x, n = NULL) {
+    return(setNames(list(x), n))
+}
+
+put_elt_on_same_level.JD3_TS <- function(x, n = NULL) {
+    return(setNames(list(x), n))
+}
+
+put_elt_on_same_level.default <- function(x, n = NULL) {
+    return(setNames(list(x), n))
+}
+
+set_name <- function(x, n) {
+    if (!is.null(n)) {
+        ns <- names(x)
+        idx_missing <- is.na(ns) | !nzchar(ns)
+        if (is.null(ns)) {
+            names(x) <- rep(n, length(x))
+        } else if (any(idx_missing)) {
+            names(x)[idx_missing] <- rep(n, sum(idx_missing))
+        }
+    }
+    return(x)
+}
+
+complete_missing_and_duplicated_name <- function(x, pattern = "x") {
+    n <- names(x)
+    m_or_d <- duplicated(n) | !nzchar(n)
+    candidate_names <- setdiff(paste0(pattern, seq_along(n)), n)
+    names(x)[m_or_d] <- candidate_names[seq_len(sum(m_or_d))]
+    return(x)
+}
+
+format_regressor <- function(regressor, name = NULL) {
+    if (is.mts(regressor)) {
+        output <- regressor |>
+            apply(MARGIN = 2L, FUN = list) |>
+            do.call(what = c) |>
+            set_name(name)
+    } else if (is.ts(regressor)) {
+        return(list(regressor) |> setNames(name))
+    } else if (inherits(regressor, "JD3_TS")) {
+        return(ifelse(
+            is.null(ts_object$name) || is.na(ts_object$name) || !nzchar(ts_object$name),
+            list(regressor) |> setNames(name),
+            list(regressor) |> setNames(ts_object$name)
+        ))
+    } else if (inherits(regressor, "JD3_DYNAMICTS")) {
+        return(list(regressor) |> setNames(name))
+    } else if (inherits(regressor, "JD3_TSCOLLECTION")) {
+        return(lapply(regressor$series, format_regressor))
+    } else if (is.list(regressor)) {
+        stop("No list accepted !")
+    } else {
+        print(regressor)
+        print(class(regressor))
+        stop("Format not accepted")
+    }
+    return(output)
 }
 
 format_variables <- function(variable) {
-    return(lapply(variable, format_regressor))
-}
-
-modelling_context2 <- function(calendars = NULL, variables = NULL) {
-    if (is.null(calendars) || length(calendars) == 0L) {
-        calendars <- list()
-    } else if (is.list(calendars)) {
-        is_calendar <- sapply(
-            X = calendars,
-            FUN = is,
-            class2 = "JD3_CALENDARDEFINITION"
-        )
-        if (!all(is_calendar)) {
-            stop("calendars should be a list of calendars")
-        }
-    } else {
-        stop("calendars should be a list of calendars")
+    if (!is.list(variable)) {
+        format_variables(list(variable))
     }
-
-    if (is.null(variables) || length(variables) == 0L) {
-        variables <- list()
-    } else if (is.list(variables)) {
-        variables <- lapply(variables, format_variables)
-    } else {
-        stop("variables should be a list of vars")
-    }
-
-    return(list(calendars = calendars, variables = variables))
+    output <- variable |>
+        put_elt_on_same_level(n = NULL) |>
+        lapply(FUN = format_regressor) |>
+        do.call(what = c) |>
+        complete_missing_and_duplicated_name(pattern = "x")
+    return(output)
 }
 
 #' @title Create modelling context
@@ -440,45 +524,15 @@ modelling_context <- function(calendars = NULL, variables = NULL) {
     if (is.null(variables) || length(variables) == 0L) {
         variables <- list()
     } else if (is.list(variables)) {
-        list_var <- sapply(variables, is.list)
-        mts_var <- sapply(variables, is.mts)
-        ts_var <- (!list_var) & (!mts_var)
-        if (any(mts_var)) {
-            # case of a simple mts dictionary
-            for (i in which(mts_var)) {
-                all_var <- lapply(seq_len(ncol(variables[[i]])), function(j) {
-                    variables[[i]][, j]
-                })
-                names(all_var) <- colnames(variables[[i]])
-                variables[[i]] <- all_var
-                if (is.null(names(variables)[i]) || names(variables)[i] == "") {
-                    # if the name is not set, use 'r' as the name of the dictionary
-                    names(variables)[i] <- "r"
-                }
-            }
-        }
-        if (any(ts_var)) {
-            # case of a simple ts dictionary
-            # Use 'r' as the name of the dictionary
-            variables <- c(variables[!ts_var], list(r = variables[ts_var]))
-        }
-        if (sum(names(variables) == "r") >= 2) {
-            # handle case with multiple r groups defined
-            combined_var <- do.call(c, variables[names(variables) == "r"])
-            names(combined_var) <- unlist(lapply(
-                variables[names(variables) == "r"],
-                names
-            ))
-            combined_var <- list(r = combined_var)
-            variables <- c(variables[names(variables) != "r"], combined_var)
-        }
+        names(variables)[!nzchar(names(variables))] <- "r"
+        variables <- regroup_list_elt(variables)
+        variables <- lapply(variables, format_variables)
     } else {
         stop("variables should be a list of vars")
     }
 
     return(list(calendars = calendars, variables = variables))
 }
-
 
 #' @export
 #' @rdname jd3_utilities
