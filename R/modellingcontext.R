@@ -349,41 +349,6 @@ dynamic_ts <- function(moniker, data) {
     return(.p2jd_variables(p))
 }
 
-format_regressor <- function(regressor) {
-    return(regressor)
-}
-
-format_variables <- function(variable) {
-    return(lapply(variable, format_regressor))
-}
-
-modelling_context2 <- function(calendars = NULL, variables = NULL) {
-    if (is.null(calendars) || length(calendars) == 0L) {
-        calendars <- list()
-    } else if (is.list(calendars)) {
-        is_calendar <- sapply(
-            X = calendars,
-            FUN = is,
-            class2 = "JD3_CALENDARDEFINITION"
-        )
-        if (!all(is_calendar)) {
-            stop("calendars should be a list of calendars")
-        }
-    } else {
-        stop("calendars should be a list of calendars")
-    }
-
-    if (is.null(variables) || length(variables) == 0L) {
-        variables <- list()
-    } else if (is.list(variables)) {
-        variables <- lapply(variables, format_variables)
-    } else {
-        stop("variables should be a list of vars")
-    }
-
-    return(list(calendars = calendars, variables = variables))
-}
-
 #' @title Create modelling context
 #'
 #' @description
