@@ -366,10 +366,10 @@ dynamic_ts <- function(moniker, data) {
 #' test_list <- list(a = 1, b = 2, c = 3, a = 4, d = 5)
 #'
 #' # Extract elements named "a"
-#' extract_elements_by_name(test_list, "a")
+#' rjd3toolkit:::extract_elements_by_name(test_list, "a")
 #'
 #' # Extract non-existent element
-#' extract_elements_by_name(test_list, "x")
+#' rjd3toolkit:::extract_elements_by_name(test_list, "x")
 #'
 #' @noRd
 extract_elements_by_name <- function(x, n) {
@@ -398,7 +398,7 @@ extract_elements_by_name <- function(x, n) {
 #' test_list <- list(a = 1, b = 2, c = 3, a = 4, d = 5, b = 6)
 #'
 #' # Regroup elements by name
-#' regroup_elements_by_name(test_list)
+#' rjd3toolkit:::regroup_elements_by_name(test_list)
 #'
 #' @noRd
 regroup_elements_by_name <- function(x) {
@@ -409,10 +409,47 @@ regroup_elements_by_name <- function(x) {
     return(output)
 }
 
+#' @title Flatten Nested Elements to Same Level
+#'
+#' @description
+#' Generic function to put nested elements on the same level by
+#' transforming them into named lists.
+#'
+#' @param x An object to flatten (list, data.frame, or JDemetra+ time series
+#'   objects)
+#' @param n Character. Optional name to assign to the flattened elements.
+#'   If NULL, uses existing names or no names.
+#'
+#' @returns A named list where all elements from the input object
+#' are placed at the same level.
+#'
+#' @section Methods:
+#' The function supports the following object types:
+#'
+#' - \code{list}: Recursively flattens list elements
+#' - \code{data.frame}: Treats each column as a separate element
+#' - \code{JD3_TSCOLLECTION}: Flattens time series collection
+#' - \code{JD3_DYNAMICTS}: Wraps dynamic time series in a list
+#' - \code{JD3_TS}: Wraps time series in a list
+#' - \code{default}: Wraps any other object in a named list
+#'
+#' @examples
+#' # For a nested list
+#' nested_list <- list(a = list(1, 2), b = list(3, list(4, 5)))
+#' rjd3toolkit:::put_elt_on_same_level(nested_list)
+#'
+#' # For a data.frame
+#' df <- data.frame(x = 1:3, y = letters[1:3])
+#' rjd3toolkit:::put_elt_on_same_level(df)
+#'
+#' @name put_elt_on_same_level
+#' @noRd
 put_elt_on_same_level <- function(x, n = NULL) {
     UseMethod("put_elt_on_same_level", x)
 }
 
+#' @rdname put_elt_on_same_level
+#' @noRd
 #' @exportS3Method put_elt_on_same_level list
 #' @method put_elt_on_same_level list
 #' @export
@@ -425,18 +462,21 @@ put_elt_on_same_level.list <- function(x, n = NULL) {
     return(output)
 }
 
+#' @rdname put_elt_on_same_level
+#' @noRd
 #' @exportS3Method put_elt_on_same_level data.frame
 #' @method put_elt_on_same_level data.frame
 #' @export
 put_elt_on_same_level.data.frame <- function(x, n = NULL) {
-    x <- set_names(x, n)
-    output <- list()
-    for (k in seq_along(x)) {
-        output <- c(output, put_elt_on_same_level(x[[k]], names(x)[k]))
-    }
+    output <- x |>
+        unclass() |>
+        set_names(n = n)
+    attributes(output) <- list(names = names(output))
     return(output)
 }
 
+#' @rdname put_elt_on_same_level
+#' @noRd
 #' @exportS3Method put_elt_on_same_level JD3_TSCOLLECTION
 #' @method put_elt_on_same_level JD3_TSCOLLECTION
 #' @export
@@ -444,6 +484,8 @@ put_elt_on_same_level.JD3_TSCOLLECTION <- function(x, n = NULL) {
     return(setNames(x$series, rep(n, length(x$series))))
 }
 
+#' @rdname put_elt_on_same_level
+#' @noRd
 #' @exportS3Method put_elt_on_same_level JD3_DYNAMICTS
 #' @method put_elt_on_same_level JD3_DYNAMICTS
 #' @export
@@ -451,6 +493,8 @@ put_elt_on_same_level.JD3_DYNAMICTS <- function(x, n = NULL) {
     return(setNames(list(x), n))
 }
 
+#' @rdname put_elt_on_same_level
+#' @noRd
 #' @exportS3Method put_elt_on_same_level JD3_TS
 #' @method put_elt_on_same_level JD3_TS
 #' @export
@@ -458,6 +502,8 @@ put_elt_on_same_level.JD3_TS <- function(x, n = NULL) {
     return(setNames(list(x), n))
 }
 
+#' @rdname put_elt_on_same_level
+#' @noRd
 #' @exportS3Method put_elt_on_same_level default
 #' @method put_elt_on_same_level default
 #' @export
@@ -465,6 +511,33 @@ put_elt_on_same_level.default <- function(x, n = NULL) {
     return(setNames(list(x), n))
 }
 
+#' @title Assign Names to List
+#'
+#' @description
+#' Assigns names to unnamed elements of a list. Named elements are preserved,
+#' only elements with NA or empty names are renamed.
+#'
+#' @param x A list to modify.
+#' @param n Character. Name to assign to unnamed elements. If NULL, the object
+#'   is returned unchanged.
+#'
+#' @returns The input object with updated names for previously unnamed
+#' elements.
+#'
+#' @details
+#' Existing names remain unchanged.
+#'
+#' @examples
+#' # Name all elements
+#' rjd3toolkit:::set_names(list(1, 2, 3), "item")
+#'
+#' # Name only unnamed elements
+#' rjd3toolkit:::set_names(list(a = 1, 2, c = 3), "item")
+#'
+#' # No change when n is NULL
+#' rjd3toolkit:::set_names(list(a = 1, b = 2, 3), NULL)
+#'
+#' @noRd
 set_names <- function(x, n) {
     if (!is.null(n)) {
         ns <- names(x)
@@ -478,6 +551,26 @@ set_names <- function(x, n) {
     return(x)
 }
 
+#' @title Replace Dots with Underscore in Names
+#'
+#' @description
+#' Ensure valid naming convention by replacing dots in element names with
+#' underscores.
+#'
+#' @param x A named list.
+#' @param verbose Boolean indicating whether to print additional information.
+#'   Default is `TRUE`.
+#'
+#' @returns The input object with modified names.
+#'
+#' @details
+#' The forbidden characters are dots. They are replaced with underscores.
+#'
+#' @examples
+#' x <- list("a.b" = 1, "c-d" = 2, "e f" = 3)
+#' rjd3toolkit:::replace_wrong_names(x)
+#'
+#' @noRd
 replace_wrong_names <- function(x, verbose = TRUE) {
     if (is.null(x)) return(NULL)
 
