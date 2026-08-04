@@ -816,7 +816,7 @@ format_variables <- function(x, verbose = TRUE) {
 #' )
 #'
 #' # Regressors as a list of two groups reg1 and reg2
-#' vars <- list(reg1 = list(x = iv1), reg2 = list(x = iv2))
+#' vars <- list(reg1 = list(x = iv1), reg2 = list(x = iv2), reg3 = ABS)
 #'
 #' # Creating the modelling context
 #' my_context <- modelling_context(variables = vars)
