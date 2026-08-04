@@ -351,6 +351,27 @@ dynamic_ts <- function(moniker, data) {
     return(.p2jd_variables(p))
 }
 
+#' @title Extract List Elements by Name
+#'
+#' @description
+#' Extracts all elements from a named list that match a specific name.
+#'
+#' @param x A named list from which to extract elements.
+#' @param n Character. Name of the element(s) to extract.
+#'
+#' @returns A list containing all elements from \code{x} that match the name
+#' \code{n}. If no elements match, returns an empty list.
+#'
+#' @examples
+#' test_list <- list(a = 1, b = 2, c = 3, a = 4, d = 5)
+#'
+#' # Extract elements named "a"
+#' extract_elements_by_name(test_list, "a")
+#'
+#' # Extract non-existent element
+#' extract_elements_by_name(test_list, "x")
+#'
+#' @noRd
 extract_elements_by_name <- function(x, n) {
     output <- which(names(x) == n) |>
         lapply(FUN = \(k) x[[k]]) |>
@@ -359,6 +380,27 @@ extract_elements_by_name <- function(x, n) {
     return(output)
 }
 
+#' @title Regroup List Elements by Name
+#'
+#' @description
+#' Regroups elements of a named list by their names, creating a new list with
+#' unique names.
+#'
+#' @param x A named list.
+#'
+#' @returns A named list with unique names
+#'
+#' @details
+#' The output list contains the same values as the original list but grouped
+#' under same name.
+#'
+#' @examples
+#' test_list <- list(a = 1, b = 2, c = 3, a = 4, d = 5, b = 6)
+#'
+#' # Regroup elements by name
+#' regroup_elements_by_name(test_list)
+#'
+#' @noRd
 regroup_elements_by_name <- function(x) {
     var_names <- unique(names(x))
     output <- var_names |>
@@ -399,7 +441,7 @@ put_elt_on_same_level.data.frame <- function(x, n = NULL) {
 #' @method put_elt_on_same_level JD3_TSCOLLECTION
 #' @export
 put_elt_on_same_level.JD3_TSCOLLECTION <- function(x, n = NULL) {
-    return(setNames(list(x), n))
+    return(setNames(x$series, rep(n, length(x$series))))
 }
 
 #' @exportS3Method put_elt_on_same_level JD3_DYNAMICTS
