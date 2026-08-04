@@ -638,7 +638,7 @@ complete_names <- function(x, pattern = "x", verbose = TRUE) {
     return(x)
 }
 
-#' @title Format Regressor Objects
+#' @title Format Regressor Objects for Modelling Context
 #'
 #' @description
 #' Generic function to format various regressor objects into a standardized
@@ -754,6 +754,26 @@ format_regressor.default <- function(x, n = NULL) {
     stop("Format not accepted")
 }
 
+#' @title Format Variables for Modelling Context
+#'
+#' @description
+#' Standardizes and formats a variable for use in modelling context.
+#'
+#' @param x A list of regressors or a single variable to format.
+#' @param verbose Boolean. If `TRUE`, displays a message when names are
+#'   replaced. Default is `TRUE`.
+#'
+#' @returns A named list where each element is a formatted regressor.
+#'
+#' @details
+#' Here, a variable is a list of regressors (time series based).
+#' All elements are on the same level, have valid names, and missing names are
+#' completed with a default pattern.
+#'
+#' @examples
+#' rjd3toolkit:::format_variables(list(x1 = ABS[, 1], x2 = ABS[, 2]))
+#' rjd3toolkit:::format_variables(list(AirPassengers, Seatbelts))
+#' @noRd
 format_variables <- function(x, verbose = TRUE) {
     if (!is.list(x)) {
         format_variables(list(x))
