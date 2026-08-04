@@ -4,12 +4,15 @@
 \alias{modelling_context}
 \title{Create modelling context}
 \usage{
-modelling_context(calendars = NULL, variables = NULL)
+modelling_context(calendars = NULL, variables = NULL, verbose = TRUE)
 }
 \arguments{
 \item{calendars}{list of calendars.}
 
 \item{variables}{list of variables.}
+
+\item{verbose}{Boolean indicating whether to print additional information.
+Default is \code{TRUE}.}
 }
 \value{
 list of calendars and variables

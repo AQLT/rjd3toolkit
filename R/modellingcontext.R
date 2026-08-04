@@ -375,7 +375,7 @@ put_elt_on_same_level <- function(x, n = NULL) {
 #' @method put_elt_on_same_level list
 #' @export
 put_elt_on_same_level.list <- function(x, n = NULL) {
-    x <- set_name(x, n)
+    x <- set_names(x, n)
     output <- list()
     for (k in seq_along(x)) {
         output <- c(output, put_elt_on_same_level(x[[k]], names(x)[k]))
@@ -387,7 +387,7 @@ put_elt_on_same_level.list <- function(x, n = NULL) {
 #' @method put_elt_on_same_level data.frame
 #' @export
 put_elt_on_same_level.data.frame <- function(x, n = NULL) {
-    x <- set_name(x, n)
+    x <- set_names(x, n)
     output <- list()
     for (k in seq_along(x)) {
         output <- c(output, put_elt_on_same_level(x[[k]], names(x)[k]))
@@ -399,7 +399,7 @@ put_elt_on_same_level.data.frame <- function(x, n = NULL) {
 #' @method put_elt_on_same_level JD3_TSCOLLECTION
 #' @export
 put_elt_on_same_level.JD3_TSCOLLECTION <- function(x, n = NULL) {
-    return(put_elt_on_same_level(x$series, n))
+    return(setNames(list(x), n))
 }
 
 #' @exportS3Method put_elt_on_same_level JD3_DYNAMICTS
@@ -423,7 +423,7 @@ put_elt_on_same_level.default <- function(x, n = NULL) {
     return(setNames(list(x), n))
 }
 
-set_name <- function(x, n) {
+set_names <- function(x, n) {
     if (!is.null(n)) {
         ns <- names(x)
         idx_missing <- is.na(ns) | !nzchar(ns)
@@ -436,56 +436,125 @@ set_name <- function(x, n) {
     return(x)
 }
 
-complete_missing_and_duplicated_name <- function(x, pattern = "x") {
+replace_wrong_names <- function(x, verbose = TRUE) {
+    if (is.null(x)) return(NULL)
+
+    new_names <- gsub(
+        x = names(x),
+        pattern = ".",
+        replacement = "_",
+        fixed = TRUE
+    )
+
+    if (verbose && any(names(x) != new_names)) {
+        message(
+            "Replaced forbidden character(s) in ",
+            sum(names(x) != new_names),
+            " name(s)."
+        )
+    }
+
+    names(x) <- new_names
+    return(x)
+}
+
+complete_names <- function(x, pattern = "x", verbose = TRUE) {
+    if (is.null(x)) return(NULL)
+
     n <- names(x)
     if (is.null(n)) {
         names(x) <- paste0(pattern, seq_along(x))
         return(x)
     }
-    m_or_d <- duplicated(n) | !nzchar(n)
-    candidate_names <- setdiff(paste0(pattern, seq_along(n)), n)
-    names(x)[m_or_d] <- candidate_names[seq_len(sum(m_or_d))]
+    m_or_d <- duplicated(n) | !nzchar(n) | is.na(n)
+    if (any(m_or_d)) {
+        candidate_names <- setdiff(paste0(pattern, seq_along(n)), n)
+        names(x)[m_or_d] <- candidate_names[seq_len(sum(m_or_d))]
+        if (verbose) {
+            message("Replaced ", sum(m_or_d), " duplicated or missing name(s).")
+        }
+    }
     return(x)
 }
 
-format_regressor <- function(regressor, name = NULL) {
-    if (is.mts(regressor)) {
-        output <- lapply(X = seq_len(ncol(regressor)),
-                         FUN = \(k) regressor[, k]) |>
-            setNames(nm = colnames(regressor)) |>
-            set_name(name)
+format_regressor <- function(x, n = NULL) {
+    UseMethod("format_regressor", x)
+}
 
-    } else if (is.ts(regressor)) {
-        return(list(regressor) |> setNames(name))
-    } else if (inherits(regressor, "JD3_TS")) {
-        return(ifelse(
-            is.null(regressor$name) || is.na(regressor$name) || !nzchar(regressor$name),
-            list(regressor) |> setNames(name),
-            list(regressor) |> setNames(regressor$name)
-        ))
-    } else if (inherits(regressor, "JD3_DYNAMICTS")) {
-        return(list(regressor) |> setNames(name))
-    } else if (inherits(regressor, "JD3_TSCOLLECTION")) {
-        return(lapply(regressor$series, format_regressor))
-    } else if (is.list(regressor)) {
-        stop("No list accepted !")
-    } else {
-        print(regressor)
-        print(class(regressor))
-        stop("Format not accepted")
-    }
+#' @exportS3Method format_regressor mts
+#' @method format_regressor mts
+#' @export
+format_regressor.mts <- function(x, n = NULL) {
+    output <- lapply(X = seq_len(ncol(x)), FUN = \(k) x[, k]) |>
+        setNames(nm = colnames(x)) |>
+        set_names(n)
     return(output)
 }
 
-format_variables <- function(variable) {
-    if (!is.list(variable)) {
-        format_variables(list(variable))
+#' @exportS3Method format_regressor ts
+#' @method format_regressor ts
+#' @export
+format_regressor.ts <- function(x, n = NULL) {
+    return(setNames(object = list(x), nm = n))
+}
+
+#' @exportS3Method format_regressor JD3_TS
+#' @method format_regressor JD3_TS
+#' @export
+format_regressor.JD3_TS <- function(x, n = NULL) {
+    output <- list(x) |>
+        setNames(ifelse(
+            test = is.null(x$name) || is.na(x$name) || !nzchar(x$name),
+            yes = n,
+            no = x$name
+        ))
+    return(output)
+}
+
+#' @exportS3Method format_regressor JD3_DYNAMICTS
+#' @method format_regressor JD3_DYNAMICTS
+#' @export
+format_regressor.JD3_DYNAMICTS <- function(x, n = NULL) {
+    return(setNames(object = list(x), nm = n))
+}
+
+#' @exportS3Method format_regressor JD3_TSCOLLECTION
+#' @method format_regressor JD3_TSCOLLECTION
+#' @export
+format_regressor.JD3_TSCOLLECTION <- function(x, n = NULL) {
+    output <- lapply(
+        X = x$series,
+        FUN = format_regressor
+    ) |>
+        do.call(what = c) |>
+        setNames(nm = names(x$series))
+    return(output)
+}
+
+#' @exportS3Method format_regressor list
+#' @method format_regressor list
+#' @export
+format_regressor.list <- function(x, n = NULL) {
+    stop("No list accepted !")
+}
+
+#' @exportS3Method format_regressor default
+#' @method format_regressor default
+#' @export
+format_regressor.default <- function(x, n = NULL) {
+    stop("Format not accepted")
+}
+
+format_variables <- function(x, verbose = TRUE) {
+    if (!is.list(x)) {
+        format_variables(list(x))
     }
-    output <- variable |>
+    output <- x |>
         put_elt_on_same_level(n = NULL) |>
         lapply(FUN = format_regressor) |>
         do.call(what = c) |>
-        complete_missing_and_duplicated_name(pattern = "x")
+        replace_wrong_names(verbose = verbose) |>
+        complete_names(pattern = "x", verbose = verbose)
     return(output)
 }
 
@@ -500,6 +569,8 @@ format_variables <- function(variable) {
 #'
 #' @param calendars list of calendars.
 #' @param variables list of variables.
+#' @param verbose Boolean indicating whether to print additional information.
+#'   Default is `TRUE`.
 #'
 #' @returns list of calendars and variables
 #' @export
@@ -526,7 +597,7 @@ format_variables <- function(variable) {
 #' More information on auxiliary variables in JDemetra+ online documentation:
 #' \url{https://doc.jdemetra.org/a-outlier-detection}
 #'
-modelling_context <- function(calendars = NULL, variables = NULL) {
+modelling_context <- function(calendars = NULL, variables = NULL, verbose = TRUE) {
     if (is.null(calendars) || length(calendars) == 0L) {
         calendars <- list()
     } else if (is.list(calendars)) {
@@ -546,7 +617,8 @@ modelling_context <- function(calendars = NULL, variables = NULL) {
         variables <- list()
     } else if (is.list(variables)) {
         variables <- variables |>
-            set_name(n = "r") |>
+            set_names(n = "r") |>
+            replace_wrong_names(verbose = verbose) |>
             regroup_elements_by_name() |>
             lapply(FUN = format_variables)
     } else {
