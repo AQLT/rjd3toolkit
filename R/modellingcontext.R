@@ -593,6 +593,32 @@ replace_wrong_names <- function(x, verbose = TRUE) {
     return(x)
 }
 
+#' @title Complete Missing or Duplicated Names
+#'
+#' @description
+#' Completes missing, empty, or duplicated names in a list using
+#' a specified pattern and sequential numbers.
+#'
+#' @param x A named list.
+#' @param pattern Character. Base pattern for generating new names.
+#'   Default is `"x"`.
+#' @param verbose Boolean. If `TRUE`, displays a message when names are
+#'   replaced. Default is `TRUE`.
+#'
+#' @returns The input object with completed names. Returns `NULL` if input is
+#' `NULL`.
+#'
+#' @details
+#' Missing, empty, or duplicated names are replaced with generated names
+#' following the pattern: "x1", "x2", etc.
+#'
+#' @examples
+#' x <- list(a = 1, 2, c = 3, 4, a = 5)
+#' complete_names(x)
+#'
+#' # With custom pattern
+#' complete_names(x, pattern = "item")
+#' @noRd
 complete_names <- function(x, pattern = "x", verbose = TRUE) {
     if (is.null(x)) return(NULL)
 
