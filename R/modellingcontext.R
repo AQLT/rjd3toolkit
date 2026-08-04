@@ -614,10 +614,10 @@ replace_wrong_names <- function(x, verbose = TRUE) {
 #'
 #' @examples
 #' x <- list(a = 1, 2, c = 3, 4, a = 5)
-#' complete_names(x)
+#' rjd3toolkit:::complete_names(x)
 #'
 #' # With custom pattern
-#' complete_names(x, pattern = "item")
+#' rjd3toolkit:::complete_names(x, pattern = "item")
 #' @noRd
 complete_names <- function(x, pattern = "x", verbose = TRUE) {
     if (is.null(x)) return(NULL)
@@ -638,10 +638,46 @@ complete_names <- function(x, pattern = "x", verbose = TRUE) {
     return(x)
 }
 
+#' @title Format Regressor Objects
+#'
+#' @description
+#' Generic function to format various regressor objects into a standardized
+#' list format.
+#'
+#' @param x An object to format (`mts`, `ts`, `JD3_TS`, `JD3_DYNAMICTS`,
+#'   `JD3_TSCOLLECTION`, `list`, or other).
+#' @param n Character. Optional name to assign to the formatted output.
+#'
+#' @returns A named list containing the formatted regressor object(s).
+#'
+#' @section Methods:
+#' The function supports the following object types:
+#'
+#' - \code{mts}: Converts each column to a separate list element
+#' - \code{ts}: Wraps the time series in a list
+#' - \code{JD3_TS}: Formats JDemetra+ time series object
+#' - \code{JD3_DYNAMICTS}: Wraps dynamic time series in a list
+#' - \code{JD3_TSCOLLECTION}: Formats each series in the collection
+#' - \code{list}: Not accepted (throws error)
+#' - \code{default}: Not accepted (throws error)
+#'
+#' @examples
+#' # Multivariate time series (mts)
+#' rjd3toolkit:::format_regressor(Seatbelts, n = "the_seatbelt_object")
+#'
+#' # Univariate time series (ts)
+#' rjd3toolkit:::format_regressor(AirPassengers)
+#'
+#' # data.frame of univariate time series (ts)
+#' rjd3toolkit:::format_regressor(ABS)
+#' @noRd
+#' @name format_regressor
 format_regressor <- function(x, n = NULL) {
     UseMethod("format_regressor", x)
 }
 
+#' @noRd
+#' @rdname format_regressor
 #' @exportS3Method format_regressor mts
 #' @method format_regressor mts
 #' @export
@@ -652,6 +688,8 @@ format_regressor.mts <- function(x, n = NULL) {
     return(output)
 }
 
+#' @noRd
+#' @rdname format_regressor
 #' @exportS3Method format_regressor ts
 #' @method format_regressor ts
 #' @export
@@ -659,6 +697,8 @@ format_regressor.ts <- function(x, n = NULL) {
     return(setNames(object = list(x), nm = n))
 }
 
+#' @noRd
+#' @rdname format_regressor
 #' @exportS3Method format_regressor JD3_TS
 #' @method format_regressor JD3_TS
 #' @export
@@ -672,6 +712,8 @@ format_regressor.JD3_TS <- function(x, n = NULL) {
     return(output)
 }
 
+#' @noRd
+#' @rdname format_regressor
 #' @exportS3Method format_regressor JD3_DYNAMICTS
 #' @method format_regressor JD3_DYNAMICTS
 #' @export
@@ -679,6 +721,8 @@ format_regressor.JD3_DYNAMICTS <- function(x, n = NULL) {
     return(setNames(object = list(x), nm = n))
 }
 
+#' @noRd
+#' @rdname format_regressor
 #' @exportS3Method format_regressor JD3_TSCOLLECTION
 #' @method format_regressor JD3_TSCOLLECTION
 #' @export
@@ -692,6 +736,8 @@ format_regressor.JD3_TSCOLLECTION <- function(x, n = NULL) {
     return(output)
 }
 
+#' @noRd
+#' @rdname format_regressor
 #' @exportS3Method format_regressor list
 #' @method format_regressor list
 #' @export
@@ -699,6 +745,8 @@ format_regressor.list <- function(x, n = NULL) {
     stop("No list accepted !")
 }
 
+#' @noRd
+#' @rdname format_regressor
 #' @exportS3Method format_regressor default
 #' @method format_regressor default
 #' @export
