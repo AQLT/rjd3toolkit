@@ -69,7 +69,7 @@ test_that("replace_wrong_names works", {
 test_that("complete_names works", {
     expect_null(complete_names(x = NULL))
 
-    out1 <- expect_no_message(complete_names(x = list(1, 2, 3)))
+    expect_message(out1 <- complete_names(x = list(1, 2, 3)))
     expect_identical(out1, list(x1 = 1, x2 = 2, x3 = 3))
 })
 

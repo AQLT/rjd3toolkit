@@ -551,6 +551,8 @@ set_names <- function(x, n) {
     return(x)
 }
 
+
+
 #' @title Replace Dots with Underscore in Names
 #'
 #' @description
@@ -571,25 +573,50 @@ set_names <- function(x, n) {
 #' rjd3toolkit:::replace_wrong_names(x)
 #'
 #' @noRd
+#' @name replace_wrong_names
 replace_wrong_names <- function(x, verbose = TRUE) {
-    if (is.null(x)) return(NULL)
+    UseMethod("replace_wrong_names", x)
+}
 
+#' @noRd
+#' @rdname replace_wrong_names
+#' @exportS3Method replace_wrong_names NULL
+#' @method replace_wrong_names NULL
+#' @export
+replace_wrong_names.NULL <- function(x, verbose = TRUE) {
+    return(NULL)
+}
+
+#' @noRd
+#' @rdname replace_wrong_names
+#' @exportS3Method replace_wrong_names character
+#' @method replace_wrong_names character
+#' @export
+replace_wrong_names.character <- function(x, verbose = TRUE) {
     new_names <- gsub(
-        x = names(x),
+        x = x,
         pattern = ".",
         replacement = "_",
         fixed = TRUE
     )
 
-    if (verbose && any(names(x) != new_names)) {
+    if (verbose && any(x != new_names)) {
         message(
             "Replaced forbidden character(s) in ",
-            sum(names(x) != new_names),
+            sum(x != new_names),
             " name(s)."
         )
     }
+    return(new_names)
+}
 
-    names(x) <- new_names
+#' @noRd
+#' @rdname replace_wrong_names
+#' @exportS3Method replace_wrong_names list
+#' @method replace_wrong_names list
+#' @export
+replace_wrong_names.list <- function(x, verbose = TRUE) {
+    names(x) <- replace_wrong_names(names(x))
     return(x)
 }
 
@@ -619,21 +646,47 @@ replace_wrong_names <- function(x, verbose = TRUE) {
 #' # With custom pattern
 #' rjd3toolkit:::complete_names(x, pattern = "item")
 #' @noRd
+#' @name complete_names
 complete_names <- function(x, pattern = "x", verbose = TRUE) {
-    if (is.null(x)) return(NULL)
+    UseMethod("complete_names", x)
+}
 
-    n <- names(x)
-    if (is.null(n)) {
-        names(x) <- paste0(pattern, seq_along(x))
-        return(x)
-    }
-    m_or_d <- duplicated(n) | !nzchar(n) | is.na(n)
+#' @noRd
+#' @rdname complete_names
+#' @exportS3Method complete_names NULL
+#' @method complete_names NULL
+#' @export
+complete_names.NULL <- function(x, pattern = "x", verbose = TRUE) {
+    return(NULL)
+}
+
+#' @noRd
+#' @rdname complete_names
+#' @exportS3Method complete_names character
+#' @method complete_names character
+#' @export
+complete_names.character <- function(x, pattern = "x", verbose = TRUE) {
+    m_or_d <- duplicated(x) | !nzchar(x) | is.na(x)
     if (any(m_or_d)) {
-        candidate_names <- setdiff(paste0(pattern, seq_along(n)), n)
-        names(x)[m_or_d] <- candidate_names[seq_len(sum(m_or_d))]
+        candidate_names <- setdiff(paste0(pattern, seq_along(x)), x)
+        x[m_or_d] <- candidate_names[seq_len(sum(m_or_d))]
         if (verbose) {
             message("Replaced ", sum(m_or_d), " duplicated or missing name(s).")
         }
+    }
+    return(x)
+}
+
+#' @noRd
+#' @rdname complete_names
+#' @exportS3Method complete_names list
+#' @method complete_names list
+#' @export
+complete_names.list <- function(x, pattern = "x", verbose = TRUE) {
+    if (is.null(names(x))) {
+        names(x) <- complete_names(rep(NA_character_, length(x)))
+    } else {
+        names(x) <- complete_names(names(x))
     }
     return(x)
 }
