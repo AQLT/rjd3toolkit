@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 * `modelling_context` accept regressor with and without names in nested structure.
+* `add_usrdefvar` accepts multiple regressor in the same group. [#106](https://github.com/rjdverse/rjd3toolkit/issues/106)
 
 ### Fixed
 
