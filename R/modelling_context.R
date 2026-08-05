@@ -552,7 +552,6 @@ set_names <- function(x, n) {
 }
 
 
-
 #' @title Replace Dots with Underscore in Names
 #'
 #' @description

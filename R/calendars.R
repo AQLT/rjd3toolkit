@@ -1,4 +1,4 @@
-#' @import checkmate
+#' @importFrom checkmate assertNames assertNumeric
 #' @importFrom methods is
 #' @importFrom stats frequency ts is.ts is.mts start end cycle
 #' @include protobuf.R jd2r.R

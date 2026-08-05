@@ -1833,38 +1833,54 @@ set_transform.default <- function(
 #'
 #' @description
 #' Function allowing to add any user-defined regressor to a specification and
-#' allocate its effect to a selected component, excepted to the calendar component.
-#' To add user-defined calendar regressors, \code{\link{set_tradingdays}}. Once added to
-#' a specification, the external regressor(s) will also have to be added to a modelling context
-#' before being used in an estimation process. see \code{\link{modelling_context}} and example.
+#' allocate its effect to a selected component, excepted to the calendar
+#' component. To add user-defined calendar regressors,
+#' \code{\link{set_tradingdays}}. Once added to a specification, the external
+#' regressor(s) will also have to be added to a modelling context before being
+#' used in an estimation process. see \code{\link{modelling_context}} and
+#' example.
 #'
 #' @inheritParams set_basic
-#' @param group,name the name of the regressor in the format `"group.name"`, by default `"r.name"` by default if `group` NULL
-#' `"group.name"` has to be the same as in \code{\link{modelling_context}} (see examples)
-#' @param label the label of the variable to be displayed when printing specification or results. By default equals to `group.name`.
+#' @param group,name the name of the regressors in the format `"group.name"`, by
+#'   default `"r.name"` by default if `group` NULL.
+#'   `"group.name"` has to be the same as in \code{\link{modelling_context}}
+#'   (see examples)
+#' @param label the label of the variable to be displayed when printing
+#'   specification or results. By default equals to `group.name`.
 #' @param lag integer defining if the user-defined variable should be lagged.
-#'  By default (`lag = 0`), the regressor \eqn{x_t} is not lagged. If `lag = 1`, then \eqn{x_{t-1}} is used.
+#'   By default (`lag = 0`), the regressor \eqn{x_t} is not lagged.
+#'   If `lag = 1`, then \eqn{x_{t-1}} is used.
 #' @param coef the coefficient, if needs to be fixed.
-#' @param regeffect component to which the effect of the user-defined variable will be assigned.
-#' By default (`"Undefined"`), see details.
+#' @param regeffect component to which the effect of the user-defined variable
+#'   will be assigned.
+#'   By default (`"Undefined"`), see details.
 #'
 #' @returns The modified specification (with new user-defined variables)
 #'
 #' @details
-#' \code{x} specification parameter must be a JD3_X13_SPEC" class object generated with \code{rjd3x13::x13_spec()}
-#' (or "JD3_REGARIMA_SPEC" generated with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC"
-#' generated with \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
+#' \code{x} specification parameter must be a `JD3_X13_SPEC` class object
+#' generated with \code{rjd3x13::x13_spec()} (or `JD3_REGARIMA_SPEC` generated
+#' with \code{rjd3x13::spec_regarima()} or `JD3_TRAMOSEATS_SPEC` generated with
+#' \code{rjd3tramoseats::spec_tramoseats()} or `JD3_TRAMO_SPEC` generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
+#'
 #' Components to which the effect of the regressor can be allocated:
-#' - \code{"Undefined"} : the effect of the regressor is assigned to an additional component,
-#' the variable is used to improve the pre-processing step, but is not removed from the series
-#' for the decomposition.
+#'
 #' \itemize{
-#'   \item \code{"Trend"}: after the decomposition the effect is allocated to the trend component, like a Level-Shift
-#'   \item \code{"Irregular"}: after the decomposition the effect is allocated to the irregular component, like an Additive-outlier
-#'   \item \code{"Seasonal"}: after the decomposition the effect is allocated to the seasonal component, like a Seasonal-outlier
-#'   \item \code{"Series"}: after the decomposition the effect is allocated to the raw series: \eqn{yc_t=y_t+ effect}
-#'   \item \code{"SeasonallyAdjusted"}: after the decomposition the effect is allocated to the seasonally adjusted series: \eqn{sa_t=T+I+effect}
+#'   \item \code{"Undefined"}: the effect of the regressor is assigned to an
+#'       additional component, the variable is used to improve the
+#'       pre-processing step, but is not removed from the series for the
+#'       decomposition.
+#'   \item \code{"Trend"}: after the decomposition the effect is allocated to
+#'       the trend component, like a Level-Shift
+#'   \item \code{"Irregular"}: after the decomposition the effect is allocated
+#'       to the irregular component, like an Additive-outlier
+#'   \item \code{"Seasonal"}: after the decomposition the effect is allocated
+#'       to the seasonal component, like a Seasonal-outlier
+#'   \item \code{"Series"}: after the decomposition the effect is allocated to
+#'       the raw series: \eqn{yc_t=y_t+ effect}
+#'   \item \code{"SeasonallyAdjusted"}: after the decomposition the effect is
+#'       allocated to the seasonally adjusted series: \eqn{sa_t=T+I+effect}
 #' }
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
@@ -1902,12 +1918,17 @@ set_transform.default <- function(
 #'
 #' # Regressors have to be added one by one
 #' new_spec <- add_usrdefvar(init_spec, name = "reg1.iv1", regeffect = "Trend")
-#' new_spec <- add_usrdefvar(new_spec, name = "reg2.iv2", regeffect = "Trend", coef = 0.7)
+#' new_spec <- add_usrdefvar(new_spec, name = "reg2.iv2", regeffect = "Trend",
+#'                           coef = 0.7)
 #'
 #' @seealso \code{\link{set_tradingdays}}, \code{\link{intervention_variable}}
 #' @references
-#' More information on outliers and other auxiliary variables in JDemetra+ online documentation:
-#' \url{https://doc.jdemetra.org/a-outlier-detection}
+#' More information on outliers and other auxiliary variables in JDemetra+
+#' online documentation: \url{https://doc.jdemetra.org/a-outlier-detection}
+#' @importFrom checkmate assert_character
+#' @importFrom checkmate assert_scalar
+#' @importFrom checkmate assert_integerish
+#' @importFrom checkmate assert_numeric
 #' @export
 add_usrdefvar <- function(
     x,
@@ -1934,16 +1955,9 @@ add_usrdefvar.default <- function(
     group = "r",
     name,
     label = NULL,
-    lag = 0,
+    lag = NULL,
     coef = NULL,
-    regeffect = c(
-        "Undefined",
-        "Trend",
-        "Seasonal",
-        "Irregular",
-        "Series",
-        "SeasonallyAdjusted"
-    )
+    regeffect = NULL
 ) {
     # Check group
     checkmate::assert_character(group)
@@ -1962,8 +1976,74 @@ add_usrdefvar.default <- function(
     if (is.null(label)) {
         label <- paste0(group, ".", name)
     } else {
-        checkmate::assert_character(name)
-        stopifnot(length(name) != length(label))
+        checkmate::assert_character(label)
+        stopifnot(length(name) == length(label))
+    }
+
+    # Check lag
+    if (is.null(lag)) {
+        lag <- rep(0L, length(name))
+    } else {
+        checkmate::assert_integerish(lag, lower = 0L)
+        if (length(lag) == 1L) {
+            lag <- rep(lag, length(name))
+        } else {
+            stopifnot(length(name) == length(lag))
+        }
+    }
+
+    # Check coef
+    if (!is.null(coef)) {
+        checkmate::assert_numeric(coef)
+        if (length(coef) == 1L) {
+            coef <- rep(coef, length(name))
+        } else {
+            stopifnot(length(name) == length(coef))
+        }
+    }
+
+    # Check regeffect
+    if (is.null(regeffect)) {
+        regeffect <- rep("Undefined", length(name))
+    } else {
+        checkmate::assert_character(regeffect)
+        if (length(regeffect) == 1L) {
+            regeffect <- rep(regeffect, length(name))
+        } else {
+            stopifnot(length(name) == length(regeffect))
+            stopifnot(
+                all(
+                    regeffect %in%
+                        c(
+                            "Undefined",
+                            "Trend",
+                            "Seasonal",
+                            "Irregular",
+                            "Series",
+                            "SeasonallyAdjusted"
+                        )
+                )
+            )
+        }
+    }
+
+    if (length(name) > 1L) {
+        x <- Reduce(
+            f = \(.x, k) {
+                add_usrdefvar(
+                    x = .x,
+                    name = name[k],
+                    group = group,
+                    label = label[k],
+                    lag = lag[k],
+                    coef = coef[k],
+                    regeffect = regeffect[k]
+                )
+            },
+            x = seq_along(name),
+            init = x
+        )
+        return(x)
     }
 
     x$regression$users[[length(x$regression$users) + 1]] <-
