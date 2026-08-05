@@ -771,12 +771,12 @@ format_regressor.default <- function(x, n = NULL) {
 #' completed with a default pattern.
 #'
 #' @examples
-#' rjd3toolkit:::format_variables(list(x1 = ABS[, 1], x2 = ABS[, 2]))
-#' rjd3toolkit:::format_variables(list(AirPassengers, Seatbelts))
+#' rjd3toolkit:::format_variable(list(x1 = ABS[, 1], x2 = ABS[, 2]))
+#' rjd3toolkit:::format_variable(list(AirPassengers, Seatbelts))
 #' @noRd
-format_variables <- function(x, verbose = TRUE) {
+format_variable <- function(x, verbose = TRUE) {
     if (!is.list(x)) {
-        format_variables(list(x))
+        return(format_variable(list(x)))
     }
     output <- x |>
         put_elt_on_same_level(n = NULL) |>
@@ -826,7 +826,11 @@ format_variables <- function(x, verbose = TRUE) {
 #' More information on auxiliary variables in JDemetra+ online documentation:
 #' \url{https://doc.jdemetra.org/a-outlier-detection}
 #'
-modelling_context <- function(calendars = NULL, variables = NULL, verbose = TRUE) {
+modelling_context <- function(
+    calendars = NULL,
+    variables = NULL,
+    verbose = TRUE
+) {
     if (is.null(calendars) || length(calendars) == 0L) {
         calendars <- list()
     } else if (is.list(calendars)) {
@@ -849,7 +853,7 @@ modelling_context <- function(calendars = NULL, variables = NULL, verbose = TRUE
             set_names(n = "r") |>
             replace_wrong_names(verbose = verbose) |>
             regroup_elements_by_name() |>
-            lapply(FUN = format_variables)
+            lapply(FUN = format_variable)
     } else {
         stop("variables should be a list of vars")
     }

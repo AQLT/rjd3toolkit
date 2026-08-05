@@ -54,7 +54,7 @@ Collate:
     'distributions.R'
     'generics.R'
     'jd3rslts.R'
-    'modellingcontext.R'
+    'modelling_context.R'
     'procresults.R'
     'protos.R'
     'regarima_generic.R'
@@ -69,5 +69,8 @@ Collate:
     'timeseries.R'
     'variables.R'
     'zzz.R'
-Remotes:  
+Remotes: 
     github::rjdverse/rjd3jars
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
