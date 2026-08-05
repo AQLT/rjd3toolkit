@@ -15,10 +15,11 @@ modelling_context(calendars = NULL, variables = NULL)
 list of calendars and variables
 }
 \description{
-Function allowing to include calendars and external regressors in a format that makes them usable
-in an estimation process (reg-arima or tramo modelling, stand alone or as pre-processing in seasonal adjustment).
-The regressors can be created with functions available in the package
-or come from any other source, provided they are \code{ts} class objects.
+Function allowing to include calendars and external regressors in a format
+that makes them usable in an estimation process (reg-arima or tramo
+modelling, stand alone or as pre-processing in seasonal adjustment).
+The regressors can be created with functions available in the package or
+come from any other source, provided they are \code{ts} class objects.
 }
 \examples{
 \dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
