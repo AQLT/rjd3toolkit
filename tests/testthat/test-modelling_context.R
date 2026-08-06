@@ -62,6 +62,52 @@ test_that("modelling-context works", {
     ))
 })
 
+test_that("modelling-context works", {
+    mc1 <- list(
+        calendars = list(),
+        variables = list(
+            v1 = list(x1 = AirPassengers)
+        )
+    )
+    mc2 <- list(
+        calendars = list(),
+        variables = list(
+            v1 = list(x1 = AirPassengers),
+            v2 = list(x1 = AirPassengers)
+        )
+    )
+
+    expect_no_message(object = {
+        my_context <- complete_modelling_context(
+            modelling_context = mc1,
+            y = AirPassengers,
+            group = "v2",
+            name = "x1"
+        )
+    })
+
+    expect_message(object = {
+        my_context <- complete_modelling_context(
+            modelling_context = my_context,
+            y = AirPassengers,
+            group = "v2",
+            name = "x1"
+        )
+    })
+
+    expect_no_message(object = {
+        my_context <- complete_modelling_context(
+            modelling_context = my_context,
+            y = AirPassengers,
+            group = "v2",
+            name = "x1",
+            overwrite = TRUE
+        )
+    })
+
+    expect_identical(mc2, my_context)
+})
+
 test_that("replace_wrong_names works", {
     expect_null(replace_wrong_names(x = NULL))
 })

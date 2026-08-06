@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+* New function `complete_modelling_context` to add new regressors and variables to a modelling_context object
+
 ### Changed
 
 * `modelling_context` accepts regressor with and without names in nested structure.
