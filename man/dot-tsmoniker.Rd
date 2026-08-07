@@ -12,7 +12,7 @@
 \item{id}{Id of the time series.}
 }
 \value{
-Returns a java object of class JD3_TSMONIKER.
+Returns a Java object of class JD3_TSMONIKER.
 }
 \description{
 Create a Moniker

@@ -11,7 +11,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Updated JARS from jdplus-main to [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
+- Updated JARS from `jdplus-main` to [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
 
 ### Fixed
 
@@ -49,7 +49,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * `get_date_max()` to get the maximum date
 * New example to use the functions [#85](https://github.com/rjdverse/rjd3toolkit/issues/85)
 * Documentation of `bias` argument in `set_benchmarking()`
-* New datasets : `Electricity` (French national electricity consumtion), `Births` (Number of births registered in France from 1968 to 2024), `x13_spec_default`(Default X13 specification) and `tramoseats_spec_default` (Default Tramo-Seats specification)
+* New datasets : `Electricity` (French national electricity consumption), `Births` (Number of births registered in France from 1968 to 2024), `x13_spec_default`(Default X13 specification) and `tramoseats_spec_default` (Default Tramo-Seats specification)
 * New `print()` and `summary()` method for `JD3_DICTIONARY` and `JD3_FULL_DICTIONARY`
 
 ## [3.5.1] - 2025-06-18

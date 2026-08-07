@@ -55,6 +55,7 @@ Collate:
     'generics.R'
     'jd3rslts.R'
     'modellingcontext.R'
+    'options.R'
     'procresults.R'
     'protos.R'
     'regarima_generic.R'
@@ -69,5 +70,7 @@ Collate:
     'timeseries.R'
     'variables.R'
     'zzz.R'
-Remotes:  
+Remotes: 
     github::rjdverse/rjd3jars
+Suggests: 
+    spelling

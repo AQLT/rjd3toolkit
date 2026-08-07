@@ -3,7 +3,7 @@
 \docType{data}
 \name{tramoseats_spec_default}
 \alias{tramoseats_spec_default}
-\title{Default Tramo-Seats specification ("rsafull")}
+\title{Default Tramo-Seats specification (\code{"rsafull"})}
 \format{
 An object of class \code{JD3_TRAMOSEATS_SPEC} of length 3.
 }
