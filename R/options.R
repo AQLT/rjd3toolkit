@@ -7,18 +7,20 @@
 #' @param name Name of the option
 #' @param obj Option
 #'
+#' @returns Invisibly `NULL`
+#'
 #' @export
 #'
 #' @examples
 #' toolkit_option("test", "DUMMY")
 toolkit_option <- function(name, obj) {
-    options <- .jd3_env$toolkit
-    options[[name]] <- obj
-    assign("toolkit", options, .jd3_env)
+    options_tk <- .jd3_env$toolkit
+    options_tk[[name]] <- obj
+    assign("toolkit", options_tk, .jd3_env)
     return(invisible(NULL))
 }
 
-#' @title Set an option for toolkit
+#' @title Get teh value of an option for toolkit
 #'
 #' @param name Name of the option
 #'
@@ -29,6 +31,6 @@ toolkit_option <- function(name, obj) {
 #' toolkit_option("test", "DUMMY")
 #' get_toolkit_option("test")
 get_toolkit_option <- function(name) {
-    options <- .jd3_env$toolkit
-    return(options[[name]])
+    options_tk <- .jd3_env$toolkit
+    return(options_tk[[name]])
 }

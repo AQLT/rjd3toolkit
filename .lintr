@@ -4,6 +4,7 @@ linters: lintr::all_linters(
         line_length_linter = lintr::line_length_linter(160L),
         cyclocomp_linter = lintr::cyclocomp_linter(complexity_limit = 65L),
         return_linter = NULL,
+        namespace_linter = NULL,
         object_length_linter = NULL,
         object_name_linter = NULL,
         commented_code_linter = NULL,
@@ -14,7 +15,7 @@ linters: lintr::all_linters(
         todo_comment_linter = NULL,
         function_argument_linter = NULL,
         condition_call_linter = NULL,
-        # if_switch_linter = NULL,
+        if_switch_linter = NULL,
         object_overwrite_linter = NULL
     )
 encoding: "UTF-8"

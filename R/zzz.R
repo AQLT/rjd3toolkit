@@ -52,7 +52,6 @@ NULL
     }
 }
 
-
 #' @rdname jd3_utilities
 get_date_min <- function() {
     return(dateOf(1, 1, 1))

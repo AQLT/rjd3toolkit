@@ -356,6 +356,9 @@ get_date_max()
 
 \item{id}{Identifier of the time series information (source-dependent)}
 }
+\value{
+Informations retrieved from or for Java, proto
+}
 \description{
 These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.
 }

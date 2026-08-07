@@ -11,6 +11,9 @@ toolkit_option(name, obj)
 
 \item{obj}{Option}
 }
+\value{
+Invisibly \code{NULL}
+}
 \description{
 Set an option for toolkit
 }
