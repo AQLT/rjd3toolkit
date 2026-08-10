@@ -9,7 +9,7 @@ A data frame with 210384 rows and 3 variables:
 \itemize{
 \item Date: Date of the event (from January 1, 2012 to December 31, 2023)
 \item Hours: Timestamp of the event (from 00:00 AM to 11:30 PM)
-\item Consumtion: number of daily birth (29124--102098)
+\item Consumption: number of daily birth (29124--102098)
 }
 }
 \source{

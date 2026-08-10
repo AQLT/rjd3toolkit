@@ -408,7 +408,7 @@ to_tscollection <- function(source, id, type = "All") {
 #' @param name name of the series
 #'
 #' @returns
-#' Returns a java object of class JD3_TS
+#' Returns a Java object of class JD3_TS
 #' @export
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)

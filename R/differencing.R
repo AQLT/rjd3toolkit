@@ -197,7 +197,7 @@ differences.data.frame <- function(data, lags = 1, mean = TRUE) {
 #' The function `rangemean_tstat` returns the T-statistic associated to \eqn{\beta}.
 #' If it is significantly higher than 0, log transformation is recommended.
 #'
-#' @returns T-Stat of the slope of the range-mean regression.
+#' @returns t-statistic of the slope of the range-mean regression.
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' y <- ABS$X0.2.09.10.M

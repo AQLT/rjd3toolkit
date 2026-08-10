@@ -5,6 +5,7 @@ linters: lintr::all_linters(
         cyclocomp_linter = lintr::cyclocomp_linter(complexity_limit = 65L),
         namespace_linter = NULL,
         return_linter = NULL,
+        namespace_linter = NULL,
         object_length_linter = NULL,
         object_name_linter = NULL,
         commented_code_linter = NULL,
