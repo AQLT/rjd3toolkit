@@ -1933,7 +1933,7 @@ add_usrdefvar.default <- function(
     x,
     group = "r",
     name,
-    label = paste0(group, ".", name),
+    label = NULL,
     lag = 0,
     coef = NULL,
     regeffect = c(
@@ -1945,6 +1945,27 @@ add_usrdefvar.default <- function(
         "SeasonallyAdjusted"
     )
 ) {
+    # Check group
+    checkmate::assert_character(group)
+    checkmate::assert_scalar(group)
+    group <- group |>
+        replace_wrong_names() |>
+        complete_names(pattern = "g")
+
+    # Check name
+    checkmate::assert_character(name)
+    name <- name |>
+        replace_wrong_names() |>
+        complete_names(pattern = "x")
+
+    # Check label
+    if (is.null(label)) {
+        label <- paste0(group, ".", name)
+    } else {
+        checkmate::assert_character(name)
+        stopifnot(length(name) != length(label))
+    }
+
     x$regression$users[[length(x$regression$users) + 1]] <-
         .create_variable(
             id = paste0(group, ".", name),
