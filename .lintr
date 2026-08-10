@@ -20,3 +20,8 @@ linters: lintr::all_linters(
         object_overwrite_linter = NULL
     )
 encoding: "UTF-8"
+exclusions: list(
+    "tests/testthat.R" = list(
+        unused_import_linter = Inf
+    )
+  )

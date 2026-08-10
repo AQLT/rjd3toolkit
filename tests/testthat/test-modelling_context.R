@@ -69,7 +69,9 @@ test_that("replace_wrong_names works", {
 test_that("complete_names works", {
     expect_null(complete_names(x = NULL))
 
-    expect_message(out1 <- complete_names(x = list(1, 2, 3)))
+    expect_message({
+        out1 <- complete_names(x = list(1, 2, 3))
+    })
     expect_identical(out1, list(x1 = 1, x2 = 2, x3 = 3))
 })
 
@@ -81,8 +83,12 @@ test_that("format_regressor stops", {
 test_that("format_variable works", {
     expect_null(format_variable(list()))
 
-    expect_message(out1 <- format_variable(list(AirPassengers)))
-    expect_message(out2 <- format_variable(AirPassengers))
+    expect_message({
+        out1 <- format_variable(list(AirPassengers))
+    })
+    expect_message({
+        out2 <- format_variable(AirPassengers)
+    })
     expect_identical(out1, list(x1 = AirPassengers))
     expect_identical(out2, list(x1 = AirPassengers))
 })
