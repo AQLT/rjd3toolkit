@@ -2010,19 +2010,17 @@ add_usrdefvar.default <- function(
         if (length(regeffect) == 1L) {
             regeffect <- rep(regeffect, length(name))
         } else {
-            stopifnot(length(name) == length(regeffect))
             stopifnot(
-                all(
-                    regeffect %in%
-                        c(
-                            "Undefined",
-                            "Trend",
-                            "Seasonal",
-                            "Irregular",
-                            "Series",
-                            "SeasonallyAdjusted"
-                        )
-                )
+                length(name) == length(regeffect),
+                regeffect %in%
+                    c(
+                        "Undefined",
+                        "Trend",
+                        "Seasonal",
+                        "Irregular",
+                        "Series",
+                        "SeasonallyAdjusted"
+                    )
             )
         }
     }
