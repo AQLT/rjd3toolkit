@@ -1000,12 +1000,12 @@ complete_modelling_context <- function(modelling_context, y, group = "r", name =
     # Check group
     checkmate::assert_character(group)
     checkmate::assert_scalar(group)
+    group <- replace_wrong_names(group)
 
     # Check name
     checkmate::assert_character(name, len = 1L)
 
     new_variable <- format_variable(list(setNames(list(y), name)))
-    group_name <- names(new_variable)
     regressors_name <- names(new_variable)
     current_regressors_names <- names(modelling_context$variables[[group]])
 
