@@ -27,7 +27,7 @@ The default group size (\code{groupsize = 0}) is computed as followed:
 \item{trim}{number of trimmed observations.}
 }
 \value{
-T-Stat of the slope of the range-mean regression.
+t-statistic of the slope of the range-mean regression.
 }
 \description{
 Function to perform a range-mean regression, trimmed to avoid outlier distortion.

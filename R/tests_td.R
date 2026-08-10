@@ -76,7 +76,7 @@ td_f <- function(
 #' @param kernel Kernel used to compute the robust covariance matrix.
 #' @param order The truncation parameter used to compute the robust covariance matrix.
 #'
-#' @returns list with the ftest on td, the joint test and the details for the stability of the different days (starting with Mondays).
+#' @returns list with the F-Test on td, the joint test and the details for the stability of the different days (starting with Mondays).
 #' @export
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)

@@ -354,7 +354,7 @@ arima_properties <- function(model, nspectrum = 601, nac = 36) {
 #' @param model The reduced model. Usually not provided.
 #' @param components The ARIMA models representing the components
 #' @param complements Complements of (some) components. Usually not provided
-#' @param checkmodel When the model is provided and *checkmodel* is TRUE, we
+#' @param checkmodel When the model is provided and `checkmodel` is TRUE, we
 #' check that it indeed corresponds to the reduced form of the components;
 #' similar controls are applied on complements. Currently not implemented
 #'
@@ -523,7 +523,7 @@ ucarima_canonical <- function(ucm, cmp = 0, adjust = TRUE) {
 #' @param stdev TRUE if standard deviation of the components are computed
 #'
 #' @returns A matrix containing the different components and their standard
-#' deviations if stdev is TRUE.
+#' deviations if `stdev` is TRUE.
 #' @export
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
