@@ -1,4 +1,4 @@
-#' @title Create Java CalendarTimeSeries
+#' @title Create Java `CalendarTimeSeries`
 #'
 #' @param calendarobs list.
 #'

@@ -6,7 +6,7 @@
 #' @param pos Requested positions (in [0, period[). The rows of the returned matrix
 #' will correspond to those positions
 #'
-#' @returns A matrix (len(pos) x len(knots))
+#' @returns A matrix (length(`pos`) x length(`knots`))
 #' @export
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
@@ -33,7 +33,7 @@ periodic_bsplines <- function(order = 4, period = 1, knots, pos) {
 #' @param pos Requested positions (in [0, period[). The rows of the returned matrix
 #' will correspond to those positions
 #'
-#' @returns A matrix (len(pos) x len(knots))
+#' @returns A matrix (length(`pos`) x length(`knots`))
 #' @export
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
@@ -125,7 +125,7 @@ periodic_cspline <- function(x, y, pos) {
 #'
 #' @param x Abscissas of the knots
 #' @param pos Requested positions
-#' @returns A matrix (len(pos) x len(knots))
+#' @returns A matrix (length(`pos`) x length(`knots`))
 #' @export
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)

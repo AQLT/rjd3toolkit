@@ -200,14 +200,14 @@ seasonality_f <- function(
 #' @title "X12" Test On Seasonality
 #'
 #' @inheritParams seasonality_qs
-#' @param firstperiod Position in a cycle of the first obs.
+#' @param firstperiod Position in a cycle of the first observation.
 #' For example, for a monthly, `firstperiod = 1` means January.
 #' If `data` is not a `"ts"` object, `firstperiod = 1` by default.
 #' @param mul boolean indicating if the seasonal decomposition is multiplicative (`mul = TRUE`) or additive (`mul = FALSE`).
 #'
 #' @details Combined test on the presence of identifiable seasonality (see Ladiray and Quenneville, 1999).
 #' @export
-#' @returns a \code{list} with several seasonnality tests (kruskalwallis, stable and evolutive)
+#' @returns a \code{list} with several seasonality tests (Kruskal-Wallis, stable and evolutive)
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' s <- do_stationary(log(ABS$X0.2.09.10.M))$ddata
@@ -299,7 +299,7 @@ seasonality_canovahansen_trigs <- function(
 #' @param order The truncation parameter used to compute the robust Newey-West covariance matrix.
 #' @param start Position of the first observation of the series
 #'
-#' @returns list with the FTest on seasonal variables, the joint test and the details for the stability of the different seasonal variables
+#' @returns list with the F-Test on seasonal variables, the joint test and the details for the stability of the different seasonal variables
 #' @export
 #'
 #'
