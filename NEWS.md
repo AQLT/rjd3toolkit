@@ -8,6 +8,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+* New function `complete_modelling_context` to add new regressors and variables to a modelling_context object
+
 ### Deprecated
 
 * `sa_preprocessing` is now deprecated. Please don't use anymore this function. [#122](https://github.com/rjdverse/rjd3toolkit/issues/122)

@@ -538,19 +538,52 @@ put_elt_on_same_level.default <- function(x, n = NULL) {
 #' rjd3toolkit:::set_names(list(a = 1, b = 2, 3), NULL)
 #'
 #' @noRd
+#' @name set_names
 set_names <- function(x, n) {
-    if (!is.null(n)) {
-        ns <- names(x)
-        idx_missing <- is.na(ns) | !nzchar(ns)
-        if (is.null(ns)) {
-            names(x) <- rep(n, length(x))
-        } else if (any(idx_missing)) {
-            names(x)[idx_missing] <- rep(n, sum(idx_missing))
-        }
+    UseMethod("set_names", x)
+}
+
+#' @noRd
+#' @rdname set_names
+#' @exportS3Method set_names NULL
+#' @method set_names NULL
+#' @export
+set_names.NULL <- function(x, n) {
+    return(NULL)
+}
+
+#' @noRd
+#' @rdname set_names
+#' @exportS3Method set_names list
+#' @method set_names list
+#' @export
+set_names.list <- function(x, n) {
+    if (is.null(n)) {
+        return(x)
+    }
+
+    ns <- names(x)
+    idx_missing <- is.na(ns) | !nzchar(ns)
+    if (is.null(ns)) {
+        names(x) <- rep(n, length(x))
+    } else if (any(idx_missing)) {
+        names(x) <- set_names(ns, n)
     }
     return(x)
 }
 
+#' @noRd
+#' @rdname set_names
+#' @exportS3Method set_names character
+#' @method set_names character
+#' @export
+set_names.character <- function(x, n) {
+    idx_missing <- is.na(x) | !nzchar(x)
+    if (any(idx_missing)) {
+        x[idx_missing] <- rep(n, sum(idx_missing))
+    }
+    return(x)
+}
 
 #' @title Replace Dots with Underscore in Names
 #'
@@ -599,7 +632,7 @@ replace_wrong_names.character <- function(x, verbose = TRUE) {
         fixed = TRUE
     )
 
-    if (verbose && any(x != new_names)) {
+    if (verbose && !isTRUE(all.equal(x, new_names))) {
         message(
             "Replaced forbidden character(s) in ",
             sum(x != new_names),
@@ -911,6 +944,83 @@ modelling_context <- function(
     }
 
     return(list(calendars = calendars, variables = variables))
+}
+
+#' @title Complete a Modelling Context with Additional Regressors
+#'
+#' @description
+#' Adds a new regressor variable to an existing modelling context,
+#' either creating a new group or adding to an existing group.
+#'
+#' @param modelling_context A modelling context object created by
+#'   \code{\link{modelling_context}}. It's a list of calendars and variables.
+#' @param y A regressor. An object to format (`mts`, `ts`, `JD3_TS`,
+#'   `JD3_DYNAMICTS`, `JD3_TSCOLLECTION`, `list`, or other).
+#' @param group Character. Name of the group to which the variable should be
+#'   added. By default, the group is "r".
+#' @param name Character. Name to assign to the new regressor variable.
+#' @param overwrite a Boolean to indicate whether a variable already present
+#'   should be replaced
+#'
+#' @returns The updated modelling context with the new variable added.
+#'
+#' @details
+#' If a variable with the same name already exists in the group and overwrite
+#' is `FALSE`, returns the original modelling context with a message.
+#'
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
+#' # Assuming we have a modelling context and a new regressor
+#' my_context <- modelling_context()
+#'
+#' # Add the new regressor to the context
+#' my_context <- complete_modelling_context(
+#'     modelling_context = my_context,
+#'     y = AirPassengers,
+#'     group = "my_group",
+#'     name = "my_regressor"
+#' )
+#'
+#' # Add another regressor to the same group with same name
+#' my_context <- complete_modelling_context(
+#'     modelling_context = my_context,
+#'     y = AirPassengers,
+#'     group = "my_group",
+#'     name = "my_regressor"
+#' )
+#'
+#' # Add another regressor to the same group
+#' my_context <- complete_modelling_context(
+#'     modelling_context = my_context,
+#'     y = ABS,
+#'     group = "my_group",
+#'     name = "another_regressor"
+#' )
+#' @export
+complete_modelling_context <- function(modelling_context, y, group = "r", name = "", overwrite = FALSE) {
+    # Check group
+    checkmate::assert_character(group)
+    checkmate::assert_scalar(group)
+    group <- replace_wrong_names(group)
+
+    # Check name
+    checkmate::assert_character(name, len = 1L)
+
+    new_variable <- format_variable(list(setNames(list(y), name)))
+    regressors_name <- names(new_variable)
+    current_regressors_names <- names(modelling_context$variables[[group]])
+
+    if (any(regressors_name %in% current_regressors_names) && !overwrite) {
+        message(
+            "There is already a variable with the same name in the same group.",
+            "Please change the name of the variable or the name of the group",
+            " or set `overwrite` to `TRUE`."
+        )
+    } else {
+        for (reg in regressors_name) {
+            modelling_context$variables[[group]][[reg]] <- new_variable[[reg]]
+        }
+    }
+    return(modelling_context)
 }
 
 #' @export
