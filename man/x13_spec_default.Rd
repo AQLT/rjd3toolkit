@@ -3,7 +3,7 @@
 \docType{data}
 \name{x13_spec_default}
 \alias{x13_spec_default}
-\title{Default X13 specification ("rsa4")}
+\title{Default X13 specification (\code{"rsa4"})}
 \format{
 An object of class \code{JD3_X13_SPEC} of length 3.
 }
@@ -11,9 +11,9 @@ An object of class \code{JD3_X13_SPEC} of length 3.
 data(x13_spec_default)
 }
 \description{
-X13 default specification generated with \{rjd3x13\} used in
-examples for specification customization functions in \{rjd3toolkit\}
-generated with \code{x13_spec_default <- rjd3x13::x13_spec("rsa4")}
+X13 default specification generated with \{rjd3x13\} used in examples for
+specification customization functions in \{rjd3toolkit\} generated with
+\code{x13_spec_default <- rjd3x13::x13_spec("rsa4")}
 }
 \examples{
 data(x13_spec_default)

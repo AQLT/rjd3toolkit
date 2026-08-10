@@ -10,7 +10,7 @@ NULL
 #' @param duration Duration (length in days) of the Easter effect. (value between 1 and 20, default =6)
 #' @param endpos Position of the end of the Easter effect, relatively to Easter:
 #' -1(default): before Easter Sunday, 0: on Easter Sunday, 1: on Easter Monday)
-#' @param correction mean correction option. Simple"(default), "PreComputed", "Theoretical" or "None".
+#' @param correction mean correction option. `"Simple"` (default), `"PreComputed"`, `"Theoretical"` or `"None"`.
 #'
 #' @returns A time series (object of class \code{"ts"})
 #' @seealso \code{\link{calendar_td}}
@@ -306,7 +306,7 @@ so_variable <- function(
 #' @title Ramp regressor
 #'
 #' @inheritParams outliers_variables
-#' @param range the range of the regressor. A vector of length 2 containing the datesin the format \code{"YYYY-MM-DD"}
+#' @param range the range of the regressor. A vector of length 2 containing the dates in the format \code{"YYYY-MM-DD"}
 #' or the position in the series, in number of periods from counting from the series start.
 #'
 #' @details
@@ -314,7 +314,7 @@ so_variable <- function(
 #' \deqn{RP_t=
 #' \begin{cases}
 #' -1 & \text{if }t\geq t_0 \\
-#' \frac{t-t_0}{t_1-t_0}-1 & t_0< t < t_1 \\
+#' \frac{t-t_0}{t_1-t_0} - 1 & t_0 < t < t_1 \\
 #' 0 & t \leq t_1
 #' \end{cases}
 #' }
