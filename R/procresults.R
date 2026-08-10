@@ -16,13 +16,13 @@ RSLT <- "JD3_ProcResults"
 }
 
 
-#' @title Display names and items from a java (X13) estimation result object
+#' @title Display names and items from a Java (X13) estimation result object
 #'
 #' @description
 #'\code{dictionary()} displays the names of all items contained in a \code{"JD3_ProcResults"} object,
 #' (\code{result()}) displays the contents of one item, (\code{user_defined()}) displays the contents of several items at once
 #'
-#' @param object java object.
+#' @param object Java object.
 #' @param id name of the object to extract.
 #' @param userdefined vector containing the names of the objects to extract.
 #'
@@ -37,7 +37,7 @@ dictionary <- function(object) {
         stop("No dictionary for this type of object")
     }
     if (is.jnull(object$internal)) {
-        stop("No java object")
+        stop("No Java object")
     }
 
     if (
@@ -59,7 +59,7 @@ result <- function(object, id) {
         stop("No result for this type of object")
     }
     if (is.jnull(object$internal)) {
-        stop("No java object")
+        stop("No Java object")
     }
     return(.proc_data(object$internal, id))
 }

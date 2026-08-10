@@ -70,7 +70,7 @@ print.JD3_FULL_DICTIONARY <- function(x, ...) {
         )
     }
     cat(
-        "\n For more informations about the type, the java class of the output or additive details, call `View()`.\n"
+        "\n For more informations about the type, the Java class of the output or additive details, call `View()`.\n"
     )
     return(invisible(NULL))
 }
@@ -79,7 +79,7 @@ print.JD3_FULL_DICTIONARY <- function(x, ...) {
 print.summary.JD3_FULL_DICTIONARY <- function(x, ...) {
     print.data.frame(x)
     cat(
-        "\n For more informations about the type, the java class of the output or additive details, call `View()`.\n"
+        "\n For more informations about the type, the Java class of the output or additive details, call `View()`.\n"
     )
     return(invisible(NULL))
 }

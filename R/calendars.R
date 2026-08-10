@@ -1,4 +1,4 @@
-#' @import checkmate
+#' @importFrom checkmate assertNames assertNumeric
 #' @importFrom methods is
 #' @importFrom stats frequency ts is.ts is.mts start end cycle
 #' @include protobuf.R jd2r.R
@@ -625,13 +625,13 @@ long_term_mean <- function(
 #'
 #' @description
 #' Allows to display the date of Easter Sunday for each year, in the defined period. Dates are
-#' displayed in "YYYY-MM-DD" format and as a number of days since January 1st 1970.
+#' displayed in `"YYYY-MM-DD"` format and as a number of days since January 1st 1970.
 #'
 #' @param year0,year1 starting year and ending year
 #' @inheritParams easter_day
 #'
 #' @export
-#' @returns a named numeric vector. Names are the dates in format "YYYY-MM-DD",
+#' @returns a named numeric vector. Names are the dates in format `"YYYY-MM-DD"`,
 #' values are number of days since January 1st 1970.
 #' @seealso \code{\link{national_calendar}}, \code{\link{easter_day}}
 #' @references
@@ -671,12 +671,26 @@ easter_dates <- function(year0, year1, julian = FALSE) {
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' stock_td(frequency = 12L, start = c(1990L, 1L), length = 480L, w = 1L)
 #'
-stock_td <- function(frequency, start, length, s, w = 31) {
-    if (!missing(s) && is.ts(s)) {
+stock_td <- function(frequency, start, length, s = NULL, w = 31) {
+    if (!is.null(s) && is.ts(s)) {
         frequency <- stats::frequency(s)
         start <- stats::start(s)
         length <- .length_ts(s)
     }
+
+    # Check start
+    checkmate::assert_integerish(start, min.len = 1L, max.len = 2L)
+    if (length(start) == 1L) {
+        start <- c(start, 1L)
+    }
+
+    # Check length
+    checkmate::assert_count(length)
+
+    # Check frequency
+    checkmate::assert_count(frequency, positive = TRUE)
+    checkmate::assert_choice(frequency, choices = c(1L, 2L, 3L, 4L, 6L, 12L))
+
     jdom <- .r2jd_tsdomain(frequency, start[1], start[2], length)
     jm <- .jcall(
         obj = "jdplus/toolkit/base/r/modelling/Variables",
@@ -1008,6 +1022,19 @@ calendar_td <- function(
         start <- stats::start(s)
         length <- .length_ts(s)
     }
+
+    # Check start
+    checkmate::assert_integerish(start, min.len = 1L, max.len = 2L)
+    if (length(start) == 1L) {
+        start <- c(start, 1L)
+    }
+
+    # Check length
+    checkmate::assert_count(length)
+
+    # Check frequency
+    checkmate::assert_count(frequency, positive = TRUE)
+    checkmate::assert_choice(frequency, choices = c(1L, 2L, 3L, 4L, 6L, 12L))
 
     if (holiday != 7L) {
         warning(

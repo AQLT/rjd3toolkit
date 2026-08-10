@@ -58,7 +58,7 @@ test_anova <- function(ssm, dfm, ssr, dfr) {
 #'
 #'
 #' @param nobs Number of observations
-#' @param neffectiveobs Number of effective observations. NA if the same as nobs.
+#' @param neffectiveobs Number of effective observations. NA if the same as `nobs`.
 #' @param nparams Number of hyper-parameters
 #' @param ll Log-likelihood
 #' @param adjustedll Adjusted log-likelihood when the series has been transformed
@@ -69,7 +69,7 @@ test_anova <- function(ssm, dfm, ssr, dfr) {
 #' @param ssq Sum of the squared residuals
 #'
 #' @returns
-#' Returns a java object of class JD3_LIKELIHOOD.
+#' Returns a Java object of class `"JD3_LIKELIHOOD"`.
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
