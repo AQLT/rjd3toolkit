@@ -17,11 +17,13 @@ linters: lintr::all_linters(
         function_argument_linter = NULL,
         condition_call_linter = NULL,
         if_switch_linter = NULL,
+        undesirable_function_linter = NULL,
         object_overwrite_linter = NULL
     )
 encoding: "UTF-8"
 exclusions: list(
     "tests/testthat.R" = list(
-        unused_import_linter = Inf
+        unused_import_linter = Inf,
+        library_call_linter = Inf
     )
   )
