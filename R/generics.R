@@ -21,22 +21,6 @@ diagnostics.JD3 <- function(x, ...) {
     cat("No diagnostic\n")
 }
 
-
-#' @title Generic Preprocessing Function
-#'
-#' @description
-#' Generic function for preprocessing defined in other packages.
-#'
-#' @param x,... parameters.
-#'
-#' @returns a list containing preprocessing part of a model.
-#'
-#' @export
-sa_preprocessing <- function(x, ...) {
-    UseMethod("sa_preprocessing", x)
-}
-
-
 #' @title Generic Function for Seasonal Adjustment Decomposition
 #'
 #' @description
