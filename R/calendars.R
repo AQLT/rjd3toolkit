@@ -625,13 +625,13 @@ long_term_mean <- function(
 #'
 #' @description
 #' Allows to display the date of Easter Sunday for each year, in the defined period. Dates are
-#' displayed in "YYYY-MM-DD" format and as a number of days since January 1st 1970.
+#' displayed in `"YYYY-MM-DD"` format and as a number of days since January 1st 1970.
 #'
 #' @param year0,year1 starting year and ending year
 #' @inheritParams easter_day
 #'
 #' @export
-#' @returns a named numeric vector. Names are the dates in format "YYYY-MM-DD",
+#' @returns a named numeric vector. Names are the dates in format `"YYYY-MM-DD"`,
 #' values are number of days since January 1st 1970.
 #' @seealso \code{\link{national_calendar}}, \code{\link{easter_day}}
 #' @references

@@ -20,7 +20,7 @@
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object
 #' generated with \code{rjd3x13::x13_spec()} (or "JD3_REGARIMA_SPEC" generated
-#' with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC" generated with
+#' with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"` generated with
 #' \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
 #' \code{rjd3tramoseats::spec_tramo()}). If a Seasonal adjustment process is
 #' performed, each type of Outlier will be allocated to a pre-defined component
@@ -275,7 +275,7 @@ remove_ramp.default <- function(x, start = NULL, end = NULL, name = NULL) {
 #'
 #' @param type,d0,d1,n0,n1 parameters to specify the sub-span .
 #'
-#' \code{d0} and \code{d1} characters in the format "YYYY-MM-DD" to specify
+#' \code{d0} and \code{d1} characters in the format `"YYYY-MM-DD"` to specify
 #' first/last date of the span when \code{type} equals to \code{"From"},
 #' \code{"To"} or \code{"Between"}.
 #' Date corresponding to \code{d0} will be included in the sub-span
@@ -299,7 +299,7 @@ remove_ramp.default <- function(x, start = NULL, end = NULL, name = NULL) {
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object
 #' generated with \code{rjd3x13::x13_spec()} (or "JD3_REGARIMA_SPEC" generated
-#' with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC" generated with
+#' with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"` generated with
 #' \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #'
@@ -399,7 +399,7 @@ set_basic.default <- function(
 #'
 #' @description
 #' Function allowing to define numeric boundaries for estimation and to define
-#' a sub-span on which reg-arima (tramo) modelling will be performed
+#' a sub-span on which Reg-ARIMA (Tramo) modelling will be performed
 #' (pre-processing step)
 #'
 #' @inheritParams set_basic
@@ -408,12 +408,12 @@ set_basic.default <- function(
 #' log-likelihood function are compared to this value to check for the
 #' convergence of the estimation iterations. (The default setting is 0.0000001)
 #'
-#' @param exact.ml (TRAMO specific) \code{logical}, the exact maximum likelihood
+#' @param exact.ml (Tramo specific) \code{logical}, the exact maximum likelihood
 #' estimation. If \code{TRUE}, the program performs an exact maximum likelihood
 #' estimation. If \code{FASLE}, the Unconditional Least Squares method is used.
 #' (Default=TRUE)
 #'
-#' @param unit.root.limit (TRAMO specific) \code{numeric}, the final unit root
+#' @param unit.root.limit (Tramo specific) \code{numeric}, the final unit root
 #' limit. The threshold value for the final unit root test for identification of
 #' differencing orders. If the magnitude of an AR root for the final model is
 #' smaller than this number, then a unit root is assumed, the order of the AR
@@ -424,9 +424,9 @@ set_basic.default <- function(
 #'
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object
-#' generated with \code{rjd3x13::x13_spec()} (or "JD3_REGARIMA_SPEC" generated
-#' with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC" generated with
-#' \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
+#' generated with \code{rjd3x13::x13_spec()} (or `"JD3_REGARIMA_SPEC"` generated
+#' with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"` generated with
+#' \code{rjd3tramoseats::spec_tramoseats()} or `"JD3_TRAMO_SPEC"` generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
@@ -502,13 +502,13 @@ set_estimate.default <- function(
 #' @title Set Outlier Detection Parameters
 #'
 #' @description Function allowing to customize the automatic outlier detection
-#' process built in in the pre-processing step (regarima or tramo).
+#' process built in in the pre-processing step (Reg-ARIMA or Tramo).
 #'
 #' @inheritParams set_basic
 #' @param span.type,d0,d1,n0,n1 parameters to specify the sub-span on which
 #' outliers will be detected.
 #'
-#' - \code{d0} and \code{d1} characters in the format "YYYY-MM-DD" to specify
+#' - \code{d0} and \code{d1} characters in the format `"YYYY-MM-DD"` to specify
 #'  first/last date of the span when \code{type} equals to \code{"From"},
 #'  \code{"To"} or \code{"Between"}.
 #' - \code{n0} and \code{n1} numerics to specify the number of periods at the
@@ -552,10 +552,10 @@ set_estimate.default <- function(
 #' @returns The modified specification (with new outlier parameters)
 #'
 #' @details
-#' \code{x} specification parameter must be a JD3_X13_SPEC" class object
-#' generated with \code{rjd3x13::x13_spec()} (or "JD3_REGARIMA_SPEC" generated
-#' with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC" generated with
-#' \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
+#' \code{x} specification parameter must be a `"JD3_X13_SPEC"` class object
+#' generated with \code{rjd3x13::x13_spec()} (or `"JD3_REGARIMA_SPEC"` generated
+#' with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"` generated with
+#' \code{rjd3tramoseats::spec_tramoseats()} or `"JD3_TRAMO_SPEC"` generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #'
 #' If a Seasonal adjustment process is performed, each type of Outlier will be
@@ -755,12 +755,12 @@ set_outlier.default <- function(
 #'  differencing order changes).
 #'  Default = 1.136364.
 #'
-#' @param reducecv \code{numeric}, ReduceCV. The percentage by which the outlier
+#' @param reducecv \code{numeric}, `ReduceCV`. The percentage by which the outlier
 #'  critical value will be reduced when an identified model is found to have a
 #'  Ljung-Box statistic with an unacceptable confidence coefficient.
 #'  The parameter should be between 0 and 1, and will only be active when
 #'  automatic outlier identification is enabled. The reduced critical value will
-#'  be set to (1 - ReduceCV) x CV, where CV is the original critical value.
+#'  be set to (1 - `ReduceCV`) x `CV`, where `CV` is the original critical value.
 #'  Default =  0.14268.
 #'
 #' @param ljungboxlimit \code{numeric}, the Ljung Box limit, setting the
@@ -814,7 +814,7 @@ set_outlier.default <- function(
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object
 #' generated with \code{rjd3x13::x13_spec()} (or "JD3_REGARIMA_SPEC" generated
-#' with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC" generated with
+#' with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"` generated with
 #' \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #'
@@ -960,7 +960,7 @@ set_automodel.default <- function(
 #'
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object generated with \code{rjd3x13::x13_spec()}
-#' (or "JD3_REGARIMA_SPEC" generated with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC"
+#' (or "JD3_REGARIMA_SPEC" generated with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"`
 #' generated with \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #' @seealso \code{\link{set_automodel}}, \code{\link{set_transform}}
@@ -1155,7 +1155,7 @@ set_arima.default <- function(
 #'  - \code{"TD4"} = three contrast variables: week-days (Mondays to Thursdays)
 #'      vs Sundays, Fridays vs Sundays, Saturdays vs Sundays;
 #'  - \code{"None"} = no correction for trading days;
-#'  - \code{"UserDefined"} = userdefined trading days regressors.
+#'  - \code{"UserDefined"} = user-defined trading days regressors.
 #'
 #' @param calendar.name name (string) of the user-defined calendar to be taken
 #'  into account when generating built-in regressors set in \code{option} (if
@@ -1181,7 +1181,7 @@ set_arima.default <- function(
 #'      regression model but can be removed from the RegARIMA model after the
 #'      test;
 #'
-#' (TRAMO specific)
+#' (Tramo specific)
 #'
 #'  - \code{"Separate_T"} = a t-test is applied to each trading day variable
 #'      separately and the trading day variables are included in the RegArima
@@ -1196,7 +1196,7 @@ set_arima.default <- function(
 #' @param automatic defines whether the calendar effects should be added to the
 #'  model manually (\code{"Unused"}) or automatically. During the automatic
 #'  selection, the choice of the number of calendar variables can be based on
-#'  the F-Test (\code{"FTest"}, TRAMO specific), the Wald Test
+#'  the F-Test (\code{"FTest"}, Tramo specific), the Wald Test
 #'  (\code{"WaldTest"}), or by minimizing AIC or BIC; the model with higher
 #'  F-value is chosen, provided that it is higher than \code{pftd}).
 #'
@@ -1224,7 +1224,7 @@ set_arima.default <- function(
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object
 #' generated with \code{rjd3x13::x13_spec()} (or "JD3_REGARIMA_SPEC" generated
-#' with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC" generated with
+#' with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"` generated with
 #' \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #'
@@ -1590,7 +1590,7 @@ set_tradingdays.default <- function(
 #' \code{"Estimated"} =  coefficient is estimated,
 #' \code{"Fixed"} = the coefficients is fixed. By default the coefficient is
 #' estimated.
-#' @param type (TRAMO specific) a \code{character} that specifies the presence
+#' @param type (Tramo specific) a \code{character} that specifies the presence
 #' and the length of the Easter effect:
 #' \code{"Unused"} = the Easter effect is not considered;
 #' \code{"Standard"} = influences the period of \code{n} days strictly before
@@ -1605,7 +1605,7 @@ set_tradingdays.default <- function(
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object
 #' generated with \code{rjd3x13::x13_spec()} (or "JD3_REGARIMA_SPEC" generated
-#' with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC" generated with
+#' with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"` generated with
 #' \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #'
@@ -1711,7 +1711,8 @@ set_easter.default <- function(
     if (!missing(duration) && !is.na(duration)) {
         easter$duration <- duration
     }
-    if (missing(coef) || is.null(coef) || is.na(coef)) {} else {
+    if (missing(coef) || is.null(coef) || is.na(coef)) {
+    } else {
         if (missing(coef.type) || anyNA(coef.type)) {
             coef.type <- "FIXED"
         } else {
@@ -1744,7 +1745,7 @@ set_easter.default <- function(
 #' in the test for the log-level specification (`fun = "Auto"`). By default to `FALSE`.
 #' @param aicdiff (REGARIMA/X-13 specific)  a numeric defining the difference in AICC needed to accept no transformation when the automatic
 #' transformation selection is chosen (considered only when \code{fun = "Auto"}). Default= -2.
-#' @param fct (TRAMO specific) \code{numeric} controlling the bias in the log/level pre-test:
+#' @param fct (Tramo specific) \code{numeric} controlling the bias in the log/level pre-test:
 #' \code{transform.fct}> 1 favours levels, \code{transform.fct}< 1 favours logs.
 #' Considered only when \code{fun = "Auto"}.
 #'
@@ -1752,7 +1753,7 @@ set_easter.default <- function(
 #'
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object generated with \code{rjd3x13::x13_spec()}
-#' (or "JD3_REGARIMA_SPEC" generated with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC"
+#' (or "JD3_REGARIMA_SPEC" generated with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"`
 #' generated with \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #'
@@ -1851,7 +1852,7 @@ set_transform.default <- function(
 #'
 #' @details
 #' \code{x} specification parameter must be a JD3_X13_SPEC" class object generated with \code{rjd3x13::x13_spec()}
-#' (or "JD3_REGARIMA_SPEC" generated with \code{rjd3x13::spec_regarima()} or "JD3_TRAMOSEATS_SPEC"
+#' (or "JD3_REGARIMA_SPEC" generated with \code{rjd3x13::spec_regarima()} or `"JD3_TRAMOSEATS_SPEC"`
 #' generated with \code{rjd3tramoseats::spec_tramoseats()} or "JD3_TRAMO_SPEC" generated with
 #' \code{rjd3tramoseats::spec_tramo()}).
 #' Components to which the effect of the regressor can be allocated:

@@ -12,7 +12,7 @@ JD3_TSCOLLECTION <- "JD3_TSCOLLECTION"
 #' @param id Id of the time series.
 #'
 #' @returns
-#' Returns a java object of class JD3_TSMONIKER.
+#' Returns a Java object of class JD3_TSMONIKER.
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' source <- "Txt"
 #' # id is split due to length restrictions
@@ -349,14 +349,14 @@ dynamic_ts <- function(moniker, data) {
     return(.p2jd_variables(p))
 }
 
-
 #' @title Create modelling context
 #'
 #' @description
-#' Function allowing to include calendars and external regressors in a format that makes them usable
-#' in an estimation process (reg-arima or tramo modelling, stand alone or as pre-processing in seasonal adjustment).
-#' The regressors can be created with functions available in the package
-#' or come from any other source, provided they are \code{ts} class objects.
+#' Function allowing to include calendars and external regressors in a format
+#' that makes them usable in an estimation process (Reg-ARIMA or Tramo
+#' modelling, stand alone or as pre-processing in seasonal adjustment).
+#' The regressors can be created with functions available in the package or
+#' come from any other source, provided they are \code{ts} class objects.
 #'
 #' @param calendars list of calendars.
 #' @param variables list of variables.
