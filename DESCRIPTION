@@ -54,7 +54,7 @@ Collate:
     'distributions.R'
     'generics.R'
     'jd3rslts.R'
-    'modellingcontext.R'
+    'modelling_context.R'
     'options.R'
     'procresults.R'
     'protos.R'
@@ -73,4 +73,6 @@ Collate:
 Remotes: 
     github::rjdverse/rjd3jars
 Suggests: 
+    testthat (>= 3.0.0),
     spelling
+Config/testthat/edition: 3

@@ -3,6 +3,7 @@ linters: lintr::all_linters(
         # line_length_linter = lintr::line_length_linter(80L),
         line_length_linter = lintr::line_length_linter(160L),
         cyclocomp_linter = lintr::cyclocomp_linter(complexity_limit = 65L),
+        namespace_linter = NULL,
         return_linter = NULL,
         namespace_linter = NULL,
         object_length_linter = NULL,
@@ -16,6 +17,13 @@ linters: lintr::all_linters(
         function_argument_linter = NULL,
         condition_call_linter = NULL,
         if_switch_linter = NULL,
+        undesirable_function_linter = NULL,
         object_overwrite_linter = NULL
     )
 encoding: "UTF-8"
+exclusions: list(
+    "tests/testthat.R" = list(
+        unused_import_linter = Inf,
+        library_call_linter = Inf
+    )
+  )
