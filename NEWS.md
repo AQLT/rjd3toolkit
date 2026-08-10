@@ -12,12 +12,25 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 * `sa_preprocessing` is now deprecated. Please don't use anymore this function. [#122](https://github.com/rjdverse/rjd3toolkit/issues/122)
 
+### Changed
+
+* `modelling_context` accepts regressor with and without names in nested structure.
+* `add_usrdefvar` accepts multiple regressor in the same group. [#106](https://github.com/rjdverse/rjd3toolkit/issues/106)
+* `add_usrdefvar` renames automatically the group or variables that contains a dot (`.`) [#148](https://github.com/rjdverse/rjd3toolkit/issues/148).
+
+### Fixed
+
+* `modelling_context` now accept `JD3_TS`, `JD3_DYNAMICTS` and `JD3_TSCOLLECTION` object [#111](https://github.com/rjdverse/rjd3toolkit/issues/111)
+* All unamed variables are regrouped together under the `r` group. [#107](https://github.com/rjdverse/rjd3toolkit/issues/107)
+* Unamed regressors and regressors with duplicated names are renamed with `x1`, `x2`... pattern. [#107](https://github.com/rjdverse/rjd3toolkit/issues/107)
+* Variables and regressor with dot (`.`) in their name are renamed in `modelling_context`. The dot is replaced with an underscore. [#148](https://github.com/rjdverse/rjd3toolkit/issues/148)
+
 
 ## [3.8.0] - 2026-07-09
 
 ### Changed
 
-- Updated JARS from jdplus-main to [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
+- Updated JARS from `jdplus-main` to [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
 
 ### Fixed
 
@@ -57,7 +70,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * `get_date_max()` to get the maximum date
 * New example to use the functions [#85](https://github.com/rjdverse/rjd3toolkit/issues/85)
 * Documentation of `bias` argument in `set_benchmarking()`
-* New datasets : `Electricity` (French national electricity consumtion), `Births` (Number of births registered in France from 1968 to 2024), `x13_spec_default`(Default X13 specification) and `tramoseats_spec_default` (Default Tramo-Seats specification)
+* New datasets : `Electricity` (French national electricity consumption), `Births` (Number of births registered in France from 1968 to 2024), `x13_spec_default`(Default X13 specification) and `tramoseats_spec_default` (Default Tramo-Seats specification)
 * New `print()` and `summary()` method for `JD3_DICTIONARY` and `JD3_FULL_DICTIONARY`
 
 
