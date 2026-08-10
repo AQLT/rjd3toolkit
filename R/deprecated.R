@@ -20,4 +20,3 @@ sa_preprocessing <- function(x, ...) {
     .Deprecated("An other function")
     UseMethod("sa_preprocessing", x)
 }
-
