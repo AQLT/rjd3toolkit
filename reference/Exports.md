@@ -1,11 +1,11 @@
-# Belgian exports to European countries
+# Data Base: Belgian exports to European countries
 
-Belgian exports to European countries
+Data Base: Belgian exports to European countries
 
 ## Usage
 
 ``` r
-Exports
+data(Exports)
 ```
 
 ## Format

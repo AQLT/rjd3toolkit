@@ -1,11 +1,11 @@
-# Retail trade statistics in Australia
+# Data Base: Retail trade series in Australia
 
-Retail trade statistics in Australia
+Data Base: Retail trade series in Australia
 
 ## Usage
 
 ``` r
-ABS
+data(ABS)
 ```
 
 ## Format

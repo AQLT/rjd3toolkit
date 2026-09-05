@@ -1,11 +1,11 @@
-# US Retail trade statistics
+# Data Base: US Retail trade series
 
-US Retail trade statistics
+Data Base: US Retail trade series
 
 ## Usage
 
 ``` r
-Retail
+data(Retail)
 ```
 
 ## Format

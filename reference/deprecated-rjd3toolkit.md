@@ -8,6 +8,8 @@ instead of `sa.decomposition()`.
 
 ``` r
 sa.decomposition(x, ...)
+
+sa_preprocessing(x, ...)
 ```
 
 ## Arguments
@@ -19,3 +21,7 @@ sa.decomposition(x, ...)
 - ...:
 
   further arguments.
+
+## Value
+
+`"JD3_SADECOMPOSITION"` object.

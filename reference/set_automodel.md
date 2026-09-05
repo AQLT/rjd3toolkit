@@ -76,13 +76,13 @@ set_automodel(
 
 - reducecv:
 
-  `numeric`, ReduceCV. The percentage by which the outlier critical
+  `numeric`, `ReduceCV`. The percentage by which the outlier critical
   value will be reduced when an identified model is found to have a
   Ljung-Box statistic with an unacceptable confidence coefficient. The
   parameter should be between 0 and 1, and will only be active when
   automatic outlier identification is enabled. The reduced critical
-  value will be set to (1 - ReduceCV) x CV, where CV is the original
-  critical value. Default = 0.14268.
+  value will be set to (1 - `ReduceCV`) x `CV`, where `CV` is the
+  original critical value. Default = 0.14268.
 
 - ljungboxlimit:
 
@@ -152,14 +152,14 @@ The modified specification (with new ARIMA parameters)
 
 `x` specification parameter must be a JD3_X13_SPEC" class object
 generated with `rjd3x13::x13_spec()` (or "JD3_REGARIMA_SPEC" generated
-with `rjd3x13::spec_regarima()` or "JD3_TRAMOSEATS_SPEC" generated with
-`rjd3tramoseats::spec_tramoseats()` or "JD3_TRAMO_SPEC" generated with
-`rjd3tramoseats::spec_tramo()`).
+with `rjd3x13::spec_regarima()` or `"JD3_TRAMOSEATS_SPEC"` generated
+with `rjd3tramoseats::spec_tramoseats()` or "JD3_TRAMO_SPEC" generated
+with `rjd3tramoseats::spec_tramo()`).
 
 ## References
 
 More information on reg-arima modelling in JDemetra+ online
-documentation: <https://jdemetra-new-documentation.netlify.app/>
+documentation: <https://doc.jdemetra.org/>
 
 ## See also
 
@@ -169,6 +169,7 @@ documentation: <https://jdemetra-new-documentation.netlify.app/>
 ## Examples
 
 ``` r
+
 # Customize a default specification
 init_spec <- x13_spec_default
 new_spec <- set_automodel(x = init_spec, enabled = FALSE, acceptdefault = TRUE)

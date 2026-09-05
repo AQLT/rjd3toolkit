@@ -1,10 +1,10 @@
-# `rjd3toolkit`
+# {rjd3toolkit}
 
-[![R-CMD-check](https://github.com/rjdverse/rjd3toolkit/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rjdverse/rjd3toolkit/actions/workflows/R-CMD-check.yaml)
-[![lint](https://github.com/rjdverse/rjd3toolkit/actions/workflows/lint.yaml/badge.svg)](https://github.com/rjdverse/rjd3toolkit/actions/workflows/lint.yaml)
+[![R-CMD-check](https://github.com/rjdverse/rjd3toolkit/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/rjdverse/rjd3toolkit/actions/workflows/R-CMD-check.yml)
+[![lint](https://github.com/rjdverse/rjd3toolkit/actions/workflows/lint.yml/badge.svg)](https://github.com/rjdverse/rjd3toolkit/actions/workflows/lint.yml)
 
 [![GH Pages
-built](https://github.com/rjdverse/rjd3toolkit/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/rjdverse/rjd3toolkit/actions/workflows/pkgdown.yaml)
+built](https://github.com/rjdverse/rjd3toolkit/actions/workflows/pkgdown.yml/badge.svg)](https://github.com/rjdverse/rjd3toolkit/actions/workflows/pkgdown.yml)
 
 Utility package in JDemetra+ 3.x R ecosystem. Contains functions used in
 other `rjd3` packages and has to be systematically installed before
@@ -12,7 +12,7 @@ using any other rjd3 package.
 
 ## Main Functions
 
-- customize specifications in rjd3x13 and rjd3tramoseats
+- customize specifications in {rjd3x13} and {rjd3tramoseats}
 
 - generate user-defined regressors for calendar correction
 
@@ -26,33 +26,24 @@ using any other rjd3 package.
 
 ## Installation
 
-Running rjd3 packages requires **Java 17 or higher**. How to set up such
+Running rjd3 packages requires **Java 21 or higher**. How to set up such
 a configuration in R is explained
 [here](https://jdemetra-new-documentation.netlify.app/#Rconfig)
 
-### Latest release
+**🎉 {rjd3toolkit} is now available on CRAN! 🎉**
 
-To get the current stable version (from the latest release):
-
-- From GitHub:
+To install it, you have to launch the following command line:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("rjdverse/rjd3toolkit@*release")
+
+install.packages("rjd3toolkit")
 ```
 
-- From [r-universe](https://rjdverse.r-universe.dev/rjd3toolkit):
-
-``` r
-install.packages("rjd3toolkit", repos = c("https://rjdverse.r-universe.dev", "https://cloud.r-project.org"))
-```
-
-### Development version
-
-You can install the development version of **rjd3toolkit** from
+To get the current development version of **{rjd3toolkit}** from
 [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("rjdverse/rjd3toolkit")
 ```
@@ -68,4 +59,4 @@ should be added or updated.
 
 The code of this project is licensed under the [European Union Public
 Licence
-(EUPL)](https://interoperable-europe.ec.europa.eu:443/collection/eupl/eupl-text-eupl-12).
+(EUPL)](https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12).

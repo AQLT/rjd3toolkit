@@ -14,6 +14,8 @@ or TRAMO-SEATS (rjd3tramoseats)
   : Add a User-Defined Variable to Pre-Processing Specification.
 - [`modelling_context()`](https://rjdverse.github.io/rjd3toolkit/reference/modelling_context.md)
   : Create modelling context
+- [`complete_modelling_context()`](https://rjdverse.github.io/rjd3toolkit/reference/complete_modelling_context.md)
+  : Complete a Modelling Context with Additional Regressors
 - [`set_arima()`](https://rjdverse.github.io/rjd3toolkit/reference/set_arima.md)
   : Set ARIMA Model Structure in Pre-Processing Specification
 - [`set_automodel()`](https://rjdverse.github.io/rjd3toolkit/reference/set_automodel.md)
@@ -93,7 +95,7 @@ ramps
   [`periodic_contrasts()`](https://rjdverse.github.io/rjd3toolkit/reference/periodic_dummies.md)
   : Periodic dummies and contrasts
 - [`trigonometric_variables()`](https://rjdverse.github.io/rjd3toolkit/reference/trigonometric_variables.md)
-  : Trigonometric variables
+  : Generating trigonometric variables
 
 ## Seasonality Tests
 
@@ -242,23 +244,22 @@ PDFs, CDFs and inverses
 - [`density_chi2()`](https://rjdverse.github.io/rjd3toolkit/reference/chi2distribution.md)
   [`cdf_chi2()`](https://rjdverse.github.io/rjd3toolkit/reference/chi2distribution.md)
   [`random_chi2()`](https://rjdverse.github.io/rjd3toolkit/reference/chi2distribution.md)
-  : The Chi-Squared Distribution
+  : Chi-Square Distribution
 - [`density_gamma()`](https://rjdverse.github.io/rjd3toolkit/reference/gammadistribution.md)
   [`cdf_gamma()`](https://rjdverse.github.io/rjd3toolkit/reference/gammadistribution.md)
   [`random_gamma()`](https://rjdverse.github.io/rjd3toolkit/reference/gammadistribution.md)
-  : The Gamma Distribution
+  : Gamma Distribution
 - [`density_inverse_gamma()`](https://rjdverse.github.io/rjd3toolkit/reference/invgammadistribution.md)
   [`cdf_inverse_gamma()`](https://rjdverse.github.io/rjd3toolkit/reference/invgammadistribution.md)
   [`random_inverse_gamma()`](https://rjdverse.github.io/rjd3toolkit/reference/invgammadistribution.md)
-  : The Inverse-Gamma Distribution
+  : Inverse-Gamma Distribution
 - [`density_inverse_gaussian()`](https://rjdverse.github.io/rjd3toolkit/reference/invgaussiandistribution.md)
-  [`cdf_inverse_gaussian()`](https://rjdverse.github.io/rjd3toolkit/reference/invgaussiandistribution.md)
   [`random_inverse_gaussian()`](https://rjdverse.github.io/rjd3toolkit/reference/invgaussiandistribution.md)
-  : The Inverse-Gaussian Distribution
+  : Inverse-Gaussian Distribution
 - [`density_t()`](https://rjdverse.github.io/rjd3toolkit/reference/studentdistribution.md)
   [`cdf_t()`](https://rjdverse.github.io/rjd3toolkit/reference/studentdistribution.md)
   [`random_t()`](https://rjdverse.github.io/rjd3toolkit/reference/studentdistribution.md)
-  : The Student Distribution
+  : Student (T) Distribution
 
 ## Splines
 
@@ -284,44 +285,54 @@ Functions allowing to get objects names and contents
 - [`dictionary()`](https://rjdverse.github.io/rjd3toolkit/reference/dictionary.md)
   [`result()`](https://rjdverse.github.io/rjd3toolkit/reference/dictionary.md)
   [`user_defined()`](https://rjdverse.github.io/rjd3toolkit/reference/dictionary.md)
-  : Get Dictionary and Result
-- [`reload_dictionaries()`](https://rjdverse.github.io/rjd3toolkit/reference/reload_dictionaries.md)
-  : Reload dictionaries
+  : Display names and items from a Java (X13) estimation result object
 
 ## Databases
 
 Lists of Time Series from ABS, NBB and US Census Bureau
 
 - [`ABS`](https://rjdverse.github.io/rjd3toolkit/reference/ABS.md) :
-  Retail trade statistics in Australia
+  Data Base: Retail trade series in Australia
+
 - [`Exports`](https://rjdverse.github.io/rjd3toolkit/reference/Exports.md)
-  : Belgian exports to European countries
+  : Data Base: Belgian exports to European countries
+
 - [`Imports`](https://rjdverse.github.io/rjd3toolkit/reference/Imports.md)
-  : Belgian imports from European countries
+  : Data Base: Belgian imports from European countries
+
 - [`Retail`](https://rjdverse.github.io/rjd3toolkit/reference/Retail.md)
-  : US Retail trade statistics
+  : Data Base: US Retail trade series
+
 - [`Births`](https://rjdverse.github.io/rjd3toolkit/reference/Births.md)
-  : Number of births registered in France from 1968 to 2024
+  : Data Base: Series of daily births in France from 1968 to 2024
+
 - [`Electricity`](https://rjdverse.github.io/rjd3toolkit/reference/Electricity.md)
-  : French national electricity consumtion
+  : Data Base: French national electricity consumption
+
 - [`tramoseats_spec_default`](https://rjdverse.github.io/rjd3toolkit/reference/tramoseats_spec_default.md)
-  : Default Tramo-Seats specification
+  :
+
+  Default Tramo-Seats specification (`"rsafull"`)
+
 - [`x13_spec_default`](https://rjdverse.github.io/rjd3toolkit/reference/x13_spec_default.md)
-  : Default X13 specification
+  :
+
+  Default X13 specification (`"rsa4"`)
 
 ## Print and Plot Methods
 
 Functions to print and plot specific JDemetra+ class objects
 
 - [`diagnostics()`](https://rjdverse.github.io/rjd3toolkit/reference/diagnostics.md)
-  : Generic Diagnostics Function
+  : Generic Diagnostics extraction
 - [`sadecomposition()`](https://rjdverse.github.io/rjd3toolkit/reference/sa_decomposition.md)
   [`print(`*`<JD3_SADECOMPOSITION>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/sa_decomposition.md)
   [`plot(`*`<JD3_SADECOMPOSITION>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/sa_decomposition.md)
   [`sa_decomposition()`](https://rjdverse.github.io/rjd3toolkit/reference/sa_decomposition.md)
   : Generic Function for Seasonal Adjustment Decomposition
-- [`sa_preprocessing()`](https://rjdverse.github.io/rjd3toolkit/reference/sa_preprocessing.md)
-  : Generic Preprocessing Function
+- [`sa.decomposition()`](https://rjdverse.github.io/rjd3toolkit/reference/deprecated-rjd3toolkit.md)
+  [`sa_preprocessing()`](https://rjdverse.github.io/rjd3toolkit/reference/deprecated-rjd3toolkit.md)
+  : Deprecated functions
 - [`statisticaltest()`](https://rjdverse.github.io/rjd3toolkit/reference/statisticaltest.md)
   [`print(`*`<JD3_TEST>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/statisticaltest.md)
   : Generic Function For 'JDemetra+' Tests
@@ -333,37 +344,18 @@ Creating Full JDemetra+ TS objects
 - [`data_to_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/data_to_ts.md)
   : Promote a R time series to a "full JDemetra+ time series"
 - [`to_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/to_ts.md)
-  : Creates a time series object
+  : Creates a JDemetra+ time series object
 - [`to_tscollection()`](https://rjdverse.github.io/rjd3toolkit/reference/to_tscollection.md)
   : Creates a collection of time series
 
-## Wrangling Java objects
+## Option for rjdverse
 
-Functions to easily interact between R and Java objects
+Evironment specific to JDemetra+
 
-- [`print(`*`<JD3_ARIMA>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
-  [`print(`*`<JD3_UCARIMA>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
-  [`print(`*`<JD3_SARIMA>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
-  [`print(`*`<JD3_SARIMA_ESTIMATION>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
-  [`print(`*`<JD3_SPAN>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
-  [`print(`*`<JD3_LIKELIHOOD>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
-  [`print(`*`<JD3_REGARIMA_RSLTS>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
-  : JD3 print functions
-- [`print(`*`<JD3_FIXEDDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print.calendars.md)
-  [`print(`*`<JD3_FIXEDWEEKDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print.calendars.md)
-  [`print(`*`<JD3_EASTERDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print.calendars.md)
-  [`print(`*`<JD3_SPECIALDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print.calendars.md)
-  [`print(`*`<JD3_SINGLEDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print.calendars.md)
-  [`print(`*`<JD3_CALENDAR>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print.calendars.md)
-  : Calendars Print Methods
-- [`r2jd_calendarts()`](https://rjdverse.github.io/rjd3toolkit/reference/r2jd_calendarts.md)
-  : Create Java CalendarTimeSeries
-- [`.add_ud_var()`](https://rjdverse.github.io/rjd3toolkit/reference/dot-add_ud_var.md)
-  : Add user-defined variable to a SA model
-- [`.likelihood()`](https://rjdverse.github.io/rjd3toolkit/reference/dot-likelihood.md)
-  : Information on the (log-)likelihood
-- [`.tsmoniker()`](https://rjdverse.github.io/rjd3toolkit/reference/dot-tsmoniker.md)
-  : Create a Moniker
+- [`get_toolkit_option()`](https://rjdverse.github.io/rjd3toolkit/reference/get_toolkit_option.md)
+  : Get teh value of an option for toolkit
+- [`toolkit_option()`](https://rjdverse.github.io/rjd3toolkit/reference/toolkit_option.md)
+  : Set an option for toolkit
 - [`.r2jd_tsdata()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.r2jd_tsdomain()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.jd2r_tsdata()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
@@ -465,14 +457,160 @@ Functions to easily interact between R and Java objects
   [`.jd2p_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.jd2r_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.r2jd_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd3_env`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.jd3_object()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.p2r_regarima_rslts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.r2jd_tmp_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.r2jd_make_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`.r2jd_make_tscollection()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
-  [`get_java_version()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
-  [`current_java_version`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
-  [`minimal_java_version`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`get_date_min()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`get_date_max()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  : Java Utility Functions
+
+## Wrangling Java objects
+
+Functions to easily interact between R and Java objects
+
+- [`print(`*`<JD3_ARIMA>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
+  [`print(`*`<JD3_UCARIMA>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
+  [`print(`*`<JD3_SARIMA>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
+  [`print(`*`<JD3_SARIMA_ESTIMATION>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
+  [`print(`*`<JD3_SPAN>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
+  [`print(`*`<JD3_LIKELIHOOD>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
+  [`print(`*`<JD3_REGARIMA_RSLTS>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_print.md)
+  : JD3 print functions
+
+- [`print(`*`<JD3_FIXEDDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print_calendars.md)
+  [`print(`*`<JD3_FIXEDWEEKDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print_calendars.md)
+  [`print(`*`<JD3_EASTERDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print_calendars.md)
+  [`print(`*`<JD3_SPECIALDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print_calendars.md)
+  [`print(`*`<JD3_SINGLEDAY>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print_calendars.md)
+  [`print(`*`<JD3_CALENDAR>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print_calendars.md)
+  [`print(`*`<JD3_CHAINEDCALENDAR>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print_calendars.md)
+  [`print(`*`<JD3_WEIGHTEDCALENDAR>`*`)`](https://rjdverse.github.io/rjd3toolkit/reference/print_calendars.md)
+  : Calendars Print Methods
+
+- [`r2jd_calendarts()`](https://rjdverse.github.io/rjd3toolkit/reference/r2jd_calendarts.md)
+  :
+
+  Create Java `CalendarTimeSeries`
+
+- [`.add_ud_var()`](https://rjdverse.github.io/rjd3toolkit/reference/dot-add_ud_var.md)
+  : Add user-defined variable to a SA model
+
+- [`.likelihood()`](https://rjdverse.github.io/rjd3toolkit/reference/dot-likelihood.md)
+  : Information on the (log-)likelihood
+
+- [`.tsmoniker()`](https://rjdverse.github.io/rjd3toolkit/reference/dot-tsmoniker.md)
+  : Create a Moniker
+
+- [`.r2jd_tsdata()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_tsdomain()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_tsdata()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_mts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_lts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_matrix()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_matrix()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jdomain()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.enum_sextract()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.enum_sof()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.enum_extract()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.enum_of()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_parameter()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_parameter()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_parameters()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_lparameters()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_parameters()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_parameters_rslt()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_parameters_rsltx()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_test()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_matrix()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_tsdata()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_tsdata()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_parameters_estimation()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_likelihood()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_date()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_date()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_span()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_span()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_arima()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_ucarima()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_spec_sarima()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_spec_sarima()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_outliers()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_outliers()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_sequences()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_sequences()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_iv()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_iv()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_ivs()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_ivs()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_ramps()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_ramps()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_uservars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_uservars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_variables()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_sa_decomposition()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_sa_diagnostics()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_spec_benchmarking()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_spec_benchmarking()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_sarima()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_ucarima()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2jd_calendar()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_calendar()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_numeric()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_vector()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_int()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_bool()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_str()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_desc()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_test()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_parameter()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_parameters()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_matrix()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_data()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_dictionary()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_dictionary2()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.proc_likelihood()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_moniker()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_moniker()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_datasupplier()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_metadata()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_metadata()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_tscollection()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_tscollection()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_tscollection()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_tscollection()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_datasupplier()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_datasuppliers()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_datasuppliers()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2jd_variables()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2p_variables()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_variables()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_variables()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_context()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_context()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2jd_context()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2p_context()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_modellingcontext()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_modellingcontext()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2p_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2jd_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2p_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd2r_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_calendars()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd3_env`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.jd3_object()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.p2r_regarima_rslts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_tmp_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_make_ts()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
+  [`.r2jd_make_tscollection()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`get_date_min()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   [`get_date_max()`](https://rjdverse.github.io/rjd3toolkit/reference/jd3_utilities.md)
   : Java Utility Functions
@@ -482,4 +620,5 @@ Functions to easily interact between R and Java objects
 Avoid Using
 
 - [`sa.decomposition()`](https://rjdverse.github.io/rjd3toolkit/reference/deprecated-rjd3toolkit.md)
+  [`sa_preprocessing()`](https://rjdverse.github.io/rjd3toolkit/reference/deprecated-rjd3toolkit.md)
   : Deprecated functions

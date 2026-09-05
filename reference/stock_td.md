@@ -6,7 +6,7 @@ effects in Stock series.
 ## Usage
 
 ``` r
-stock_td(frequency, start, length, s, w = 31)
+stock_td(frequency, start, length, s = NULL, w = 31)
 ```
 
 ## Arguments
@@ -43,8 +43,7 @@ it is a Monday as 0 otherwise.
 ## References
 
 More information on calendar correction in JDemetra+ online
-documentation:
-<https://jdemetra-new-documentation.netlify.app/a-calendar-correction>
+documentation: <https://doc.jdemetra.org/a-calendar-correction>
 
 ## See also
 

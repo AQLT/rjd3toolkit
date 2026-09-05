@@ -208,6 +208,8 @@ interact between R and Java objects.
 
 .r2jd_calendars(r)
 
+.jd3_env
+
 .jd3_object(jobjRef, subclasses = NULL, result = FALSE)
 
 .p2r_regarima_rslts(p)
@@ -218,22 +220,10 @@ interact between R and Java objects.
 
 .r2jd_make_tscollection(source, id, type = "All")
 
-get_java_version()
-
-current_java_version
-
-minimal_java_version
-
 get_date_min()
 
 get_date_max()
 ```
-
-## Format
-
-An object of class `integer` of length 1.
-
-An object of class `numeric` of length 1.
 
 ## Arguments
 
@@ -283,9 +273,6 @@ An object of class `numeric` of length 1.
 
   Identifier of the time series information (source-dependent)
 
-## Examples
+## Value
 
-``` r
-get_java_version()
-#> [1] 17
-```
+Informations retrieved from or for Java, proto

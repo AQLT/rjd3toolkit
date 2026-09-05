@@ -50,17 +50,17 @@ The modified specification (with/without outliers or ramp)
 
 `x` specification parameter must be a JD3_X13_SPEC" class object
 generated with `rjd3x13::x13_spec()` (or "JD3_REGARIMA_SPEC" generated
-with `rjd3x13::spec_regarima()` or "JD3_TRAMOSEATS_SPEC" generated with
-`rjd3tramoseats::spec_tramoseats()` or "JD3_TRAMO_SPEC" generated with
-`rjd3tramoseats::spec_tramo()`). If a Seasonal adjustment process is
-performed, each type of Outlier will be allocated to a pre-defined
+with `rjd3x13::spec_regarima()` or `"JD3_TRAMOSEATS_SPEC"` generated
+with `rjd3tramoseats::spec_tramoseats()` or "JD3_TRAMO_SPEC" generated
+with `rjd3tramoseats::spec_tramo()`). If a Seasonal adjustment process
+is performed, each type of Outlier will be allocated to a pre-defined
 component after the decomposition: "AO" and "TC" to the irregular, "LS"
 and Ramps to the trend.
 
 ## References
 
 More information on outliers and other auxiliary variables in JDemetra+
-online documentation: <https://jdemetra-new-documentation.netlify.app/>
+online documentation: <https://doc.jdemetra.org/a-outlier-detection>
 
 ## See also
 
@@ -70,6 +70,7 @@ online documentation: <https://jdemetra-new-documentation.netlify.app/>
 ## Examples
 
 ``` r
+
 init_spec <- x13_spec_default
 
 # Adding outlier on year 2012

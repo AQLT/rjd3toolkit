@@ -66,8 +66,7 @@ reference group (0).
 ## References
 
 More information on calendar correction in JDemetra+ online
-documentation:
-<https://jdemetra-new-documentation.netlify.app/a-calendar-correction>
+documentation: <https://doc.jdemetra.org/a-calendar-correction>
 
 ## See also
 
@@ -76,6 +75,7 @@ documentation:
 ## Examples
 
 ``` r
+
 # Monthly regressors for Trading Days: each type of day is different
 # contrasts to Sundays (6 series)
 regs_td <- td(12, c(2020, 1), 60, groups = c(1, 2, 3, 4, 5, 6, 0), contrasts = TRUE)

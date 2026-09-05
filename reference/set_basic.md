@@ -29,7 +29,7 @@ set_basic(
 
   parameters to specify the sub-span .
 
-  `d0` and `d1` characters in the format "YYYY-MM-DD" to specify
+  `d0` and `d1` characters in the format `"YYYY-MM-DD"` to specify
   first/last date of the span when `type` equals to `"From"`, `"To"` or
   `"Between"`. Date corresponding to `d0` will be included in the
   sub-span Date corresponding to `d1` will be excluded from the sub span
@@ -59,14 +59,14 @@ The modified specification with new estimation span
 
 `x` specification parameter must be a JD3_X13_SPEC" class object
 generated with `rjd3x13::x13_spec()` (or "JD3_REGARIMA_SPEC" generated
-with `rjd3x13::spec_regarima()` or "JD3_TRAMOSEATS_SPEC" generated with
-`rjd3tramoseats::spec_tramoseats()` or "JD3_TRAMO_SPEC" generated with
-`rjd3tramoseats::spec_tramo()`).
+with `rjd3x13::spec_regarima()` or `"JD3_TRAMOSEATS_SPEC"` generated
+with `rjd3tramoseats::spec_tramoseats()` or "JD3_TRAMO_SPEC" generated
+with `rjd3tramoseats::spec_tramo()`).
 
 ## References
 
 More information in JDemetra+ online documentation:
-<https://jdemetra-new-documentation.netlify.app/>
+<https://doc.jdemetra.org/a-sa-pre-treatment#sa-pre-t-spans>
 
 ## See also
 
@@ -76,6 +76,7 @@ More information in JDemetra+ online documentation:
 ## Examples
 
 ``` r
+
 # Customize a default specification
 init_spec <- x13_spec_default
 

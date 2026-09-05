@@ -12,12 +12,12 @@
 <link rel="icon" sizes="any" href="favicon.ico">
 <link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Utility Functions Around JDemetra+ 3.0">
-<meta name="description" content="R Interface to JDemetra+ 3.x (&lt;https://github.com/jdemetra&gt;) time series analysis software. It provides functions allowing to model time series (create outlier regressors, user-defined calendar regressors, UCARIMA models...), to test the presence of trading days or seasonal effects and also to set specifications in pre-adjustment and benchmarking when using rjd3x13 or rjd3tramoseats.">
-<meta property="og:description" content="R Interface to JDemetra+ 3.x (&lt;https://github.com/jdemetra&gt;) time series analysis software. It provides functions allowing to model time series (create outlier regressors, user-defined calendar regressors, UCARIMA models...), to test the presence of trading days or seasonal effects and also to set specifications in pre-adjustment and benchmarking when using rjd3x13 or rjd3tramoseats.">
+<meta name="description" content="R Interface to JDemetra+ 3.x (&lt;https://github.com/jdemetra&gt;) time series analysis software. It provides functions allowing to model time series (create outlier regressors, user-defined calendar regressors, Unobserved Components AutoRegressive Integrated Moving Average (UCARIMA) models...), to test the presence of trading days or seasonal effects and also to set specifications in pre-adjustment and benchmarking when using rjd3x13 or rjd3tramoseats.">
+<meta property="og:description" content="R Interface to JDemetra+ 3.x (&lt;https://github.com/jdemetra&gt;) time series analysis software. It provides functions allowing to model time series (create outlier regressors, user-defined calendar regressors, Unobserved Components AutoRegressive Integrated Moving Average (UCARIMA) models...), to test the presence of trading days or seasonal effects and also to set specifications in pre-adjustment and benchmarking when using rjd3x13 or rjd3tramoseats.">
 <meta property="og:image" content="https://rjdverse.github.io/rjd3toolkit/logo.svg">
 </head>
 <body>
@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">rjd3toolkit</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.6.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.8.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
     <li><a class="external-link dropdown-item" href="https://jdemetra-new-documentation.netlify.app/">JDemetra+ documentation</a></li>
   </ul>
 </li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/rjdverse/rjd3toolkit"><span class="fa fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/rjdverse/rjd3toolkit" aria-label="GitHub"><span class="fa fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -67,21 +67,20 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.svg" class="logo" alt=""><h1 id="rjd3toolkit-">
-<code>rjd3toolkit</code> 
+<img src="logo.svg" class="logo" alt=""><h1 id="rjd3toolkit-">{rjd3toolkit} 
 <a class="anchor" aria-label="anchor" href="#rjd3toolkit-"></a>
 </h1>
 </div>
 <!-- badges: start -->
 
-<p><a href="https://github.com/rjdverse/rjd3toolkit/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rjdverse/rjd3toolkit/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/rjdverse/rjd3toolkit/actions/workflows/lint.yaml" class="external-link"><img src="https://github.com/rjdverse/rjd3toolkit/actions/workflows/lint.yaml/badge.svg" alt="lint"></a></p>
-<p><a href="https://github.com/rjdverse/rjd3toolkit/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/rjdverse/rjd3toolkit/actions/workflows/pkgdown.yaml/badge.svg" alt="GH Pages built"></a> <!-- badges: end --></p>
+<p><a href="https://github.com/rjdverse/rjd3toolkit/actions/workflows/R-CMD-check.yml" class="external-link"><img src="https://github.com/rjdverse/rjd3toolkit/actions/workflows/R-CMD-check.yml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/rjdverse/rjd3toolkit/actions/workflows/lint.yml" class="external-link"><img src="https://github.com/rjdverse/rjd3toolkit/actions/workflows/lint.yml/badge.svg" alt="lint"></a></p>
+<p><a href="https://github.com/rjdverse/rjd3toolkit/actions/workflows/pkgdown.yml" class="external-link"><img src="https://github.com/rjdverse/rjd3toolkit/actions/workflows/pkgdown.yml/badge.svg" alt="GH Pages built"></a> <!-- badges: end --></p>
 <p>Utility package in JDemetra+ 3.x R ecosystem. Contains functions used in other <code>rjd3</code> packages and has to be systematically installed before using any other rjd3 package.</p>
 <div class="section level2">
 <h2 id="main-functions">Main Functions<a class="anchor" aria-label="anchor" href="#main-functions"></a>
 </h2>
 <ul>
-<li><p>customize specifications in rjd3x13 and rjd3tramoseats</p></li>
+<li><p>customize specifications in {rjd3x13} and {rjd3tramoseats}</p></li>
 <li><p>generate user-defined regressors for calendar correction</p></li>
 <li><p>generate auxiliary variables (outliers, ramps..)</p></li>
 <li><p>run arima model estimations</p></li>
@@ -92,31 +91,15 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Running rjd3 packages requires <strong>Java 17 or higher</strong>. How to set up such a configuration in R is explained <a href="https://jdemetra-new-documentation.netlify.app/#Rconfig" class="external-link">here</a></p>
-<div class="section level3">
-<h3 id="latest-release">Latest release<a class="anchor" aria-label="anchor" href="#latest-release"></a>
-</h3>
-<p>To get the current stable version (from the latest release):</p>
-<ul>
-<li>From GitHub:</li>
-</ul>
+<p>Running rjd3 packages requires <strong>Java 21 or higher</strong>. How to set up such a configuration in R is explained <a href="https://jdemetra-new-documentation.netlify.app/#Rconfig" class="external-link">here</a></p>
+<p><strong>🎉 {rjd3toolkit} is now available on CRAN! 🎉</strong></p>
+<p>To install it, you have to launch the following command line:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rjdverse/rjd3toolkit@*release"</span><span class="op">)</span></span></code></pre></div>
-<ul>
-<li>From <a href="https://rjdverse.r-universe.dev/rjd3toolkit" class="external-link">r-universe</a>:</li>
-</ul>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rjd3toolkit"</span><span class="op">)</span></span></code></pre></div>
+<p>To get the current development version of <strong>{rjd3toolkit}</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rjd3toolkit"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://rjdverse.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
-</h3>
-<p>You can install the development version of <strong>rjd3toolkit</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rjdverse/rjd3toolkit"</span><span class="op">)</span></span></code></pre></div>
-</div>
 </div>
 <div class="section level2">
 <h2 id="package-maintenance-and-contributing">Package Maintenance and contributing<a class="anchor" aria-label="anchor" href="#package-maintenance-and-contributing"></a>
@@ -126,12 +109,13 @@
 <div class="section level2">
 <h2 id="licensing">Licensing<a class="anchor" aria-label="anchor" href="#licensing"></a>
 </h2>
-<p>The code of this project is licensed under the <a href="https://interoperable-europe.ec.europa.eu:443/collection/eupl/eupl-text-eupl-12" class="external-link">European Union Public Licence (EUPL)</a>.</p>
+<p>The code of this project is licensed under the <a href="https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12" class="external-link">European Union Public Licence (EUPL)</a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=rjd3toolkit" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/rjdverse/rjd3toolkit/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/rjdverse/rjd3toolkit/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -164,7 +148,7 @@
 <ul class="list-unstyled">
 <li>Jean Palate <br><small class="roles"> Author </small>   </li>
 <li>Alain Quartier-la-Tente <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-7890-3857" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
-<li>Tanguy Barthelemy <br><small class="roles"> Author, maintainer, artist </small>   </li>
+<li>Tanguy Barthelemy <br><small class="roles"> Author, maintainer, artist, copyright holder </small>   </li>
 <li>Anna Smyk <br><small class="roles"> Author </small>   </li>
 </ul>
 </div>
@@ -186,7 +170,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

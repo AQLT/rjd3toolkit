@@ -1,11 +1,11 @@
-# French national electricity consumtion
+# Data Base: French national electricity consumption
 
-French national electricity consumtion
+Data Base: French national electricity consumption
 
 ## Usage
 
 ``` r
-Electricity
+data(Electricity)
 ```
 
 ## Format
@@ -16,11 +16,11 @@ A data frame with 210384 rows and 3 variables:
 
 - Hours: Timestamp of the event (from 00:00 AM to 11:30 PM)
 
-- Consumtion: number of daily birth (29124–102098)
+- Consumption: number of daily birth (29124–102098)
 
 ## Source
 
-<https://www.rte-france.com/en/eco2mix/download-indicators>
+<https://www.rte-france.com/en/data-publications/eco2mix/download-indicators>
 
 ## Examples
 

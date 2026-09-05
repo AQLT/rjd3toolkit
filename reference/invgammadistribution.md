@@ -1,6 +1,6 @@
-# The Inverse-Gamma Distribution
+# Inverse-Gamma Distribution
 
-Density, (cumulative) distribution function and random generation for
+Density, cumulative distribution function and random generation for
 inverse-gamma distribution.
 
 ## Usage
@@ -27,16 +27,28 @@ random_inverse_gamma(shape, scale, n)
 
   number of observations.
 
+## Value
+
+numeric vector
+
+Functions density_XXX and cdf_XXX return numeric vectors of same length
+as `x`. Function random_XXX returns a numeric vector of length `n`.
+
 ## Examples
 
 ``` r
-density_inverse_gamma(shape = 1, scale = 2, x = 1:10)
-#>  [1] 0.27067057 0.18393972 0.11409269 0.07581633 0.05362560 0.03980730
-#>  [7] 0.03067254 0.02433752 0.01977129 0.01637462
-cdf_inverse_gamma(shape = 1, scale = 2, x = 1:10)
+# Probability density function for an Inverse Gamma distribution
+z <-density_inverse_gamma(shape = 1, scale = 2,x=.001 * seq(0, 300, 1))
+# Computing the probability that the random variable X following an Inverse Gamma distribution
+# with shape 1 and scale 2 is lower than x
+z<-cdf_inverse_gamma(shape = 1, scale = 2, x = 1:10)
+z
 #>  [1] 0.1353353 0.3678794 0.5134171 0.6065307 0.6703200 0.7165313 0.7514773
 #>  [8] 0.7788008 0.8007374 0.8187308
-random_inverse_gamma(shape = 1, scale = 2, n = 10)
-#>  [1] 43.6422175  1.2468517  6.6181000 32.3430340  1.5603589  4.5972857
-#>  [7]  7.3627098  0.4470303  1.1666691  0.2912774
+# Generating a random vector with each component drawn from an Inverse Gamma distribution
+# with shape 1 and scale 2
+z<- random_inverse_gamma(shape = 1, scale = 2, n = 10)
+z
+#>  [1] 27.7941307  1.1035108  4.7176344 22.3557274  8.5926873  6.8407883
+#>  [7]  1.6983614  0.8501643  2.2940100  0.5603451
 ```
