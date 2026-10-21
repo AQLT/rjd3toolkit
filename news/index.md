@@ -1,6 +1,6 @@
 # Changelog
 
-## rjd3toolkit 3.8.0.9000
+## rjd3toolkit 3.9.0.9000
 
 All notable changes to this project will be documented in this file.
 
@@ -8,7 +8,9 @@ The format is based on [Keep a
 Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [Unreleased](https://github.com/rjdverse/rjd3toolkit/compare/v3.8.0...HEAD)
+### [Unreleased](https://github.com/rjdverse/rjd3toolkit/compare/v3.9.0...HEAD)
+
+### [3.9.0](https://github.com/rjdverse/rjd3toolkit/compare/v3.8.0...v3.9.0) - 2026-09-21
 
 #### Added
 
@@ -17,27 +19,31 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 #### Deprecated
 
-- `sa_preprocessing` is now deprecated. Please don’t use anymore this
+- `sa_preprocessing` is now deprecated. Please don’t use any more this
   function. [\#122](https://github.com/rjdverse/rjd3toolkit/issues/122)
 
 #### Changed
 
 - `modelling_context` accepts regressor with and without names in nested
   structure.
+
 - `add_usrdefvar` accepts multiple regressor in the same group.
   [\#106](https://github.com/rjdverse/rjd3toolkit/issues/106)
+
 - `add_usrdefvar` renames automatically the group or variables that
   contains a dot (`.`)
   [\#148](https://github.com/rjdverse/rjd3toolkit/issues/148).
+
+- Updated jdplus-main JARS from 3.8.0 to 3.9.0
 
 #### Fixed
 
 - `modelling_context` now accept `JD3_TS`, `JD3_DYNAMICTS` and
   `JD3_TSCOLLECTION` object
   [\#111](https://github.com/rjdverse/rjd3toolkit/issues/111)
-- All unamed variables are regrouped together under the `r` group.
+- All unnamed variables are regrouped together under the `r` group.
   [\#107](https://github.com/rjdverse/rjd3toolkit/issues/107)
-- Unamed regressors and regressors with duplicated names are renamed
+- Unnamed regressors and regressors with duplicated names are renamed
   with `x1`, `x2`… pattern.
   [\#107](https://github.com/rjdverse/rjd3toolkit/issues/107)
 - Variables and regressor with dot (`.`) in their name are renamed in
@@ -46,15 +52,26 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [3.8.0](https://github.com/rjdverse/rjd3toolkit/compare/v3.7.1...v3.8.0) - 2026-07-09
 
+#### Added
+
+- Package-level documentation page
+
 #### Changed
 
 - Updated JARS from `jdplus-main` to
   [3.8.0](https://github.com/jdemetra/jdplus-main/releases/tag/v3.8.0)
+- New url for online documentation (<https://doc.jdemetra.org>)
+- New formating (apply [`air`](https://posit-dev.github.io/air/) on
+  package)
 
 #### Fixed
 
 - Fix bug in weighted calendar regressors.
   [rjdverse/rjd3workspace#131](https://github.com/rjdverse/rjd3workspace/issues/131)
+- Fix typo between `"ts"` and `"tc"`
+  [\#159](https://github.com/rjdverse/rjd3toolkit/issues/159)
+- Some typos are corrected in the documentation. Examples have been
+  updated.
 
 ### [3.7.1](https://github.com/rjdverse/rjd3toolkit/compare/v3.6.0...v3.7.1) - 2026-03-10
 
